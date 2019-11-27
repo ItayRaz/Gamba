@@ -5,7 +5,7 @@ import utilService from './util.service.js';
 
 const BASE_API = 'localhost:3000/users';
 
-const USER_SESSION_KEY= 'loggedUser';
+const USER_SESSION_KEY = 'logged_in_user';
 
 export default {
     query,
@@ -48,3 +48,13 @@ function logOut() {
             utilService.clearSessionStorage();
         })
 }
+
+// function x() {
+//     return events.sort((ev1, ev2) => {
+//         var absDistanceEv1 = Math.abs(ev1.coords.lat) - Math.abs(user.coords.lat) +
+//                           Math.abs(ev1.coords.lng) - Math.abs(user.coords.lng)
+//         var absDistanceEv2 = Math.abs(ev2.coords.lat) - Math.abs(user.coords.lat) +
+//                           Math.abs(ev2.coords.lng) - Math.abs(user.coords.lng)
+//         return absDistanceEv1 - absDistanceEv2;
+//     })
+// }
