@@ -7,7 +7,7 @@ export default {
         logedInUser: null,
         currUser: null,
         users: [],
-        currCoords: {}
+        currCoords: {lat: 31.771959, lng: 35.217018}
     },
     getters: {
         logedInUser(state) {
