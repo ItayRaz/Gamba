@@ -5,6 +5,7 @@ import About from '../views/About.vue'
 import eventPage from '../views/EventPage.vue'
 import eventEdit from '../views/EventEdit.vue'
 import eventDetails from '../components/EventDetails.vue'
+import SignupPage from '../views/SignUp.vue';
 
 Vue.use(VueRouter)
 
@@ -37,6 +38,11 @@ const routes = [
     path: '/event/edit/:id?',
     name: 'event-edit',
     component: eventEdit
+  },
+  {
+    path: '/signup',
+    name: 'signup-page',
+    component: SignupPage
   },
 ]
 

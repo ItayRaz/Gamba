@@ -30,10 +30,17 @@ export default {
         setCurCoords(state, {coords}) {
             state.currCoords = coords.coords;
             console.log(state.currCoords);
-
         }
     },
     actions: {
+        signIn(context, {user}) {
+            return userService.signIn(user)
+                .then(user => {
+                    console.log('store got user:'. user)
+                    context.commit({type: 'setLogedUser', user});
+                    return user;
+                })
+        },
         logIn(context, {loginInfo}) {
             return userService.logIn(loginInfo)
                 .then(user => context.commit({type: 'setLogedUser', user}));
@@ -41,6 +48,9 @@ export default {
         logOut(context) {
             return userService.logOut()
                 .then(() => context.commit({type: 'setLogedUser', user: null}))
+        },
+        getUser(context, {_id}) {
+            return userService.get(_id);
         },
         getCurrCoords(context) {
             navigator.geolocation.getCurrentPosition((coords) => {
