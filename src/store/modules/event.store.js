@@ -5,6 +5,7 @@ export default {
     state: {
         events: [],
         currEvent: null,
+        filterby:{}
     },
     mutations:{
         setEvents(state,{events}){
@@ -13,6 +14,13 @@ export default {
 
     },
     getters:{
+        events(state){
+            return state.events;
+        },
+        popularEvents(state){
+            const popularEvents =  state.events.map(event => event.attenders.length >=5);
+            return popularEvents;
+        }
 
     },
     actions: {
