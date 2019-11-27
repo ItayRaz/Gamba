@@ -9,7 +9,7 @@ export default {
     },
     mutations:{
         setEvents(state,{events}){
-            state.events
+            state.events = events;
         }
 
     },
