@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import userStore from './modules/user.store'
 import eventStore from './modules/event.store'
+import userStore from './modules/user.store'
 
 Vue.use(Vuex)
 

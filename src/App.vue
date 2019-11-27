@@ -28,6 +28,7 @@ export default {
     this.showCoords()
     
     
+    this.$store.dispatch({type:'loadEvents'})
   }
 };
 </script>

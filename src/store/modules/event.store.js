@@ -1,50 +1,51 @@
 import eventService from '../../services/event.service.js';
-import userStore from './user.store.js'
 
-export default { 
+export default {
     state: {
         events: [],
         currEvent: null,
-        filterby:{}
+        filterby: {}
     },
-    mutations:{
-        setEvents(state,{events}){
-            state.events
+    mutations: {
+        sortEventByDist(state, {data}) {            
+            var currCoords = data.context.getters.currCoords;
+            const sortedEvents = data.events.sort((ev1, ev2) => {
+                var dis1 = Math.abs(ev1.location.Coords.lat) - Math.abs(currCoords.lat) +
+                    Math.abs(ev1.location.Coords.lng) - Math.abs(currCoords.lng);
+                var dis2 = Math.abs(ev2.location.Coords.lat) - Math.abs(currCoords.lat) +
+                    Math.abs(ev2.location.Coords.lng) - Math.abs(currCoords.lng);
+                return dis1 - dis2;
+            })
+            state.events = sortedEvents;
         }
 
     },
-    getters:{
-        events(state){
+    getters: {
+        events(state) {
             return state.events;
         },
-        popularEvents(state){
-            const popularEvents =  state.events.map(event => event.attenders.length >=5);
+        popularEvents(state) {
+            const popularEvents = state.events.map(event => event.attenders.length >= 5);
             return popularEvents;
         },
-        eventsAround(state,getters){
-
-            console.log(getters);
-            
-            var currCoords = getters.currCoords
-            console.log(currCoords);
-            
-            return 'hey'
+        eventsAround(state) {
+            const eventsAround = state.events.slice(0,state.events.length/2);
+            return eventsAround;
+        },
+        otherEvents(){
+            const otherEvents = state.events.slice(state.events.length/2);
+            return otherEvents;
         }
 
     },
     actions: {
         loadEvents(context) {
             return eventService.query()
-                .then(events => context.commit({type: 'setEvents', events}))
+                .then(events => {
+                    context.commit({ type: 'sortEventByDist', data:{ events, context} })
+                })
         },
-        // eventsAround(context){
-        //     console.log(context);
-            
-        //     // var currCoords = userStore.state.currCoords
-        //     // console.log(currCoords);
-            
-        //     return 'hey'
-        // }
+
 
     }
 }
