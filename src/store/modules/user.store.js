@@ -18,6 +18,9 @@ export default {
         },
         users(state) {
             return state.users;
+        },
+        currCoords(state){
+            return state.currCoords;
         }
     },
     mutations: {
@@ -25,7 +28,7 @@ export default {
             state.logedInUser = user;            
         },
         setCurCoords(state, {coords}) {
-            state.currCoords = coords;
+            state.currCoords = coords.coords;
             console.log(state.currCoords);
 
         }
