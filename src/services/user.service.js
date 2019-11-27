@@ -3,7 +3,7 @@
 import httpService from './http.service.js';
 import utilService from './util.service.js';
 
-const BASE_API = 'localhost:3000/users';
+const BASE_API = '//localhost:3000/users';
 
 const USER_SESSION_KEY= 'loggedUser';
 
