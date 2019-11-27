@@ -7,7 +7,7 @@ export default {
         logedInUser: null,
         currUser: null,
         users: [],
-        currLocation: {}
+        currCoords: {}
     },
     getters: {
         logedInUser(state) {
@@ -24,8 +24,8 @@ export default {
         setLogedUser(state, {user}) {
             state.logedInUser = user;
         },
-        setCurrLocation(state, {location}) {
-            state.currLocation = location;
+        setCurCoords(state, {coords}) {
+            state.currCoords = coords;
         }
     },
     actions: {
@@ -36,6 +36,12 @@ export default {
         logOut(context) {
             return userService.logOut()
                 .then(() => context.commit({type: 'setLogedUser', user: null}))
+        },
+        getCurrCoords(context) {
+            navigator.geolocation.getCurrentPosition((coords) => {
+                context.commit({type: 'setCurCoords', coords}),
+                err => err; 
+            })
         }
     }
 }
