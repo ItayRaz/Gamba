@@ -35,7 +35,7 @@ const routes = [
     ]
   },
   {
-    path: '/event/edit/:id?',
+    path: '/edit/:id?',
     name: 'event-edit',
     component: eventEdit
   },
