@@ -1,5 +1,5 @@
 import eventService from '../../services/event.service.js';
-
+import userStore from './user.store.js'
 
 export default { 
     state: {
@@ -20,6 +20,15 @@ export default {
         popularEvents(state){
             const popularEvents =  state.events.map(event => event.attenders.length >=5);
             return popularEvents;
+        },
+        eventsAround(state,getters){
+
+            console.log(getters);
+            
+            var currCoords = getters.currCoords
+            console.log(currCoords);
+            
+            return 'hey'
         }
 
     },
@@ -27,7 +36,15 @@ export default {
         loadEvents(context) {
             return eventService.query()
                 .then(events => context.commit({type: 'setEvents', events}))
-        }
+        },
+        // eventsAround(context){
+        //     console.log(context);
+            
+        //     // var currCoords = userStore.state.currCoords
+        //     // console.log(currCoords);
+            
+        //     return 'hey'
+        // }
 
     }
 }
