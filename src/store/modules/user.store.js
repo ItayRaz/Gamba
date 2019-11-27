@@ -22,10 +22,12 @@ export default {
     },
     mutations: {
         setLogedUser(state, {user}) {
-            state.logedInUser = user;
+            state.logedInUser = user;            
         },
         setCurCoords(state, {coords}) {
             state.currCoords = coords;
+            console.log(state.currCoords);
+
         }
     },
     actions: {

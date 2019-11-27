@@ -5,7 +5,7 @@ import utilService from './util.service.js';
 
 const BASE_API = 'localhost:3000/users';
 
-const USER_SESSION_KEY;
+const USER_SESSION_KEY= 'loggedUser';
 
 export default {
     query,
