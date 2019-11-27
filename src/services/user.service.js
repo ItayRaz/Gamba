@@ -5,12 +5,15 @@ import utilService from './util.service.js';
 
 const BASE_API = '';
 
+const USER_SESSION_KEY;
+
 export default {
     query,
     signIn,
     remove,
     get,
-    logIn
+    logIn,
+    logOut
 }
 
 function query(filterBy = {}) {
@@ -31,6 +34,17 @@ function signIn(user) {
     else return httpService.post(BASE_API, user);
 }
 
-function logIn(username, password) {
-    return httpService.post(BASE_API, {username, password});
+function logIn({username, password}) {
+    return httpService.post(BASE_API + '/login', {username, password})
+        .then(user => {
+            utilService.saveToSessionStorage(USER_SESSION_KEY, user);
+            return user;
+        })
+}
+
+function logOut() {
+    return httpService.post(BASE_API + '/logout')
+        .then(() => {
+            utilService.clearSessionStorage();
+        })
 }

@@ -1,7 +1,10 @@
 'use strict';
 
 export default {
-    getQuerysStr
+    getQuerysStr,
+    saveToSessionStorage,
+    loadFromSessionStorage,
+    clearSessionStorage
 }
 
 function getQuerysStr(filterBy = {}) {
@@ -11,3 +14,13 @@ function getQuerysStr(filterBy = {}) {
     }
     return queryStr.slice(0, queryStr.length-1);
 } 
+
+function saveToSessionStorage(key, value) {
+    sessionStorage[key] = JSON.stringify(value);
+}
+function loadFromSessionStorage(key, value) {
+    return JSON.parse(sessionStorage[key]);
+}
+function clearSessionStorage() {
+    sessionStorage.clear()
+}
