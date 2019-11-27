@@ -1,6 +1,9 @@
 'use strict';
 
-import axios from 'axios';
+import Axios from 'axios';
+var axios = Axios.create({
+    withCredentials: true
+});
 
 export default {
     get,
