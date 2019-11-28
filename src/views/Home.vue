@@ -3,12 +3,13 @@
     <h1>Gamba</h1>
     <router-view></router-view>
     <button to="/event/edit">Add Event</button>
-    <event-list :events="events"></event-list>    
+    <calander-event-list :events="events"></calander-event-list>    
   </section>
 </template>
 
 <script>
-import eventList from '../components/event-list'
+// import eventList from '../components/event-list'
+import CalanderEventList from '../components/CalanderEventoList.vue';
 
 export default {
   data() {
@@ -27,7 +28,8 @@ export default {
     }
   },
   components: {
-    eventList
+    // eventList,
+    CalanderEventList
   }
 }
 </script>

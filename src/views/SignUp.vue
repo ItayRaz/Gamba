@@ -1,9 +1,9 @@
 <template>
-    <section>
+    <main>
         <button @click="isSignIn = !isSignIn">{{btnMsg}}</button>
         <sign-in v-if="isSignIn"></sign-in>
         <log-in v-else></log-in>
-    </section>
+    </main>
 </template>
 
 <script>

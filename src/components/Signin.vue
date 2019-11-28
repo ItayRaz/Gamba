@@ -1,7 +1,7 @@
 <template>
     <section>
         <h2>Sign in</h2>
-        <form @submit.prevent="SignIn" class="flex column">
+        <form @submit.prevent="SignIn" class="flex column align-center justify-center">
             <input autofocus type="text" placeholder="User name" v-model="user.username"/>
             <input type="text" placeholder="Password" v-model="user.password"/>
             <input type="text" placeholder="img src" v-model="user.img"/>
