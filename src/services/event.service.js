@@ -3,7 +3,7 @@
 import httpService from './http.service.js';
 import utilService from './util.service.js';
 
-const BASE_API = '//localhost:3000/events';
+const BASE_API = '//localhost:3000/eventos';
 
 export default {
     query,
@@ -18,8 +18,18 @@ function query(filterBy = {}) {
 }
 
 function save(event) {
-    if (event._id) return httpService.put(`${BASE_API}/${event._id}`, event);
-    else return httpService.post(BASE_API, event);
+    if (event._id) return httpService.put(`${BASE_API}/${event._id}`, event);  
+    else {
+        event.createdAt = Date.now();
+        event.location = {
+        Coords: {
+            lat: 34.77318,
+            lng: 32.097768
+          },
+          name: "Tel aviv port"
+    }
+        return httpService.post(BASE_API, event);
+    } 
 }
 
 function remove(_id) {
@@ -29,7 +39,6 @@ function remove(_id) {
 function get(_id) {
     return httpService.get(`${BASE_API}/${_id}`);
 }
-
 
 // function saveComment(event, comment) {
 //     if (comment._id) return httpService.put(`${BASE_API}/${event._id}`, event);

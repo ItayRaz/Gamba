@@ -2,7 +2,7 @@
   <section>
     <h1>Gamba</h1>
     <router-view></router-view>
-    <button to="/event/edit">Add Event</button>
+    <router-link to="/edit"><button>Add Event</button></router-link>
     <event-list :events="events"></event-list>    
   </section>
 </template>

@@ -3,7 +3,7 @@ import eventService from '../../services/event.service.js';
 export default {
     state: {
         events: [],
-        currEvent: null,
+        currEvent: {},
         filterby: {}
     },
     mutations: {
@@ -24,6 +24,16 @@ export default {
                 return dis1 - dis2;
             })
             state.events = sortedEvents;
+        },
+        addEvent(state, {event}) {
+            state.events.unshift(event);
+        },
+        saveEvent(state, {event}) {
+            const idx = state.events.findIndex(event => event._id === event._id);
+            state.events.splice(idx, 1, event)
+        },
+        setCurrEvent(state, {event}) {
+            state.currEvent = event;
         }
     },
     getters: {
@@ -41,6 +51,9 @@ export default {
         otherEvents(state) {
             const otherEvents = state.events.slice(state.events.length / 2);
             return otherEvents;
+        },
+        currEvent(state) {
+            return state.currEvent;
         }
 
     },
@@ -54,6 +67,21 @@ export default {
         removeEvent(context, { eventId }) {
             return eventService.remove(eventId)
                 .then(() => context.commit({ type: 'removeEvent', eventId }))
+        },
+        addEvent(context, {event}) {
+            return eventService.save(event)
+                .then(event => context.commit({type: 'addEvent', event}))
+        },
+        EditEvent(context, {event}) {
+            return eventService.save(event)
+                .then(event => context.commit({type: 'saveEvent', event}))
+        },
+        getEvent(context, {eventId}) {            
+            return eventService.get(eventId)
+                .then(event => {                    
+                    context.commit({type: 'setCurrEvent', event})
+                
+                })
         }
     },
 }
