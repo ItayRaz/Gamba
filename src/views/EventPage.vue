@@ -1,14 +1,15 @@
 <template>
     <main>
         <evento-filter :categories="eventosCategories" @setFilter="setFilter"/>
+        <router-link to="/event/edit"><button>Add Event</button></router-link>
         <event-list :eventos="eventosToShow"/>
     </main>
 </template>
 
 <script>
 import eventoFilter from '../components/EventoFilter.vue';
-import eventList from '../components/EventList.vue';
-// import eventList from '../components/CalanderEventoList.vue';
+// import eventList from '../components/EventList.vue';
+import eventList from '../components/CalanderEventoList.vue';
 
 export default {
     data() {

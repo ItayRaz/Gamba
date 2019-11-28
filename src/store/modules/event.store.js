@@ -32,7 +32,9 @@ export default {
             const idx = state.eventos.findIndex(evento => evento._id === evento._id);
             state.eventos.splice(idx, 1, evento)
         },
-        setCurrEvent(state, {evento}) {
+        setCurrEvent(state, {evento}) { //test
+            console.log(evento);
+            
             state.currEvent = evento;
         }
     },
@@ -90,9 +92,9 @@ export default {
         },
         getEvent(context, {eventoId}) {            
             return eventoService.get(eventoId)
-                .then(evento => {                    
+                .then(evento => {                                        
                     context.commit({type: 'setCurrEvent', evento})
-                
+                    return evento // for details
                 })
         }
     },

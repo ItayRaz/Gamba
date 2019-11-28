@@ -19,6 +19,8 @@ export default {
   created() {
     this.$store.dispatch({type:'getCurrCoords'})
     this.$store.dispatch({type:'loadEvents'})
+    console.log(this.$store.eventos);
+    
   },
  
 };

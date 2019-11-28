@@ -17,6 +17,7 @@ button:hover {
     cursor: pointer;
 }
 
+<<<<<<< HEAD
 a {
     text-decoration: none;
     color: $clr6;
@@ -24,6 +25,15 @@ a {
 a:hover, .router-link-exact-active {
     color: $clr3;
 }
+=======
+
+
+// html, body {
+//     height: 100%;
+//     margin: 0;
+//     position: relative;
+// }
+>>>>>>> b8b4db08ce25aa60ac25bfd4c5f93d8e34a8c4b2
 
 .logo {
     color: $clr7;

@@ -1,24 +1,14 @@
 <template>
+<section class="details-container flex column">
   <section class="event-details">
     <hr />
+    <!-- <p v-if="evento">{{evento}}</p> -->
     <section class="details-header">
+      <div>
       <img
         src="https://hire4event.com/blogs/wp-content/uploads/2019/03/best-Event-company-in-Greater-Noida--1024x598.jpg"
       />
-      <div class="details-header title">
-        <h2>TLV stratup hub</h2>
-        <div class="title-txt">
-        <p>Tel Aviv-Yafo, Israel</p>
-        <p>
-          7.487 Mitglieder
-          Öffentliche Gruppe
-        </p>
-        <p>Organisiert von David M. und 2 andere</p>
-        </div>
-        <MapList></MapList>
-      </div>
-    </section>
-    <section class="details-links">
+      <section class="details-links">
       <p>Events</p>
       <p>Members</p>
       <p>Photos</p>
@@ -26,45 +16,70 @@
       <p>More</p>
       <p>Join us</p>
     </section>
-    <section class="details-content">
-      <h1>What is going to be...</h1>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus amet laborum assumenda neque cumque aliquam commodi libero, aspernatur quisquam molestias facere fuga, unde officiis est quia rerum adipisci laboriosam temporibus?</p>
+      </div>
+      <div class="details-header title">
+        <h2>{{evento.title}}</h2>
+        <div class="title-txt">
+        <p>{{evento.location.name}}</p>
+        <p>{{evento.members.length}} members are going</p>
+        <p>Organisiert von David M. und 2 andere</p>
+        </div>
+        <MapList></MapList>
+      </div>
     </section>
-
-
+    <section class="details-content">
+      <div class="details-txt">
+      <h1>What is going to be...</h1>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus amet laborum assumenda neque cumque aliquam commodi libero, aspernatur quisquam molestias facere fuga, unde officiis est quia rerum adipisci laboriosam temporibus?
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Explicabo temporibus nobis, quaerat sint rerum incidunt blanditiis quo unde, reiciendis enim at eligendi cum adipisci sed assumenda veritatis. Enim, natus sint.
+      </p>
+      </div>
+      <div class="details-creator">
+        <h3>Creator</h3>
+        <avatar username="PUKI"
+          :src="evento.creator.img"
+          :size="100"
+          rounded>  
+        </avatar>
+        <p>{{evento.creator.name}}</p>
+      </div>
+    </section>
+    <EventGallery :imgs="evento.imgs"></EventGallery>
+  </section>
   </section>
 </template>
 
 
 
 <script>
-import MapList from "@/components/MapList";
+import MapList from '@/components/MapList';
+import EventGallery from '@/components/EventGallery'
+import Avatar from 'vue-avatar'
+
 
 export default {
   components: {
-    MapList
+    MapList,
+    EventGallery,
+    Avatar
   },
   data() {
     return {
       evento: null
     };
   },
-  computed: {
-    currEvento() {
-      return this.$store.currEvent;
-    }
-  },
-  created() {
+  async created() {
     const eventoId = this.$route.params.id;
-    console.log(eventoId);
+    this.evento = await this.$store.dispatch({type: 'getEvent' , eventoId})    
   }
 };
 </script>
 
 
 <style  scoped>
+
 img {
-  min-width: 300px;
+  min-width: 100px;
   height: 350px;
 }
 
@@ -82,12 +97,28 @@ img {
   text-align: initial;
 }
 
+
 .details-links{
   display: flex;
   justify-content: space-around
 }
 
 .details-content{
-  text-align: initial;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center
 }
+
+.details-txt{
+  max-width:500px;
+}
+
+.details-creator{
+  text-align: center;
+}
+
+
+
+
 </style>

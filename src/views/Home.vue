@@ -5,9 +5,8 @@
       <h2 class="logo-subline">Pilpel!</h2>
     </section>
     <router-view></router-view>
-    <router-link to="/event/edit"><button>Add Event</button></router-link>
     <!-- <evento-list :eventos="eventos"></evento-list> -->    
-    <calander-evento-list :eventos="eventos"></calander-evento-list>
+    <!-- <calander-evento-list :eventos="eventos"/> -->
   </section>
 </template>
 
