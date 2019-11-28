@@ -3,12 +3,12 @@
     <h1>Gamba</h1>
     <router-view></router-view>
     <button to="/event/edit">Add Event</button>
-    <event-list :events="events"></event-list>    
+    <EventList :events="events"></EventList>    
   </section>
 </template>
 
 <script>
-import eventList from '../components/event-list'
+import EventList from '../components/EventList'
 
 export default {
   data() {
@@ -27,7 +27,7 @@ export default {
     }
   },
   components: {
-    eventList
+    EventList
   }
 }
 </script>
