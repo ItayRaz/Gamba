@@ -40,6 +40,9 @@ export default {
         events(state) {
             return state.events;
         },
+        currEvento(state){
+            return state.currEvent
+        },
         popularEvents(state) {
             const popularEvents = state.events.map(event => event.attendsIds.length >= 5);
             return popularEvents;

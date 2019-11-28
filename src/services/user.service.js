@@ -3,9 +3,9 @@
 import httpService from './http.service.js';
 import utilService from './util.service.js';
 
-const BASE_API = '//localhost:3000/users';
+const BASE_API = '//localhost:3000/user';
 
-const USER_SESSION_KEY= 'loggedUser';
+const USER_SESSION_KEY = 'logged_in_user';
 
 export default {
     query,
@@ -26,10 +26,14 @@ function remove(_id) {
 }
 
 function get(_id) {
+    if (!_id) {
+        return Promise.resolve(getNewUser());
+    }
     return httpService.get(`${BASE_API}/${_id}`);
 }
 
 function signIn(user) {
+    console.log('user service is signing user..');
     if (user._id) return httpService.put(`${BASE_API}/${user._id}`, user);
     else return httpService.post(BASE_API, user);
 }
@@ -48,3 +52,27 @@ function logOut() {
             utilService.clearSessionStorage();
         })
 }
+
+function getNewUser() {
+    return {
+        username: '',
+        password: '',
+        isAdmin: false,
+        img: '',
+        createdAt: Date.now(),
+        events: {
+            createdIds: [],
+            attendIds: []
+        }
+    }
+}
+
+// function x() {
+//     return events.sort((ev1, ev2) => {
+//         var absDistanceEv1 = Math.abs(ev1.coords.lat) - Math.abs(user.coords.lat) +
+//                           Math.abs(ev1.coords.lng) - Math.abs(user.coords.lng)
+//         var absDistanceEv2 = Math.abs(ev2.coords.lat) - Math.abs(user.coords.lat) +
+//                           Math.abs(ev2.coords.lng) - Math.abs(user.coords.lng)
+//         return absDistanceEv1 - absDistanceEv2;
+//     })
+// }
