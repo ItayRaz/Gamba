@@ -1,0 +1,24 @@
+.img-details {
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+}
+
+.middle{
+    border: 2px solid black;
+}
+
+.event-gallery{
+    margin: 0 auto;
+    width:fit-content;
+    button{
+        visibility: hidden;
+    }
+    &:hover{
+        button{
+            visibility: visible;
+        }
+    }
+    margin-bottom: 20px;
+    
+}
