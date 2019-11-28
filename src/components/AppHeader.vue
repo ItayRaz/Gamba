@@ -7,6 +7,7 @@
             <li><router-link to="/event">Events</router-link></li>
             <li><router-link to="/signup">Sign-up</router-link></li>
             <li><router-link to="/about">About</router-link></li>
+            <li><router-link to="/user/:id">UserPage</router-link></li>
         </ul>
     </header>
 </template>
