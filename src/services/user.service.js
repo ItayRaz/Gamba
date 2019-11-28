@@ -60,10 +60,10 @@ function _getNewUser() {
         isAdmin: false,
         img: '',
         createdAt: Date.now(),
-        events: {
-            createdIds: [],
-            attendIds: []
-        }
+        // events: {
+        //     createdIds: [],
+        //     attendIds: []
+        // }
     }
 }
 
