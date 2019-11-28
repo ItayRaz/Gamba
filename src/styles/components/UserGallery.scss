@@ -1,0 +1,11 @@
+.user-gallery{
+    margin-top: 20px;
+    ul{
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+}
+
+.user-review{
+    margin-left:10px;
+}
