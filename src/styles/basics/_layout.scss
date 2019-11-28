@@ -1,7 +1,14 @@
 .main-header {
+<<<<<<< HEAD
     width: 100vw;
     min-height: 10vh;
+=======
+    min-height: 10vh;
+    width: 100vw;
+    z-index: 1;
+>>>>>>> 09e6bccba0e301d4585eaf52ca05eaab297517e4
 }
+
 .main-footer {
     // width: 100vw;
 }
@@ -10,3 +17,12 @@
     // width: 100vw;
     min-height: 90vh;
 }
+<<<<<<< HEAD
+=======
+
+
+
+.logo {
+    color: $clr7;
+}
+>>>>>>> 09e6bccba0e301d4585eaf52ca05eaab297517e4

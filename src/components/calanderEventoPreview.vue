@@ -1,11 +1,11 @@
 <template>
     <div class="calander-event-preview">
-        <header class="flex column align-center space-around">
+        <header  :style="{'background-image': `url(${evento.mainImg})`}" class="flex column align-center space-around">
             <h2>{{date}}.{{month}}, {{day}} ({{year}})</h2>
-            <h3>{{evento.name}}</h3>
+            <h3>{{evento.title}}</h3>
         </header>
         <main class="flex align-center space-around wrap">
-            <short-txt :txt="evento.desc" txtLimit="75"/>
+            <short-txt :txt="evento.desc" txtLimit="60"/>
             <router-link :to="'/event/'+evento._id">Details</router-link>
         </main>
         <footer class="flex align-center space-around wrap">
