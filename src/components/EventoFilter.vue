@@ -5,7 +5,6 @@
             <option value="All">All</option>
             <option v-for="category in categories" :key="category" :value="category">{{category}}</option>
         </select>
-        {{filterBy}}
     </form>
 </template>
 
