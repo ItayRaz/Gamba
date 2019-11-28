@@ -24,11 +24,17 @@ export default {
                 return dis1 - dis2;
             })
             state.events = sortedEvents;
-        }
+            console.log(state.events);
+            
+        },
+       
     },
     getters: {
         events(state) {
             return state.events;
+        },
+        currEvento(state){
+            return state.currEvent
         },
         popularEvents(state) {
             const popularEvents = state.events.map(event => event.attendsIds.length >= 5);

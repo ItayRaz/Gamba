@@ -17,23 +17,11 @@
 
 
 export default {
-  methods:{
-    showCoords(){
-      console.log('!!');
-      
-      var x = this.$store.getters.eventsAround
-      console.log(x);
-      
-      
-    }
-  },
   created() {
     this.$store.dispatch({type:'getCurrCoords'})
-    this.showCoords()
-    
-    
     this.$store.dispatch({type:'loadEvents'})
-  }
+  },
+ 
 };
 </script>
 
