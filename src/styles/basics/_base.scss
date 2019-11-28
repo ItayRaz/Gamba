@@ -25,6 +25,7 @@ a:hover, .router-link-exact-active {
     color: $clr3;
 }
 
-.logo {
-    color: $clr7;
+img {
+    // width: 100%;
+    object-fit: cover;
 }

@@ -5,7 +5,7 @@
             <h3>{{evento.title}}</h3>
         </header>
         <main class="flex align-center space-around wrap">
-            <short-txt :txt="evento.desc" txtLimit="75"/>
+            <short-txt :txt="evento.desc" txtLimit="60"/>
             <router-link :to="'/event/'+evento._id">Details</router-link>
         </main>
         <footer class="flex align-center space-around wrap">
