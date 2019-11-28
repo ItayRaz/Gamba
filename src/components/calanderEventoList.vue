@@ -9,15 +9,16 @@
 </template>
 
 <script>
-import calanderEventoPreview from './CalanderEventoPreview.vue';
+import calanderEventoPreview from './CalanderEventoPreview';
 
 export default {
+    props: ['eventos'],
     computed: {
-        eventos() {
-            return this.$store.getters.events.sort((ev1, ev2) => {
-                return (ev1.time.start > ev2.time.start)? -1 : 1;
-            })
-        }
+        // eventos() {
+        //     return this.$store.getters.events.sort((ev1, ev2) => {
+        //         return (ev1.time.start > ev2.time.start)? -1 : 1;
+        //     })
+        // }
     },
     components: {
         calanderEventoPreview

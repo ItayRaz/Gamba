@@ -4,14 +4,13 @@
     <router-view></router-view>
     <router-link to="/edit"><button>Add Event</button></router-link>
     <event-list :events="events"></event-list>    
-    <calander-event-list :events="events"></calander-event-list>    
-    <EventList :events="events"></EventList>    
+    <calander-evento-list :eventos="events"></calander-evento-list>
   </section>
 </template>
 
 <script>
 // import eventList from '../components/event-list'
-import CalanderEventList from '../components/CalanderEventoList.vue';
+import CalanderEventoList from '../components/CalanderEventoList';
 import EventList from '../components/EventList'
 
 export default {
@@ -32,7 +31,7 @@ export default {
   },
   components: {
     EventList,
-    CalanderEventList
+    CalanderEventoList
   }
 }
 </script>
