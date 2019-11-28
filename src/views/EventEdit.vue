@@ -8,7 +8,7 @@
         <el-date-picker
           type="date"
           placeholder="Pick a date"
-          v-model="evento.date"
+          v-model="evento.time"
           style="width: 100%;"
         ></el-date-picker>
       </el-col>
@@ -61,7 +61,7 @@ export default {
   },
   created() {
     const eventoId = this.$route.params.id;
-    if (!eventoId) return;
+    if (!eventoId) eventoId = '';
     this.$store
       .dispatch({ type: "getEvent", eventoId })
       .then(() => (this.evento = JSON.parse(JSON.stringify(this.currEvent))));
