@@ -43,7 +43,6 @@ function get(_id) {
 
 function _getNewEveto() {
     return {
-        _id: 1,
         name: '',
         location: {
           Coords: {
