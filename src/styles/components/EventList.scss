@@ -1,0 +1,31 @@
+.evento-list {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  .evento-preview {
+    border-radius: 5px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 275px;
+    justify-content: space-around;
+    height: 250px;
+    background-color: lightslategray;
+    color: white;
+    .preview-btns {
+        width: 100%;
+        button {
+            color: white;
+            padding: 8px;
+            border-radius: 5px;
+            border: none;
+            background-color: #aac9d4;
+            transition: 0.3s;
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
+    }
+  }
+}
