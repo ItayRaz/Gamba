@@ -27,7 +27,7 @@ function remove(_id) {
 
 function get(_id) {
     if (!_id) {
-        return Promise.resolve(getNewUser());
+        return Promise.resolve(_getNewUser());
     }
     return httpService.get(`${BASE_API}/${_id}`);
 }
@@ -53,7 +53,7 @@ function logOut() {
         })
 }
 
-function getNewUser() {
+function _getNewUser() {
     return {
         username: '',
         password: '',
