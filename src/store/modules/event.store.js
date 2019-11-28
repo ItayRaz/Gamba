@@ -68,10 +68,18 @@ export default {
         }
     },
     actions: {
-        loadEvents(context) {
+        loadEvents(context, {filterBy = {}}) {
+            // return eventoService.query(filterBy)
             return eventoService.query()
                 .then(eventos => {
                     context.commit({ type: 'sortEventByDist', data: { eventos, context } });
+                    
+                    if (filterBy.creatorId) return eventos.filter(evento => {
+                        return evento.creator._id === filterBy.creatorId;
+                    });
+                    if (filterBy.memberId) return eventos.filter(evento => {
+                        return evento.members.find(member => member._id === filterBy.memberId);
+                    });
                     return eventos;
                 })
         },

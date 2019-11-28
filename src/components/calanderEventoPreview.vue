@@ -1,6 +1,6 @@
 <template>
     <div class="calander-event-preview">
-        <header  :style="{'background-image': `url(${evento.mainImg})`}" class="flex column align-center space-around">
+        <header :style="{'background-image': `url(${evento.mainImg})`}" class="flex column align-center space-around">
             <h2>{{date}}.{{month}}, {{day}} ({{year}})</h2>
             <h3>{{evento.title}}</h3>
         </header>

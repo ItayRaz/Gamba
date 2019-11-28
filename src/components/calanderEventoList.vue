@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import calanderEventoPreview from './CalanderEventoPreview';
+import CalanderEventoPreview from './CalanderEventoPreview';
 
 export default {
     props: ['eventos'],
@@ -36,7 +36,7 @@ export default {
         }
     },
     components: {
-        calanderEventoPreview
+        CalanderEventoPreview
     }
 }
 </script>
