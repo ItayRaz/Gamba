@@ -61,7 +61,8 @@ function _getNewEveto() {
         time: {
           start: Date.now(),
           duration: 0
-        }
+        },
+        category: ''
     }
 }
 

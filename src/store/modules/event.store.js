@@ -57,14 +57,20 @@ export default {
         },
         currEvent(state) {
             return state.currEvent;
+        },
+        eventosCategories(state) {
+            return state.eventos.reduce((acc, evento) => {
+                if (evento.category && !acc.includes(evento.category.toLowerCase())) acc.push(evento.category.toLowerCase());
+                return acc;
+            }, []) || [];
         }
-
     },
     actions: {
         loadEvents(context) {
             return eventoService.query()
                 .then(eventos => {
-                    context.commit({ type: 'sortEventByDist', data: { eventos, context } })
+                    context.commit({ type: 'sortEventByDist', data: { eventos, context } });
+                    return eventos;
                 })
         },
         removeEvent(context, { eventoId }) {

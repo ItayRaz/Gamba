@@ -4,7 +4,9 @@ import Home from '../views/Home.vue'
 import About from '../views/About.vue'
 import eventEdit from '../views/EventEdit.vue'
 import SignupPage from '../views/SignUp.vue';
-import eventDetails from '../views/EventDetails.vue'
+import eventDetails from '../views/EventDetails.vue';
+
+import EventPage from '../views/EventPage.vue';
 
 Vue.use(VueRouter)
 
@@ -20,14 +22,19 @@ const routes = [
     component: Home,
   },
   {
-    path: '/event/:id?',
-    name: 'event-details',
-    component: eventDetails,
-  },
-  {
-    path: '/edit/:id?',
+    path: '/event/edit/:id?',
     name: 'event-edit',
     component: eventEdit
+  },
+  {
+    path: '/event',
+    name: 'event-page',
+    component: EventPage,
+  },
+  {
+    path: '/event/:id',
+    name: 'event-details',
+    component: eventDetails,
   },
   {
     path: '/signup',

@@ -4,12 +4,13 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 2px;
+
     .calander-event-preview {
-        background-color: rgb(248, 184, 172);
+        background-color: $clr1;
         height: 250px;
         >* {
             width: 100%;
-            // padding: 2px;
+            padding: 2px;
         }
 
         header {
@@ -25,4 +26,9 @@
             height: 20%;
         } 
     }
+    // @for $i from 1 through 10 {
+    //     .calander-event-preview:nth-of-type(#{$i}) {
+    //         background-color: darken($clr1, $i * 10);
+    //     }
+    // }
 }
