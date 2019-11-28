@@ -3,7 +3,7 @@
 import httpService from './http.service.js';
 import utilService from './util.service.js';
 
-const BASE_API = '//localhost:3000/evntos';
+const BASE_API = '//localhost:3000/evento';
 
 export default {
     query,

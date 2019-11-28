@@ -28,21 +28,27 @@
     </section>
     <section class="details-content">
       <h1>What is going to be...</h1>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus amet laborum assumenda neque cumque aliquam commodi libero, aspernatur quisquam molestias facere fuga, unde officiis est quia rerum adipisci laboriosam temporibus?</p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus amet laborum assumenda neque cumque aliquam commodi libero, aspernatur quisquam molestias facere fuga, unde officiis est quia rerum adipisci laboriosam temporibus?
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Explicabo temporibus nobis, quaerat sint rerum incidunt blanditiis quo unde, reiciendis enim at eligendi cum adipisci sed assumenda veritatis. Enim, natus sint.
+      </p>
     </section>
-
-
+    <div class="event-vidoes">
+      <iframe src="https://www.youtube.com/embed/cG_chE9vWnE" frameborder="0"></iframe>
+    </div>
+    <EventGallery></EventGallery>
   </section>
 </template>
 
 
 
 <script>
-import MapList from "@/components/MapList";
+import MapList from '@/components/MapList';
+import EventGallery from '@/components/EventGallery'
 
 export default {
   components: {
-    MapList
+    MapList,
+    EventGallery
   },
   data() {
     return {
