@@ -1,6 +1,6 @@
 <template>
     <header class="main-header flex align-center space-between wrap">
-    <h1>HELLO mister</h1>
+    <h1>HELLO mister2</h1>
 
         <router-link to="/"><h1 class="logo">Gamba</h1></router-link>
         <ul class="main-nav clean-list flex align-center wrap">
