@@ -1,12 +1,16 @@
 <template>
   <section class="event-gallery flex align-center">
-    <button @click="getNextImg(1)">⇠</button>
-      <ul class="clean-list flex row">
-        <li v-for="(img,idx) in imgsToShow" :class="{middle : idx === 1}" :key="idx">
-          <img class="img-details" :src="img" />
-        </li>
-      </ul>
-      <button @click="getNextImg(-1)">⇢</button>
+    <button @click="getNextImg(-1)">⇠</button>
+    <ul class="clean-list flex row">
+      <li
+        v-for="(img,idx) in imgsToShow"
+        :class="{middle : idx === Math.floor(imgs.length/2)}"
+        :key="idx"
+      >
+        <img class="img-details" :src="img" />
+      </li>
+    </ul>
+    <button @click="getNextImg(1)">⇢</button>
   </section>
 </template>
 
@@ -15,30 +19,40 @@ export default {
   props: ["imgs"],
   data() {
     return {
+      currImg: Math.floor(this.imgs.length/2),
       imgCounter: 0,
-      imgsToShow: this.imgs.slice(this.imgCounter, 3)
+
+      imgsToShow: this.imgs
     };
   },
   methods: {
     getNextImg(diff) {
-      this.imgCounter += diff;
+      this.currImg += diff;
 
-      if (this.imgCounter < 0) this.imgCounter = this.imgs.length - 1;
-      if (this.imgCounter === this.imgs.length) this.imgCounter = 0;
+      if (this.currImg < 0) this.currImg = this.imgs.length - 1;
+      if (this.currImg === this.imgs.length) this.currImg = 0;
 
-      if (this.imgCounter === this.imgs.length - 1) {
-        this.imgsToShow = this.imgs.slice(0,2);
-        this.imgsToShow.unshift(this.imgs[this.imgCounter])        
-      } else if (this.imgCounter === this.imgs.length - 2) {
-        this.imgsToShow = this.imgs.slice(this.imgCounter);
-        this.imgsToShow.push(this.imgs[0]);
-      } else {
-        this.imgsToShow = this.imgs.slice(this.imgCounter, this.imgCounter + 3);
+      var imgsReplace;
+
+      if (diff < 1) {
+        imgsReplace = this.imgsToShow.slice(0,this.imgs.length-1);
+        imgsReplace.unshift(this.imgsToShow[this.imgs.length-1]);
+        this.imgsToShow = imgsReplace;
       }
-    },
-    middleImg(){
+      else{
+        imgsReplace = this.imgsToShow.slice(1,this.imgs.length);        
+        imgsReplace.push(this.imgsToShow[0]);
+        this.imgsToShow = imgsReplace;
 
+      }
+
+      this.$emit("setMainImg", this.currImg);
     }
+  },
+  created() {
+    // console.log(this.imgCounter);
+
+    this.$emit("setMainImg", this.currImg);
   }
 };
 </script>
