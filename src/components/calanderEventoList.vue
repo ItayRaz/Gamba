@@ -1,7 +1,10 @@
 <template>
     <main class="">
+        <section>
+
+        </section>
         <ul v-if="eventos" class="clean-list calander-evento-list">
-            <li v-for="evento in eventos" :key="evento._id">
+            <li v-for="evento in eventosToShow" :key="evento._id">
                 <calander-evento-preview :evento="evento"/>
             </li>
         </ul>
@@ -13,12 +16,24 @@ import calanderEventoPreview from './CalanderEventoPreview';
 
 export default {
     props: ['eventos'],
+    data() {
+        return {
+            filterBy: {
+                searchStr: '',
+                category: 'All',
+            }
+        }
+    },
     computed: {
-        // eventos() {
-        //     return this.$store.getters.events.sort((ev1, ev2) => {
-        //         return (ev1.time.start > ev2.time.start)? -1 : 1;
-        //     })
-        // }
+        eventosToShow() {
+            // var filter = this.filterBy;
+
+            // var filteredEventos = [...this.eventos];
+
+            return this.eventos.sort((ev1, ev2) => {
+                return (ev1.time.start > ev2.time.start)? 1 : -1;
+            })
+        }
     },
     components: {
         calanderEventoPreview

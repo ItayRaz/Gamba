@@ -2,8 +2,8 @@
   <section>
     <h1>Gamba</h1>
     <router-view></router-view>
-    <router-link to="/edit"><button>Add Event</button></router-link>
-    <evento-list :eventos="eventos"></evento-list>    
+    <router-link to="/event/edit"><button>Add Event</button></router-link>
+    <!-- <evento-list :eventos="eventos"></evento-list> -->    
     <calander-evento-list :eventos="eventos"></calander-evento-list>
   </section>
 </template>

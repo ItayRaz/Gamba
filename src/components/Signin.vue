@@ -35,7 +35,6 @@ export default {
             .then(user => {
                 this.user = user;
             })
-
     }
 }
 </script>

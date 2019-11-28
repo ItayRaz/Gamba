@@ -5,18 +5,20 @@
             <h3>{{evento.name}}</h3>
         </header>
         <main class="flex align-center space-around wrap">
-            <p>{{evento.desc}}</p>
+            <short-txt :txt="evento.desc" txtLimit="75"/>
             <router-link :to="'/event/'+evento._id">Details</router-link>
         </main>
         <footer class="flex align-center space-around wrap">
-            <button>Edit</button>
-            <button>Remove</button>
+            <router-link :to="'/event/edit/'+evento._id"><button>Edit</button></router-link>
+            <button @click="remove">Remove</button>
             <button>Attend</button>
         </footer>
     </div>
 </template>
 
 <script>
+import shortTxt from './ShortTxt.vue';
+
 export default {
     props: ['evento'],
     computed: {
@@ -33,8 +35,16 @@ export default {
             return new Date(+this.evento.time.start).getFullYear();
         }
     },
+    methods: {
+        remove() {
+            this.$store.dispatch({type: 'removeEvent', eventoId: this.evento._id})
+        }
+    },
     created() {
         console.log(this.evento);
+    },
+    components: {
+        shortTxt
     }
 }
 </script>
