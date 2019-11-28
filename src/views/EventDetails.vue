@@ -6,7 +6,7 @@
     <section class="details-header">
       <div>
       <img
-        src="https://hire4event.com/blogs/wp-content/uploads/2019/03/best-Event-company-in-Greater-Noida--1024x598.jpg"
+        :src="evento.mainImg"
       />
       <section class="details-links">
       <p>Events</p>
