@@ -7,6 +7,7 @@ import SignupPage from '../views/SignUp.vue';
 import eventDetails from '../views/EventDetails.vue';
 
 import EventPage from '../views/EventPage.vue';
+import UserDetails from '../views/UserDetails.vue';
 
 Vue.use(VueRouter)
 
@@ -40,6 +41,11 @@ const routes = [
     path: '/signup',
     name: 'signup-page',
     component: SignupPage
+  },
+  {
+    path: '/user/:id',
+    name: 'user-details',
+    component: UserDetails
   },
 ]
 
