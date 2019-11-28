@@ -1,5 +1,5 @@
 <template>
-<section class="details-container">
+<section class="details-container flex column">
   <section class="event-details">
     <hr />
     <!-- <p v-if="evento">{{evento}}</p> -->
@@ -44,9 +44,7 @@
         <p>{{evento.creator.name}}</p>
       </div>
     </section>
-    <!-- <div class="event-vidoes">
-      <iframe src="https://www.youtube.com/embed/cG_chE9vWnE" frameborder="0"></iframe>
-    </div> -->
+    <EventGallery :imgs="evento.imgs"></EventGallery>
   </section>
   </section>
 </template>
@@ -113,7 +111,7 @@ img {
 }
 
 .details-txt{
-  width:500px;
+  max-width:500px;
 }
 
 .details-creator{

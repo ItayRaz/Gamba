@@ -1,10 +1,12 @@
 <template>
   <section>
-    <h1>Gamba</h1>
+    <section class="app-hero flex column align-center justify-center">
+      <h1 class="logo"><span>Gamba</span><span>?</span></h1>
+      <h2 class="logo-subline">Pilpel!</h2>
+    </section>
     <router-view></router-view>
-    <router-link to="/event/edit"><button>Add Event</button></router-link>
     <!-- <evento-list :eventos="eventos"></evento-list> -->    
-    <calander-evento-list :eventos="eventos"></calander-evento-list>
+    <!-- <calander-evento-list :eventos="eventos"/> -->
   </section>
 </template>
 

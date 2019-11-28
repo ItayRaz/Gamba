@@ -1,6 +1,7 @@
 <template>
     <main>
         <evento-filter :categories="eventosCategories" @setFilter="setFilter"/>
+        <router-link to="/event/edit"><button>Add Event</button></router-link>
         <event-list :eventos="eventosToShow"/>
     </main>
 </template>

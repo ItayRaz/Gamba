@@ -4,7 +4,6 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 2px;
-
     .calander-event-preview {
         background-color: $clr1;
         height: 250px;
