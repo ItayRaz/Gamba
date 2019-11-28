@@ -3,15 +3,15 @@
     <h1>Gamba</h1>
     <router-view></router-view>
     <router-link to="/edit"><button>Add Event</button></router-link>
-    <event-list :events="events"></event-list>    
-    <calander-evento-list :eventos="events"></calander-evento-list>
+    <evento-list :eventos="eventos"></evento-list>    
+    <calander-evento-list :eventos="eventos"></calander-evento-list>
   </section>
 </template>
 
 <script>
-// import eventList from '../components/event-list'
+// import eventoList from '../components/evento-list'
 import CalanderEventoList from '../components/CalanderEventoList';
-import EventList from '../components/EventList'
+import EventoList from '../components/EventList'
 
 export default {
   data() {
@@ -20,8 +20,8 @@ export default {
     }
   },
   computed: {
-    events() {
-      return this.$store.getters.events
+    eventos() {
+      return this.$store.getters.eventos
     }
   },
   mutations: {
@@ -30,7 +30,7 @@ export default {
     }
   },
   components: {
-    EventList,
+    EventoList,
     CalanderEventoList
   }
 }

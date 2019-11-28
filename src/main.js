@@ -6,6 +6,7 @@ import store from './store'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import locale from 'element-ui/lib/locale/lang/en'
+import Avatar from 'vue-avatar'
 
 Vue.use(ElementUI, { locale })
 import './styles/global.scss';

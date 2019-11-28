@@ -4,7 +4,7 @@
     :center="center"
     :zoom="14"
     map-type-id="terrain"
-    style="width: 300px; height: 160px"
+    style="width: 300px; height: 200px"
      :options="{
    zoomControl: true,
    mapTypeControl: false,
@@ -37,7 +37,7 @@ export default {
       ],
       center: { lat: 	32.109333, lng: 34.855499 }
     };
-  }
+  },
 };
 </script>
 

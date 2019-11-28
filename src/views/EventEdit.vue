@@ -48,10 +48,10 @@ export default {
   },
   methods: {
     Create() {
-      this.$store.dispatch({ type: "addEvent", event: this.evento });
+      this.$store.dispatch({ type: "addEvent", evento: this.evento });
     },
     Edit() {
-      this.$store.dispatch({type: "EditEvent", event: this.evento});
+      this.$store.dispatch({type: "EditEvent", evento: this.evento});
     }
   },
   computed: {
@@ -60,10 +60,10 @@ export default {
     }
   },
   created() {
-    const eventId = this.$route.params.id;
-    if (!eventId) return;
+    const eventoId = this.$route.params.id;
+    if (!eventoId) return;
     this.$store
-      .dispatch({ type: "getEvent", eventId })
+      .dispatch({ type: "getEvent", eventoId })
       .then(() => (this.evento = JSON.parse(JSON.stringify(this.currEvent))));
   }
 };
