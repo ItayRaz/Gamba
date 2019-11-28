@@ -1,18 +1,18 @@
 <template>
-  <section class="event-list">
-    <div v-for="event in events" :key="event.id">
-      <event-preview :event="event"></event-preview>
+  <section class="evento-list">
+    <div v-for="evento in eventos" :key="evento.id">
+      <evento-preview :evento="evento"></evento-preview>
     </div>
   </section>
 </template>
 
 <script>
-import eventPreview from "../components/event-preview";
+import eventoPreview from "../components/event-preview";
 
 export default {
-  props: ["events"],
+  props: ["eventos"],
   components: {
-    eventPreview
+    eventoPreview
   }
 };
 </script>

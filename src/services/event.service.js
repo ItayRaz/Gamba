@@ -3,7 +3,7 @@
 import httpService from './http.service.js';
 import utilService from './util.service.js';
 
-const BASE_API = '//localhost:3000/evntos';
+const BASE_API = '//localhost:3000/eventos';
 
 export default {
     query,
@@ -17,18 +17,18 @@ function query(filterBy = {}) {
     return httpService.get(BASE_API + queryStr);
 }
 
-function save(evnto) {
-    if (evnto._id) return httpService.put(`${BASE_API}/${evnto._id}`, evnto);  
+function save(evento) {
+    if (evento._id) return httpService.put(`${BASE_API}/${evento._id}`, evento);  
     else {
-        evnto.createdAt = Date.now();
-        evnto.location = {
+        evento.createdAt = Date.now();
+        evento.location = {
         Coords: {
             lat: 34.77318,
             lng: 32.097768
           },
           name: "Tel aviv port"
     }
-        return httpService.post(BASE_API, evnto);
+        return httpService.post(BASE_API, evento);
     } 
 }
 
@@ -40,11 +40,11 @@ function get(_id) {
     return httpService.get(`${BASE_API}/${_id}`);
 }
 
-// function saveComment(evnto, comment) {
-//     if (comment._id) return httpService.put(`${BASE_API}/${evnto._id}`, evnto);
-//     else return httpService.post(BASE_API, evnto);
+// function saveComment(evento, comment) {
+//     if (comment._id) return httpService.put(`${BASE_API}/${evento._id}`, evento);
+//     else return httpService.post(BASE_API, evento);
 // }
 
-// function removeComment(evnto, commentId) {
+// function removeComment(evento, commentId) {
 //     return httpService.remove(`${BASE_API}/${_id}`);
 // }

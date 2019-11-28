@@ -1,58 +1,58 @@
-import evntoService from '../../services/event.service.js';
+import eventoService from '../../services/event.service.js';
 
 export default {
     state: {
-        evntos: [],
+        eventos: [],
         currEvent: {},
         filterby: {}
     },
     mutations: {
-        setEvents(state, { evntos }) {
-            state.evntos = evntos;
+        setEvents(state, { eventos }) {
+            state.eventos = eventos;
         },
-        removeEvent(state, { evntoId }) {
-            const idx = state.evntos.findIndex(evnto => evnto._id === evntoId);
-            state.evntos.splice(idx, 1)
+        removeEvent(state, { eventoId }) {
+            const idx = state.eventos.findIndex(evento => evento._id === eventoId);
+            state.eventos.splice(idx, 1)
         },
         sortEventByDist(state, { data }) {
             var currCoords = data.context.getters.currCoords;
-            const sortedEvents = data.evntos.sort((ev1, ev2) => {
+            const sortedEvents = data.eventos.sort((ev1, ev2) => {
                 var dis1 = Math.abs(ev1.location.Coords.lat) - Math.abs(currCoords.lat) +
                     Math.abs(ev1.location.Coords.lng) - Math.abs(currCoords.lng);
                 var dis2 = Math.abs(ev2.location.Coords.lat) - Math.abs(currCoords.lat) +
                     Math.abs(ev2.location.Coords.lng) - Math.abs(currCoords.lng);
                 return dis1 - dis2;
             })
-            state.evntos = sortedEvents;
+            state.eventos = sortedEvents;
         },
-        addEvent(state, {evnto}) {
-            state.evntos.unshift(evnto);
+        addEvent(state, {evento}) {
+            state.eventos.unshift(evento);
         },
-        saveEvent(state, {evnto}) {
-            const idx = state.evntos.findIndex(evnto => evnto._id === evnto._id);
-            state.evntos.splice(idx, 1, evnto)
+        saveEvent(state, {evento}) {
+            const idx = state.eventos.findIndex(evento => evento._id === evento._id);
+            state.eventos.splice(idx, 1, evento)
         },
-        setCurrEvent(state, {evnto}) {
-            state.currEvent = evnto;
+        setCurrEvent(state, {evento}) {
+            state.currEvent = evento;
         }
     },
     getters: {
-        evntos(state) {
-            return state.evntos;
+        eventos(state) {
+            return state.eventos;
         },
         currEvento(state){
             return state.currEvent
         },
         popularEvents(state) {
-            const popularEvents = state.evntos.map(evnto => evnto.attendsIds.length >= 5);
+            const popularEvents = state.eventos.map(evento => evento.attendsIds.length >= 5);
             return popularEvents;
         },
-        evntosAround(state) {
-            const evntosAround = state.evntos.slice(0, state.evntos.length / 2);
-            return evntosAround;
+        eventosAround(state) {
+            const eventosAround = state.eventos.slice(0, state.eventos.length / 2);
+            return eventosAround;
         },
         otherEvents(state) {
-            const otherEvents = state.evntos.slice(state.evntos.length / 2);
+            const otherEvents = state.eventos.slice(state.eventos.length / 2);
             return otherEvents;
         },
         currEvent(state) {
@@ -62,27 +62,27 @@ export default {
     },
     actions: {
         loadEvents(context) {
-            return evntoService.query()
-                .then(evntos => {
-                    context.commit({ type: 'sortEventByDist', data: { evntos, context } })
+            return eventoService.query()
+                .then(eventos => {
+                    context.commit({ type: 'sortEventByDist', data: { eventos, context } })
                 })
         },
-        removeEvent(context, { evntoId }) {
-            return evntoService.remove(evntoId)
-                .then(() => context.commit({ type: 'removeEvent', evntoId }))
+        removeEvent(context, { eventoId }) {
+            return eventoService.remove(eventoId)
+                .then(() => context.commit({ type: 'removeEvent', eventoId }))
         },
-        addEvent(context, {evnto}) {
-            return evntoService.save(evnto)
-                .then(evnto => context.commit({type: 'addEvent', evnto}))
+        addEvent(context, {evento}) {
+            return eventoService.save(evento)
+                .then(evento => context.commit({type: 'addEvent', evento}))
         },
-        EditEvent(context, {evnto}) {
-            return evntoService.save(evnto)
-                .then(evnto => context.commit({type: 'saveEvent', evnto}))
+        EditEvent(context, {evento}) {
+            return eventoService.save(evento)
+                .then(evento => context.commit({type: 'saveEvent', evento}))
         },
-        getEvent(context, {evntoId}) {            
-            return evntoService.get(evntoId)
-                .then(evnto => {                    
-                    context.commit({type: 'setCurrEvent', evnto})
+        getEvent(context, {eventoId}) {            
+            return eventoService.get(eventoId)
+                .then(evento => {                    
+                    context.commit({type: 'setCurrEvent', evento})
                 
                 })
         }
