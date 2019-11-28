@@ -74,8 +74,11 @@ export default {
                 })
         },
         removeEvent(context, { eventoId }) {
-            return eventoService.remove(eventoId)
-                .then(() => context.commit({ type: 'removeEvent', eventoId }))
+            context.dispatch({type: 'Confirm', msg: 'Are you sure you want to remove this Event? you would not be able to restore it.'})
+                .then(() => {
+                    return eventoService.remove(eventoId)
+                        .then(() => context.commit({ type: 'removeEvent', eventoId }))
+                })
         },
         addEvent(context, {evento}) {
             return eventoService.save(evento)

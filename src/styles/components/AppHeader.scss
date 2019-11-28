@@ -1,0 +1,13 @@
+.main-header {
+    background-color: $clr2;
+    position: fixed;
+    top: 0;
+    padding: 10px;
+
+    .main-nav {
+        >* {
+            margin-right: 15px;
+            font-size: 1.5rem;
+        }
+    }
+}

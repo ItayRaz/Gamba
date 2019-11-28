@@ -10,5 +10,7 @@
 @import 'basics/layout';
 
 // COMPONENTS
+@import 'components/AppHeader.scss';
+@import 'views/HomePage';
 @import 'components/CalanderEventoList';
 @import 'components/EventList.scss';

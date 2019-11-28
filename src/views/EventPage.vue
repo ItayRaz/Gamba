@@ -7,8 +7,8 @@
 
 <script>
 import eventoFilter from '../components/EventoFilter.vue';
-// import eventList from '../components/EventList.vue';
-import eventList from '../components/CalanderEventoList.vue';
+import eventList from '../components/EventList.vue';
+// import eventList from '../components/CalanderEventoList.vue';
 
 export default {
     data() {
