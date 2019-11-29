@@ -7,7 +7,7 @@
     <div class="prev-details flex space-between">
       <div class="info flex column space-between">
         <h3>{{evento.title}}</h3>
-        <h3>{{evento.time.start}}</h3>
+        <h5>{{evento.time.start | moment("dddd, MMMM Do YYYY")}}</h5>
         <div>Price: {{evento.price}}$</div>
         <router-link :to="'/event/'+evento._id">Read More</router-link>
       </div>
