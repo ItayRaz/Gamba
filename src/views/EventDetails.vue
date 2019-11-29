@@ -17,13 +17,12 @@
           </div>
           <MapList></MapList>
           <div class="join-container">
-            <button class="join">Join us!</button>
+            <button @click="joinEvento" class="join">Join us!</button>
           </div>
         </div>
          <!-- <section class="details-links">
             <p>Events</p>
             <p>Members</p>
-            <p>Photos</p>
             <p>Coneversation</p>
             <p>More</p>
             <p class="join">Join us</p>
@@ -38,13 +37,10 @@
           </p>
         </div>
         <UserGallery :users="evento.members"></UserGallery>
-        <div class="details-creator">
-          <h3>Creator</h3>
-          <avatar username="PUKI" :src="evento.creator.img" :size="100" rounded></avatar>
-          <p>{{evento.creator.name}}</p>
-        </div>
+        <Creator :creator="evento.creator"></Creator>
       </section>
     </section>
+    <router-view></router-view>
   </section>
 </template>
 
@@ -53,15 +49,15 @@
 <script>
 import MapList from "@/components/MapList";
 import EventGallery from "@/components/EventGallery";
-import Avatar from "vue-avatar";
 import UserGallery from "@/components/UserGallery";
+import Creator from "@/components/Creator";
 
 export default {
   components: {
     MapList,
     EventGallery,
-    Avatar,
-    UserGallery
+    UserGallery,
+    Creator
   },
   data() {
     return {
@@ -72,12 +68,18 @@ export default {
   methods:{
     setImg(imgIdx){
       this.mainImg = imgIdx
+    },
+    joinEvento(){
+      console.log('!!!');
+      
+
     }
   },
   async created() {
     const eventoId = this.$route.params.id;
     this.evento = await this.$store.dispatch({ type: "getEvent", eventoId });
-  }
+  },
+  
 };
 </script>
 

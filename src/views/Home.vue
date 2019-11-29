@@ -12,7 +12,7 @@
 
 <script>
 // import eventoList from '../components/evento-list'
-import CalanderEventoList from '../components/CalanderEventoList';
+// import CalanderEventoList from '../components/CalanderEventoList';
 import EventoList from '../components/EventList'
 
 export default {
@@ -33,7 +33,7 @@ export default {
   },
   components: {
     EventoList,
-    CalanderEventoList
+    // CalanderEventoList
   }
 }
 </script>

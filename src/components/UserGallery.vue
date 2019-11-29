@@ -1,5 +1,6 @@
 <template>
   <section class="user-gallery">
+    <h2>Attendies</h2>
     <ul class="clean-list">
       <li v-for="user in users" :key="user.id">
         <div class="user-review">
