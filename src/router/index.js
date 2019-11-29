@@ -23,14 +23,16 @@ const routes = [
     component: Home,
   },
   {
-    path: '/event/edit/:id?',
-    name: 'event-edit',
-    component: eventEdit
-  },
-  {
     path: '/event',
     name: 'event-page',
     component: EventPage,
+    children: [
+      {
+        path: 'edit/:id?',
+        name: 'event-edit',
+        component: eventEdit
+      },
+    ]
   },
   {
     path: '/event/:id',

@@ -43,7 +43,7 @@ function get(_id) {
 
 function _getNewEveto() {
     return {
-        name: '',
+        title: '',
         location: {
           Coords: {
             lat: 34.77318,
@@ -55,13 +55,13 @@ function _getNewEveto() {
         imgs: [],
         creatorId: '',
         createdAt: Date.now(),
-        Price: 0,
+        price: 0,
         attendsIds: [],
         time: {
           start: Date.now(),
           duration: 0
         },
-        category: ''
+        categories: ''
     }
 }
 
