@@ -11,7 +11,7 @@ import Avatar from 'vue-avatar'
 Vue.use(ElementUI, { locale })
 import './styles/global.scss';
 
-// Vue.use(require('vue-moment'));
+Vue.use(require('vue-moment'));
 
 
 import * as VueGoogleMaps from 'vue2-google-maps'

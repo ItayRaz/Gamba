@@ -1,13 +1,13 @@
 <template>
   <section class="evento-preview">
     <div class="prev-header">
-      <!-- <div>{{evento.time.start}}</div>
-      <h2>{{evento.name}}</h2>-->
+      <img v-if="evento.imgs.length > 0" :src="evento.imgs[0]" alt="">
+      <img v-else src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" alt="">
     </div>
     <div class="prev-details flex space-between">
       <div class="info flex column space-between">
         <h3>{{evento.title}}</h3>
-        <h3>{{evento.time.start}}</h3>
+        <h5>{{evento.time.start | moment("dddd, MMMM Do YYYY")}}</h5>
         <div>Price: {{evento.price}}$</div>
         <router-link :to="'/event/'+evento._id">Read More</router-link>
       </div>

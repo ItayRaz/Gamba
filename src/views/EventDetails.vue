@@ -1,6 +1,6 @@
 <template>
   <section class="details-container flex column">
-    <section class="event-details">
+    <section v-if="evento" class="event-details">
       <hr />
       <section class="details-header">
         <div>
@@ -40,7 +40,7 @@
         <Creator :creator="evento.creator"></Creator>
       </section>
     </section>
-    <router-view></router-view>
+    <router-view :evento="evento"></router-view>
   </section>
 </template>
 
@@ -70,8 +70,7 @@ export default {
       this.mainImg = imgIdx
     },
     joinEvento(){
-      console.log('!!!');
-      
+      this.$router.push(`${this.evento._id}/join`) // ask!
 
     }
   },
