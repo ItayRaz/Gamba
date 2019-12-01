@@ -1,9 +1,11 @@
 <template>
-  <main v-if="eventos">
-    <evento-filter :categories="eventosCategories" @setFilter="setFilter" />
-    <router-link to="/event/edit">
-      <button>Add Event</button>
-    </router-link>
+  <main v-if="eventos" class="event-page">
+    <section class="flex align-center space-between wrap width-all actions">
+      <evento-filter :categories="eventosCategories" @setFilter="setFilter" />
+      <router-link to="/event/edit">
+        <button>Add Event</button>
+      </router-link>
+    </section>
     <event-list :eventos="eventos" />
   </main>
 </template>
@@ -22,7 +24,6 @@ export default {
   },
   computed: {
     eventos() {
-      console.log(this.$store.getters.eventos);
       return this.$store.getters.eventos;
     },
     eventosCategories() {
