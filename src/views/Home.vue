@@ -7,11 +7,13 @@
       <div class="logo-subline">Don't Miss The Best Events Around!</div>
       </div>
     </section>
+    <section class="home-lists">
     Close to you:
     <evento-list :eventos="aroundEventos"/>
     popular:
     <evento-list :eventos="popularEvents"/>
   </section>
+    </section>
 </template>
 
 <script>

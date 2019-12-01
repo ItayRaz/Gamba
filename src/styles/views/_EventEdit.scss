@@ -1,6 +1,8 @@
 
 .event-edit{
     position: absolute;
+    right: 50%;
+    transform: translate(50%, 0px);
     z-index: 1;
     background-color: white;
     border-radius: 5px;

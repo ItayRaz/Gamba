@@ -1,11 +1,10 @@
 <template>
-  <main v-if="eventos" class="event-page">
-    <section class="flex align-center space-between wrap width-all actions">
-      <evento-filter :categories="eventosCategories" @setFilter="setFilter" />
-      <router-link to="/event/edit">
-        <button>Add Event</button>
-      </router-link>
-    </section>
+  <main v-if="eventos">
+    <evento-filter :categories="eventosCategories" @setFilter="setFilter" />
+    <router-link to="/event/edit">
+      <button>Add Event</button>
+    </router-link>
+    <router-view></router-view>
     <event-list :eventos="eventos" />
   </main>
 </template>
