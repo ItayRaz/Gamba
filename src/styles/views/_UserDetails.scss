@@ -1,7 +1,7 @@
 .user-details {
     padding: 10px;
     .profile {
-        max-width: 500px;
+        max-width: 400px;
         margin-bottom: 20px;
         .info {
             img {
@@ -10,15 +10,39 @@
                 border-radius: 50%;
                 object-fit: cover;
                 margin-right: 20px;
+                margin-bottom: 20px;
             }
         }
     }
     .user-reviews-container {
-        width: 45vw;
-        height: 250px;
+        >* {
+            width: 50%;
+            min-width: 250px;
+            .review-list {
+                width: 100%;
+            }
+        }
+        .user-review-edit {
+            margin-top: 20px;
+            
+            textarea {
+                width: 90%;
+                height: 300px;
+            }
+        }
     }
-    .user-eventos-container {
-        // width: 45vw;
-        // height: 600px;
+    @media (max-width: 550px) {
+        .user-reviews-container {
+            >* {
+                width: 100%;
+            }
+        }
+    }
+    .evento-preview {
+        width: 250px;
+        height: 300px;
+        .prev-avatars {
+            display: none;
+        }
     }
 }

@@ -4,7 +4,10 @@
       <h1 class="logo"><span>Gamba</span><span>?</span></h1>
       <h2 class="logo-subline">Pilpel!</h2>
     </section>
-    <router-view></router-view>
+    Close to you:
+    <evento-list :eventos="aroundEventos"/>
+    popular:
+    <evento-list :eventos="popularEvents"/>
   </section>
 </template>
 
@@ -12,14 +15,15 @@
 import EventoList from '../components/EventList'
 
 export default {
-  data() {
-    return {
-
-    }
-  },
   computed: {
     eventos() {
       return this.$store.getters.eventos
+    },
+    aroundEventos() {
+      return this.$store.getters.eventosAround;
+    },
+    popularEvents() {
+      return this.$store.getters.popularEvents;
     }
   },
   mutations: {

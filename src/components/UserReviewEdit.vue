@@ -1,8 +1,7 @@
 <template>
-    <form v-if="review" @submit.prevent="save" class="flex column align-center">
+    <form v-if="review" @submit.prevent="save" class="flex column align-center user-review-edit">
         <textarea v-model="review.txt" placeholder="Write something about this user?"/>
         <button>submit</button>
-        <pre>{{review}}</pre>
     </form>
 </template>
 
@@ -21,7 +20,10 @@ export default {
         },
         save() {
             this.$store.dispatch({type: 'saveReview', review: this.review})
-                .then(() => this.getReview());
+                .then(review => {
+                    this.$emit('saveReview', review);
+                    this.getReview();
+                });
         }
     },
     created() {

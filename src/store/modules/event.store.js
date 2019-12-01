@@ -16,13 +16,13 @@ export default {
             const idx = state.eventos.findIndex(evento => evento._id === eventoId);
             state.eventos.splice(idx, 1)
         },
-        sortEventByDist(state, { data }) {
-            var currCoords = data.context.getters.currCoords;
-            const sortedEvents = data.eventos.sort((ev1, ev2) => {
-                var dis1 = Math.abs(ev1.location.Coords.lat) - Math.abs(currCoords.lat) +
-                    Math.abs(ev1.location.Coords.lng) - Math.abs(currCoords.lng);
-                var dis2 = Math.abs(ev2.location.Coords.lat) - Math.abs(currCoords.lat) +
-                    Math.abs(ev2.location.Coords.lng) - Math.abs(currCoords.lng);
+        sortEventByDist(state, { eventos, context }) {
+            var currCoords = context.getters.currCoords;
+            const sortedEvents = eventos.sort((ev1, ev2) => {
+                var dis1 = Math.abs(ev1.location.coords.lat - currCoords.lat) +
+                           Math.abs(ev1.location.coords.lng - currCoords.lng);
+                var dis2 = Math.abs(ev2.location.coords.lat - currCoords.lat) +
+                           Math.abs(ev2.location.coords.lng - currCoords.lng);
                 return dis1 - dis2;
             })
             state.eventos = sortedEvents;
@@ -46,11 +46,14 @@ export default {
             return state.currEvent
         },
         popularEvents(state) {
-            const popularEvents = state.eventos.map(evento => evento.attendsIds.length >= 5);
+            const sortedEventsByMembers = state.eventos.sort((ev1, ev2) => ev2.members.length - ev1.members.length);
+            // const popularEvents = sortedEventsByMembers.slice(0, sortedEventsByMembers.length/2);
+            const popularEvents = sortedEventsByMembers.slice(0, 4);
             return popularEvents;
         },
         eventosAround(state) {
-            const eventosAround = state.eventos.slice(0, state.eventos.length / 2);
+            // const eventosAround = state.eventos.slice(0, state.eventos.length / 2);
+            const eventosAround = state.eventos.slice(0, 4);
             return eventosAround;
         },
         otherEvents(state) {
@@ -72,8 +75,8 @@ export default {
         loadEvents(context, {filterBy}) {
             return eventoService.query(filterBy)
                 .then(eventos => {
-                    // context.commit({ type: 'sortEventByDist', data: { eventos, context } });
-                    context.commit({ type: 'setEvents', eventos});
+                    context.commit({ type: 'sortEventByDist', eventos, context});
+                    // context.commit({ type: 'setEvents', eventos});
                     return eventos;
                 })
         },
