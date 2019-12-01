@@ -20,8 +20,6 @@ function query(filterBy = {}) {
 
 function save(evento) {
     if (evento._id) return httpService.put(`${BASE_API}/${evento._id}`, evento);
-    else {
-    }
     return httpService.post(BASE_API, evento);
 } 
 

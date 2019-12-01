@@ -2,7 +2,7 @@
     <main v-if="eventos">
         <evento-filter :categories="eventosCategories" @setFilter="setFilter"/>
         <router-link to="/event/edit"><button>Add Event</button></router-link>
-        <event-list :eventos="eventosToShow"/>
+        <event-list :eventos="eventos"/>
     </main>
 </template>
 
@@ -14,14 +14,15 @@ import eventList from '../components/EventList.vue';
 export default {
     data() {
         return {
-            eventos: [],
+            // eventos: [],
             filterBy: {}
         }
     },
     computed: {
-        // eventos() {
-        //     return this.$store.getters.eventos;
-        // },
+        eventos() {
+            console.log(this.$store.getters.eventos);
+            return this.$store.getters.eventos;
+        },
         eventosCategories() {
             return this.$store.getters.eventosCategories;
         },
@@ -54,7 +55,12 @@ export default {
         eventList
     },
     async created() {
+<<<<<<< HEAD
         this.eventos = await this.$store.dispatch({type: 'loadEvents'});
     },
+=======
+        // this.eventos = await this.$store.dispatch({type: 'loadEvents'});
+    }
+>>>>>>> 0fa830cb8f19dea3dbe5eab98b798a48559a2ff2
 }
 </script>
