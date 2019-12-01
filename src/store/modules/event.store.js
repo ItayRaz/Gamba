@@ -74,15 +74,6 @@ export default {
                 .then(eventos => {
                     // context.commit({ type: 'sortEventByDist', data: { eventos, context } });
                     context.commit({ type: 'setEvents', data: { eventos, context } });
-                    
-                    // if (filterBy) {
-                    //     if (filterBy.creatorId) return eventos.filter(evento => {
-                    //         return evento.creator._id === filterBy.creatorId;
-                    //     });
-                    //     if (filterBy.memberId) return eventos.filter(evento => {
-                    //         return evento.members.find(member => member._id === filterBy.memberId);
-                    //     });
-                    // }
                     return eventos;
                 })
         },
