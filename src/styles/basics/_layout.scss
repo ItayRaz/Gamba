@@ -4,15 +4,16 @@
     z-index: 1;
 }
 
-.main-footer {
-    width: 100vw;
-    height: 250px;
-    background-color: $clr5;
-}
 .main-router-view {
     margin-top: 10vh;
     // width: 100vw;
     min-height: 90vh;
+}
+
+.main-footer {
+    // width: 100vw;
+    height: 250px;
+    background-color: $clr5;
 }
 
 

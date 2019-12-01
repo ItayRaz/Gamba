@@ -1,5 +1,5 @@
 <template>
-    <main>
+    <main v-if="eventos">
         <evento-filter :categories="eventosCategories" @setFilter="setFilter"/>
         <router-link to="/event/edit"><button>Add Event</button></router-link>
         <event-list :eventos="eventosToShow"/>
@@ -14,34 +14,33 @@ import eventList from '../components/EventList.vue';
 export default {
     data() {
         return {
-            // eventos: [],
+            eventos: [],
             filterBy: {}
         }
     },
     computed: {
-        eventos() {
-            return this.$store.getters.eventos;
-        },
+        // eventos() {
+        //     return this.$store.getters.eventos;
+        // },
         eventosCategories() {
             return this.$store.getters.eventosCategories;
         },
         eventosToShow() {
             var eventosToShow = [...this.eventos];
-            var filter = this.filterBy;
+            // var filter = this.filterBy;
 
-            console.log('getting filtered eventos')
-            if (filter.searchStr) {
-                eventosToShow = eventosToShow.filter(evento => {
-                    return evento.name.toLowerCase().includes(filter.searchStr.toLowerCase) ||
-                           evento.desc.toLowerCase().includes(filter.searchStr.toLowerCase)
-                })
-            }
-            if (filter.category) {
-                eventosToShow = eventosToShow.filter(evento => {
-                    return filter.category === 'All' || filter.category.toLowerCase() === evento.category.toLowerCase;
-                })
-            }
-            console.log('got', eventosToShow)
+            // console.log('getting filtered eventos')
+            // if (filter.searchStr) {
+            //     eventosToShow = eventosToShow.filter(evento => {
+            //         return evento.name.toLowerCase().includes(filter.searchStr.toLowerCase) ||
+            //                evento.desc.toLowerCase().includes(filter.searchStr.toLowerCase)
+            //     })
+            // }
+            // if (filter.category) {
+            //     eventosToShow = eventosToShow.filter(evento => {
+            //         return filter.category === 'All' || filter.category.toLowerCase() === evento.category.toLowerCase;
+            //     })
+            // }
             return eventosToShow
         }
     },
@@ -54,8 +53,8 @@ export default {
         eventoFilter,
         eventList
     },
-    created() {
-        this.$store.dispatch('loadEvents');
+    async created() {
+        this.eventos = await this.$store.dispatch({type: 'loadEvents'});
     }
 }
 </script>

@@ -3,7 +3,7 @@
 import httpService from './http.service.js';
 import utilService from './util.service.js';
 
-const BASE_API = '';
+const BASE_API = '//localhost:3030/api/review';
 
 export default {
     query,
@@ -27,5 +27,15 @@ function remove(_id) {
 }
 
 function get(_id) {
+    if (!_id) return Promise.resolve(_createNewReview())
     return httpService.get(`${BASE_API}/${_id}`);
+}
+
+function _createNewReview() {
+    return {
+        txt: '',
+        createdAt: 1574630570923,
+        aboutId: '',
+        reviewerId: ''
+    }
 }

@@ -1,5 +1,6 @@
 <template>
-    <main>
+    <button v-if="isLogedIn" @click="logout">Log out</button>
+    <main v-else>
         <button @click="isSignIn = !isSignIn">{{btnMsg}}</button>
         <sign-in v-if="isSignIn"></sign-in>
         <log-in v-else></log-in>
@@ -23,6 +24,14 @@ export default {
     computed: {
         btnMsg() {
             return (this.isSignIn)? 'Log in' : 'Sign in';
+        },
+        isLogedIn() {
+            return this.$store.getters.logedInUser;
+        }
+    },
+    methods: {
+        logout() {
+            this.$store.dispatch('logOut')
         }
     }
 }

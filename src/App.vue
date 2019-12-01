@@ -20,9 +20,9 @@ export default {
   },
   created() {
     this.$store.dispatch({type:'getCurrCoords'})
-    this.$store.dispatch({type:'loadEvents'})
-    console.log(this.$store.eventos);
-    
+    // this.$store.dispatch({type:'loadEvents'})
+
+    this.$store.dispatch('getLogedUser');    
   },
  
 };

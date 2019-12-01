@@ -30,19 +30,22 @@ export default {
         setCurCoords(state, {coords}) {
             state.currCoords = coords.coords;
             console.log(state.currCoords);
+        },
+        setCurrUser(state, {user}) {
+            state.currUser = user;
         }
     },
     actions: {
         signIn(context, {user}) {
             return userService.signIn(user)
                 .then(user => {
-                    console.log('store got user:'. user)
-                    context.commit({type: 'setLogedUser', user});
+                    console.log('store got user:'. user);
+                    context.dispatch({type: 'login', loginInfo: {username: user.usernam, password: user.password}});
                     return user;
                 })
         },
-        logIn(context, {loginInfo}) {
-            return userService.logIn(loginInfo)
+        login(context, {loginInfo}) {
+            return userService.login(loginInfo)
                 .then(user => context.commit({type: 'setLogedUser', user}));
         },
         logOut(context) {
@@ -50,13 +53,23 @@ export default {
                 .then(() => context.commit({type: 'setLogedUser', user: null}))
         },
         getUser(context, {_id}) {
-            return userService.get(_id);
+            return userService.get(_id)
+                .then(user => {
+                    context.commit({type: 'setCurrUser', user})
+                    return user
+                })
         },
         getCurrCoords(context) {
             navigator.geolocation.getCurrentPosition((coords) => {
                 context.commit({type: 'setCurCoords', coords}),
                 err => err; 
             })
+        },
+        getLogedUser(context) {
+            var user = userService.getLogedUser();
+            if (user) {
+                context.dispatch({type: 'login', loginInfo: {username: user.username, password: user.password}});
+            }
         }
     }
 }

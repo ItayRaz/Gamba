@@ -3,7 +3,7 @@
 import httpService from './http.service.js';
 import utilService from './util.service.js';
 
-const BASE_API = '//localhost:3000/eventos';
+const BASE_API = '//localhost:3030/api/evento';
 
 export default {
     query,
@@ -14,22 +14,23 @@ export default {
 
 function query(filterBy = {}) {
     var queryStr = utilService.getQuerysStr(filterBy);
+    console.log('sending request to', BASE_API+queryStr);
     return httpService.get(BASE_API + queryStr);
 }
 
 function save(evento) {
     if (evento._id) return httpService.put(`${BASE_API}/${evento._id}`, evento);  
-    else {
-        evento.createdAt = Date.now();
-        evento.location = {
-        Coords: {
-            lat: 34.77318,
-            lng: 32.097768
-          },
-          name: "Tel aviv port"
-    }
-        return httpService.post(BASE_API, evento);
-    } 
+    return httpService.post(BASE_API, evento);
+    // else {
+    //     evento.createdAt = Date.now();
+    //     evento.location = {
+    //     Coords: {
+    //         lat: 34.77318,
+    //         lng: 32.097768
+    //       },
+    //       name: "Tel aviv port"
+    // }
+    // } 
 }
 
 function remove(_id) {

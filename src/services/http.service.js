@@ -1,9 +1,10 @@
 'use strict';
 
-import Axios from 'axios';
-var axios = Axios.create({
-    withCredentials: true
-});
+import axios from 'axios';
+// import Axios from 'axios';
+// var axios = Axios.create({
+//     withCredentials: true
+// });
 
 export default {
     get,
@@ -18,6 +19,7 @@ function handelErr(err) {
 }
 
 function get(API) {
+    console.log('httpService got request to:', API);
     return axios.get(API).then(res => res.data).catch(handelErr);
 }
 function remove(API) {

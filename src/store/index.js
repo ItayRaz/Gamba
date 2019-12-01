@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import eventStore from './modules/event.store'
 import userStore from './modules/user.store'
 import confirmStore from './modules/confirm.store';
+import reviewStore from './modules/review.store';
 
 Vue.use(Vuex)
 
@@ -16,7 +17,8 @@ export default new Vuex.Store({
   modules: {
     userStore,
     eventStore,
-    confirmStore
+    confirmStore,
+    reviewStore
   }
 
 })

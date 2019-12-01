@@ -22,8 +22,10 @@ export default {
     },
     methods: {
         logIn() {
-            if (!this.loginInfo.username || !this.loginInfo.password) return;
-            console.log(this.loginInfo);
+            var loginInfo = this.loginInfo;
+            if (!loginInfo.username || !loginInfo.password) return;
+            console.log(loginInfo);
+            this.$store.dispatch({type: 'login', loginInfo});
             this.loginInfo = {username: '', password: ''}
         }
     }
