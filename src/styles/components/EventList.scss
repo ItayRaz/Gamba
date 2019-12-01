@@ -65,16 +65,28 @@
         }
 
         li:nth-child(1) {
-          background: blue;
+          background-image: url(~@/assets/avatar.jpg);
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: cover; 
         }
         li:nth-child(2) {
-          background: green;
+          background-image: url(~@/assets/avatar.jpg);
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: cover; 
         }
         li:nth-child(3) {
-          background: purple;
+          background-image: url(~@/assets/avatar.jpg);
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: cover; 
         }
         li:nth-child(4) {
-          background: tomato;
+          background-image: url(~@/assets/avatar.jpg);
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: cover; 
         }
         li:nth-child(n + 2) {
           margin-left: -50px;

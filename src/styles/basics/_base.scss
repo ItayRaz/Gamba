@@ -6,7 +6,7 @@ body {
     margin: 0;
     max-width: 100vw;
     font-family: sans-serif;
-    color: $clr7;
+    color: $clr4;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -19,7 +19,7 @@ button:hover {
 
 a {
     text-decoration: none;
-    color: $clr6;
+    color: $clr4;
 }
 a:hover, .router-link-exact-active {
     color: $clr3;

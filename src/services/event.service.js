@@ -37,10 +37,6 @@ function _getNewEveto() {
     return {
         title: '',
         location: {
-            // Coords: {
-            //     lat: 0,
-            //     lng: 0,
-            // },
             address_line_1: ''
         },
         desc: '',
@@ -53,7 +49,7 @@ function _getNewEveto() {
             start: Date.now(),
             duration: 0
         },
-        categories: []
+        categories: ['General']
     }
 }
 

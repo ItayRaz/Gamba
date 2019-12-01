@@ -1,6 +1,7 @@
 <template>
   <el-select
     v-model="value"
+    @change="handleValue"
     multiple
     filterable
     allow-create
@@ -30,6 +31,11 @@
           label: 'Food'
         }],
         value: []
+      }
+    },
+    methods: {
+      handleValue() {
+        this.$emit('input', this.value)
       }
     }
   }

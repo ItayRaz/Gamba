@@ -1,13 +1,26 @@
 .app-hero {
     height: 90vh;
     width: 100%;
-    background-color: $clr3;
-
+    // background-image: url("~@/assets/hero.jpg");
+    position: fixed;
+    z-index: -1;
+    img {
+        width: 100%;
+        height: 100%;
+    }
+    .hero-txt{
+        position: absolute;
+        text-align: center;
+    }
     .logo {
         font-size: 4rem;
+        color: white;
+        opacity: 0.95;
     }
     .logo-subline {
         // color: $clr7;
+        color: white;
+        opacity: 0.95;
         font-size: 2rem;
     }
 }

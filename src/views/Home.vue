@@ -1,8 +1,11 @@
 <template>
   <section>
     <section class="app-hero flex column align-center justify-center">
-      <h1 class="logo"><span>Gamba</span><span>?</span></h1>
-      <h2 class="logo-subline">Pilpel!</h2>
+      <img src="~@/assets/hero.jpg">
+      <div class="hero-txt">
+      <div class="logo">Have Fun</div>
+      <div class="logo-subline">Don't Miss The Best Events Around!</div>
+      </div>
     </section>
     <router-view></router-view>
   </section>

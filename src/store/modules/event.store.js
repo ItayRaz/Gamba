@@ -9,7 +9,7 @@ export default {
     mutations: {
         setEvents(state, { eventos }) {
             console.log('eventos', state.eventos);
-            
+
             state.eventos = eventos;
         },
         removeEvent(state, { eventoId }) {
@@ -27,22 +27,33 @@ export default {
             })
             state.eventos = sortedEvents;
         },
-        addEvent(state, {evento}) {            
+        addEvent(state, { evento }) {
             state.eventos.unshift(evento);
         },
-        saveEvent(state, {evento}) {
+        saveEvent(state, { evento }) {
             const idx = state.eventos.findIndex(evento => evento._id === evento._id);
             state.eventos.splice(idx, 1, evento)
         },
-        setCurrEvent(state, {evento}) { //test            
+        setCurrEvent(state, { evento }) { //test            
             state.currEvent = evento;
+        },
+        setFilter(state, { filterBy }) {
+            state.filterby = filterBy;
         }
     },
     getters: {
         eventos(state) {
-            return state.eventos;
+            let eventosToShow = JSON.parse(JSON.stringify(state.eventos));
+            let filter = state.filterby;
+            if (filter.searchStr) {
+                eventosToShow = eventosToShow.filter(evento => {
+                  return evento.title.toLowerCase().includes(filter.searchStr.toLowerCase());
+                  //evento.desc.toLowerCase().includes(filter.searchStr.toLowerCase)
+                });
+                }
+            return eventosToShow;
         },
-        currEvento(state){
+        currEvento(state) {
             return state.currEvent
         },
         popularEvents(state) {
@@ -69,33 +80,33 @@ export default {
         }
     },
     actions: {
-        loadEvents(context, {filterBy}) {
+        loadEvents(context, { filterBy }) {
             return eventoService.query(filterBy)
                 .then(eventos => {
                     // context.commit({ type: 'sortEventByDist', data: { eventos, context } });
-                    context.commit({ type: 'setEvents', eventos});
+                    context.commit({ type: 'setEvents', eventos });
                     return eventos;
                 })
         },
         removeEvent(context, { eventoId }) {
-            context.dispatch({type: 'Confirm', msg: 'Are you sure you want to remove this Event? you would not be able to restore it.'})
+            context.dispatch({ type: 'Confirm', msg: 'Are you sure you want to remove this Event? you would not be able to restore it.' })
                 .then(() => {
                     return eventoService.remove(eventoId)
                         .then(() => context.commit({ type: 'removeEvent', eventoId }))
                 })
         },
-        addEvent(context, {evento}) {
+        addEvent(context, { evento }) {
             return eventoService.save(evento)
-                .then(evento => context.commit({type: 'addEvent', evento}))
+                .then(evento => context.commit({ type: 'addEvent', evento }))
         },
-        editEvent(context, {evento}) {
+        editEvent(context, { evento }) {
             return eventoService.save(evento)
-                .then(evento => context.commit({type: 'saveEvent', evento}))
+                .then(evento => context.commit({ type: 'saveEvent', evento }))
         },
-        getEvent(context, {eventoId}) {            
+        getEvent(context, { eventoId }) {
             return eventoService.get(eventoId)
-                .then(evento => {                                        
-                    context.commit({type: 'setCurrEvent', evento})
+                .then(evento => {
+                    context.commit({ type: 'setCurrEvent', evento })
                     return evento // for details
                 })
         }

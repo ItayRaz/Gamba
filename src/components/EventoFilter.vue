@@ -1,6 +1,6 @@
 <template>
     <form @submit.prevent="filter">
-        <input @change="filter" type="text" placeholder="Search" v-model="filterBy.searchStr"/>
+        <input @input="filter" type="text" placeholder="Search" v-model="filterBy.searchStr"/>
         <select @change="filter" v-model="filterBy.category">
             <option value="All">All</option>
             <option v-for="category in categories" :key="category" :value="category">{{category}}</option>
@@ -21,7 +21,7 @@ export default {
     },
     methods: {
         filter() {
-            this.$emit('setFilter', {...this.filterBy});
+            this.$store.commit({type: 'setFilter', filterBy:{...this.filterBy}});
         }
     }
 }
