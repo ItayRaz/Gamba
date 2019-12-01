@@ -46,7 +46,7 @@ export default {
       markers: null,
       center: null,
       address: {
-        address_line_1: ""
+        name: ""
       },
     }
   },
@@ -66,13 +66,17 @@ export default {
         return "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png";
       return "http://maps.google.com/mapfiles/ms/icons/blue-dot.png";
     },
-    setEventoAddress() {
-      var eventoCoords;
-      this.$geocoder.send(this.address, response => {
+   setEventoAddress() {
+     console.log(this.address)
+      var eventoCoords = this.$geocoder.send(this.address, response => {
         eventoCoords = response.results[0].geometry.location;
-        console.log(eventoCoords);
+        console.log('test1',eventoCoords);
         
+        return eventoCoords
       });
+      console.log(eventoCoords);
+      
+      
     },
     showDetails(ev){
       console.log('!!!');

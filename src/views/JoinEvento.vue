@@ -7,7 +7,7 @@
       <p @click="toQuickJoin">Quickly Join</p>
     </section>
     <div>
-        <img :src="evento.mainImg">
+        <img :src="evento.imgs[0]">
     </div>
     <router-view class="form-container" :evento="evento"></router-view>
   </section>
