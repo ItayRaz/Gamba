@@ -5,6 +5,7 @@
             <input autofocus type="text" placeholder="User name" v-model="user.username"/>
             <input type="text" placeholder="Password" v-model="user.password"/>
             <input type="text" placeholder="img src" v-model="user.img"/>
+            <textarea type="text" placeholder="Something about you?" v-model="user.about"/>
             <button>Sign in</button>
         </form>
         {{user}}

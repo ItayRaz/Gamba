@@ -47,12 +47,9 @@ export default {
             return reviews;
         },
         async saveReview(context, {review}) {
-            review = reviewService.save(review);
+            review = await reviewService.save(review);
             context.commit({type: 'saveReview', review});
-        },
-        async saveReview(context, {review}) {
-            review = reviewService.save(review);
-            context.commit({type: 'saveReview', review});
+            return review;
         },
         async removeReview(context, {_id}) {
             reviewService.remove(_id)
