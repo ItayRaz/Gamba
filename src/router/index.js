@@ -11,6 +11,9 @@ import UserDetails from '../views/UserDetails.vue';
 import joinEvento from '../views/JoinEvento.vue';
 import QuickJoin from '../views/QuickJoin.vue';
 
+
+import EventsAround from '../views/EventsAround.vue';//testing
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -35,6 +38,11 @@ const routes = [
         component: eventEdit
       },
     ]
+  },
+  {
+    path: '/event/around',
+    name: 'event-around',
+    component: EventsAround 
   },
   {
     path: '/event/:id',

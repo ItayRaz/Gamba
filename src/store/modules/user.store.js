@@ -29,7 +29,6 @@ export default {
         },
         setCurCoords(state, {coords}) {
             state.currCoords = coords.coords;
-            console.log(state.currCoords);
         }
     },
     actions: {
@@ -53,8 +52,11 @@ export default {
             return userService.get(_id);
         },
         getCurrCoords(context) {
-            navigator.geolocation.getCurrentPosition((coords) => {
-                context.commit({type: 'setCurCoords', coords}),
+            return navigator.geolocation.getCurrentPosition((coords) => {
+                context.commit({type: 'setCurCoords', coords})
+                console.log(coords);
+                
+                return coords,
                 err => err; 
             })
         }

@@ -15,7 +15,7 @@
             <p>{{evento.members.length}} members are going</p>
             <p>Organisiert von David M. und 2 andere</p>
           </div>
-          <MapList></MapList>
+          <MapDetails></MapDetails>
           <div class="join-container">
             <button @click="joinEvento" class="join">Join us!</button>
           </div>
@@ -47,14 +47,14 @@
 
 
 <script>
-import MapList from "@/components/MapList";
+import MapDetails from "@/components/MapDetails";
 import EventGallery from "@/components/EventGallery";
 import UserGallery from "@/components/UserGallery";
 import Creator from "@/components/Creator";
 
 export default {
   components: {
-    MapList,
+    MapDetails,
     EventGallery,
     UserGallery,
     Creator
@@ -78,6 +78,7 @@ export default {
     const eventoId = this.$route.params.id;
     this.evento = await this.$store.dispatch({ type: "getEvent", eventoId });
   },
+
   
 };
 </script>

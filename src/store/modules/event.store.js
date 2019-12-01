@@ -68,7 +68,7 @@ export default {
         }
     },
     actions: {
-        loadEvents(context, {filterBy = {}}) {
+        loadEvents(context, {filterBy = {}}) {            
             // return eventoService.query(filterBy)
             return eventoService.query()
                 .then(eventos => {
@@ -79,7 +79,7 @@ export default {
                     });
                     if (filterBy.memberId) return eventos.filter(evento => {
                         return evento.members.find(member => member._id === filterBy.memberId);
-                    });
+                    });                    
                     return eventos;
                 })
         },
