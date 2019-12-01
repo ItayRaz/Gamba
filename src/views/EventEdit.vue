@@ -77,7 +77,7 @@ export default {
       this.$geocoder.send(this.evento.location, response => {
       this.evento.location.coords = response.results[0].geometry.location;
       this.$store.dispatch({ type: "editEvent", evento: this.evento });
-    },
+    })},
     openLoading() {
       const loading = this.$loading({
         lock: true,
