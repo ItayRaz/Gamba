@@ -25,16 +25,16 @@ export default {
             })
             state.eventos = sortedEvents;
         },
-        addEvent(state, {evento}) {
+        addEvent(state, {evento}) {  
+            console.log(state.eventos);
+                      
             state.eventos.unshift(evento);
         },
         saveEvent(state, {evento}) {
             const idx = state.eventos.findIndex(evento => evento._id === evento._id);
             state.eventos.splice(idx, 1, evento)
         },
-        setCurrEvent(state, {evento}) { //test
-            console.log(evento);
-            
+        setCurrEvent(state, {evento}) { //test            
             state.currEvent = evento;
         }
     },

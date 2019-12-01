@@ -55,6 +55,6 @@ export default {
     },
     async created() {
         this.eventos = await this.$store.dispatch({type: 'loadEvents'});
-    }
+    },
 }
 </script>
