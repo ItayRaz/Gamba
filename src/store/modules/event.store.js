@@ -48,9 +48,13 @@ export default {
             if (filter.searchStr) {
                 eventosToShow = eventosToShow.filter(evento => {
                   return evento.title.toLowerCase().includes(filter.searchStr.toLowerCase());
-                  //evento.desc.toLowerCase().includes(filter.searchStr.toLowerCase)
                 });
-                }
+            }
+            if (filter.category && filter.category !== 'All') {
+                eventosToShow = eventosToShow.filter(evento => {
+                    return evento.categories.find(category => category.toLowerCase() === filter.category.toLowerCase());
+                })
+            }
             return eventosToShow;
         },
         currEvento(state) {
@@ -86,11 +90,15 @@ export default {
         }
     },
     actions: {
-        loadEvents(context, { filterBy }) {
+        loadEvents(context, {filterBy, isSetEvents}) {
+            console.log('isSetEvents:', isSetEvents, typeof(isSetEvents));
+            if (typeof(isSetEvents) === 'undefined') isSetEvents = true;
             return eventoService.query(filterBy)
                 .then(eventos => {
-                    context.commit({ type: 'sortEventByDist', eventos, context});
-                    // context.commit({ type: 'setEvents', eventos});
+                    if (isSetEvents) {
+                        context.commit({ type: 'sortEventByDist', eventos, context});
+                        // context.commit({ type: 'setEvents', eventos});
+                    }
                     return eventos;
                 })
         },
