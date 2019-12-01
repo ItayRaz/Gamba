@@ -8,9 +8,9 @@
       </div>
     </section>
     <section class="home-lists">
-    Close to you:
+    <h2>Close to you:</h2> 
     <evento-list :eventos="aroundEventos"/>
-    popular:
+    <h2>popular:</h2> 
     <evento-list :eventos="popularEvents"/>
   </section>
     </section>

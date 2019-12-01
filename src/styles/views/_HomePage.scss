@@ -2,7 +2,7 @@
     height: 90vh;
     width: 100%;
     // background-image: url("~@/assets/hero.jpg");
-    position: fixed;
+    position: sticky;
     z-index: -1;
     img {
         width: 100%;
@@ -28,6 +28,6 @@
 
 .home-lists {
     background-color: #fff;
-    position: relative;
+    position: sticky;
     top: 650px;
 }
