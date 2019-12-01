@@ -24,7 +24,7 @@ export default {
             this.$store.dispatch({type: 'signIn', user: {...this.user}})
                 .then(user => {
                     console.log(user);
-                    router.push('/');
+                    // this.$router.push('/');
                 })
         }
     },

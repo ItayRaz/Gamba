@@ -59,7 +59,7 @@
 import { log } from "util";
 import cloudinaryService from "../services/cloudinary.service";
 import eventCategory from "../components/EventCategory";
-import {gmapApi} from 'vue2-google-maps';
+import { gmapApi } from "vue2-google-maps";
 export default {
   data() {
     return {
@@ -67,17 +67,18 @@ export default {
     };
   },
   methods: {
-    Create() {      
+    Create() {
       this.$geocoder.send(this.evento.location, response => {
-      this.evento.location.coords = response.results[0].geometry.location;
-      this.$store.dispatch({ type: "addEvent", evento: this.evento });
+        this.evento.location.coords = response.results[0].geometry.location;
+        this.$store.dispatch({ type: "addEvent", evento: this.evento });
       });
     },
     Edit() {
       this.$geocoder.send(this.evento.location, response => {
-      this.evento.location.coords = response.results[0].geometry.location;
-      this.$store.dispatch({ type: "editEvent", evento: this.evento });
-    })},
+        this.evento.location.coords = response.results[0].geometry.location;
+        this.$store.dispatch({ type: "editEvent", evento: this.evento });
+      })
+    },
     openLoading() {
       const loading = this.$loading({
         lock: true,
@@ -111,7 +112,7 @@ export default {
     }
   },
   computed: {
-    google: gmapApi 
+    google: gmapApi
   },
   async created() {
     let eventoId = this.$route.params.id;

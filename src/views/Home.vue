@@ -9,7 +9,6 @@
 </template>
 
 <script>
-// import eventoList from '../components/evento-list'
 import EventoList from '../components/EventList'
 
 export default {

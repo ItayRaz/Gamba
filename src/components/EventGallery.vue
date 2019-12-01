@@ -1,7 +1,7 @@
 <template>
-  <section class="event-gallery flex align-center">
+  <section v-if="imgs.length" class="event-gallery flex align-center">
     <button @click="getNextImg(-1)">⇠</button>
-    <ul class="clean-list flex row">
+    <ul  class="clean-list flex row">
       <li
         v-for="(img,idx) in imgsToShow"
         :class="{middle : idx === Math.floor(imgs.length/2)}"
@@ -19,7 +19,7 @@ export default {
   props: ["imgs"],
   data() {
     return {
-      currImg: Math.floor(this.imgs.length/2),
+      currImg: 0,
       imgCounter: 0,
 
       imgsToShow: this.imgs
@@ -50,9 +50,10 @@ export default {
     }
   },
   created() {
-    // console.log(this.imgCounter);
-
     this.$emit("setMainImg", this.currImg);
+    if(this.imgs.length) this.currImg = Math.floor(this.imgs.length/2)
+    console.log(this.imgs);
+    
   }
 };
 </script>

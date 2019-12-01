@@ -40,7 +40,7 @@ export default {
             return userService.signIn(user)
                 .then(user => {
                     console.log('store got user:'. user);
-                    context.dispatch({type: 'login', loginInfo: {username: user.usernam, password: user.password}});
+                    context.dispatch({type: 'login', loginInfo: {username: user.username, password: user.password}});
                     return user;
                 })
         },
