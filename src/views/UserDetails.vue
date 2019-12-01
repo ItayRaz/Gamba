@@ -67,10 +67,10 @@ export default {
     },
     methods: {
         async getEventos() {
-            let ownedEventos = await this.$store.dispatch({type: 'loadEvents', filterBy: {creatorId: this.user._id}});
+            let ownedEventos = await this.$store.dispatch({type: 'loadEvents', filterBy: {creatorId: this.user._id}, isSetEvents: false});
             this.ownedEventos = ownedEventos
             
-            let atendedEventos = await this.$store.dispatch({type: 'loadEvents', filterBy: {memberId: this.user._id}});
+            let atendedEventos = await this.$store.dispatch({type: 'loadEvents', filterBy: {memberId: this.user._id}, isSetEvents: false});
             this.atendedEventos = atendedEventos
         },
         async getReviews() {

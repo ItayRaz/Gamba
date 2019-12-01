@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent="filter" class="evento-filter">
+    <form @submit.prevent="filter" class="evento-filter flex align-center wrap">
         <input class="search-input" @input="filter" type="text" placeholder="Search" v-model="filterBy.searchStr"/>
         <select class="category-select" @change="filter" v-model="filterBy.category">
             <option value="All">All</option>
@@ -21,6 +21,7 @@ export default {
     },
     methods: {
         filter() {
+            console.log('filtering', this.filterBy)
             this.$store.commit({type: 'setFilter', filterBy:{...this.filterBy}});
         }
     }
