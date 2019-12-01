@@ -23,8 +23,8 @@ export default {
             if (!this.user.username || !this.user.password) return;
             this.$store.dispatch({type: 'signIn', user: {...this.user}})
                 .then(user => {
-                    console.log(user);
-                    router.push('/');
+                    // console.log(user);
+                    // this.$router.push('/');
                 })
         }
     },

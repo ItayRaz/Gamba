@@ -23,27 +23,17 @@
         <div class="user-reviews-container flex column">
             <user-review-edit _id=""/>
             ownedReviews:
-            <ul>
-                <li v-for="review in ownedReviews">
-                    <pre>{{review}}</pre>
-                    <button @click="removeReview(review._id)">X</button>
-                </li>
-            </ul>
+            <review-list :reviews="ownedReviews"/>
             aboutReviews:
-            <ul>
-                <li v-for="review in aboutReviews">
-                    <pre>{{review}}</pre>
-                    <button @click="removeReview(review._id)">X</button>
-                </li>
-            </ul>
-            <!-- <div class="place-holder">user's reviews comes here</div> -->
+            <review-list :reviews="aboutReviews"/>
         </div>
     </main>
 </template>
 
 <script>
-import eventoList from '../components/CalanderEventoList.vue';
+import eventoList from '../components/EventList.vue';
 import userReviewEdit from '../components/UserReviewEdit.vue';
+import reviewList from '../components/ReviewList.vue';
 
 export default {
     data() {
@@ -98,7 +88,8 @@ export default {
     },
     components: {
         eventoList,
-        userReviewEdit
+        userReviewEdit,
+        reviewList
     }
 }
 </script>
