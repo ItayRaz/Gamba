@@ -8,6 +8,8 @@ export default {
     },
     mutations: {
         setEvents(state, { eventos }) {
+            console.log('eventos', state.eventos);
+            
             state.eventos = eventos;
         },
         removeEvent(state, { eventoId }) {
@@ -25,7 +27,7 @@ export default {
             })
             state.eventos = sortedEvents;
         },
-        addEvent(state, {evento}) {
+        addEvent(state, {evento}) {            
             state.eventos.unshift(evento);
         },
         saveEvent(state, {evento}) {
