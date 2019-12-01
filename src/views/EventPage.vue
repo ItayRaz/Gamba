@@ -55,12 +55,7 @@ export default {
         eventList
     },
     async created() {
-<<<<<<< HEAD
-        this.eventos = await this.$store.dispatch({type: 'loadEvents'});
-    },
-=======
         // this.eventos = await this.$store.dispatch({type: 'loadEvents'});
     }
->>>>>>> 0fa830cb8f19dea3dbe5eab98b798a48559a2ff2
 }
 </script>

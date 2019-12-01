@@ -37,11 +37,11 @@ function _getNewEveto() {
     return {
         title: '',
         location: {
-            Coords: {
-                lat: 0,
-                lng: 0,
-            },
-            name: ''
+            // Coords: {
+            //     lat: 0,
+            //     lng: 0,
+            // },
+            address_line_1: ''
         },
         desc: '',
         imgs: [],

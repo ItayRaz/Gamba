@@ -32,14 +32,11 @@
 <script>
 
 export default {
+  props:['eventCoords'],
   data() {
     return {
-      center: {
-          "lat": 32.100033,
-          "lng": 34.805509
-        },
-        markers: [{position:{lat: 32.100033,
-          lng: 34.805509}}]
+      center: this.eventCoords,
+      markers: [{position: this.eventCoords}]
     }
   },  
 };
