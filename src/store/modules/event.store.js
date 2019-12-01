@@ -94,7 +94,7 @@ export default {
             return eventoService.save(evento)
                 .then(evento => context.commit({type: 'addEvent', evento}))
         },
-        EditEvent(context, {evento}) {
+        editEvent(context, {evento}) {
             return eventoService.save(evento)
                 .then(evento => context.commit({type: 'saveEvent', evento}))
         },
