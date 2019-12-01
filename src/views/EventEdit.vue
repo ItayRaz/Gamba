@@ -44,22 +44,34 @@
       </el-form-item>
       <el-form-item class="flex wrap">
         <h3>Event Images:</h3>
-        <input type="file" multiple @change="uploadImg" />
-        <router-link v-if="this.$route.params.id" to="/event"><el-button  type="primary" @click="Edit" to="/">Edit</el-button></router-link>
-       <router-link v-else to="/event"><el-button type="primary" @click="Create" to="/">Create</el-button></router-link>
-         <router-link class="cancel-btn" to="/event"><el-button>Cancel</el-button></router-link>
+        <input type="file" ref="files" multiple @change="uploadImg" />
+        <router-link v-if="this.$route.params.id" to="/event">
+          <el-button type="primary" @click="Edit" to="/">Edit</el-button>
+        </router-link>
+        <router-link v-else to="/event">
+          <el-button type="primary" @click="Create" to="/">Create</el-button>
+        </router-link>
+        <router-link class="cancel-btn" to="/event">
+          <el-button>Cancel</el-button>
+        </router-link>
       </el-form-item>
+      <section class="imgs-to-add grid">
+        <div class="relative" v-for="(img, index) in evento.imgs" :key="img">
+          <img :src="img" />
+          <button class="absolute" @click="removeImg(index)">X</button>
+        </div>
+      </section>
     </el-form>
   </section>
 </template>
 <script>
 import { log } from "util";
 import cloudinaryService from "../services/cloudinary.service";
-import eventCategory from '../components/EventCategory'
+import eventCategory from "../components/EventCategory";
 export default {
   data() {
     return {
-      evento: null,
+      evento: null
     };
   },
   methods: {
@@ -67,7 +79,7 @@ export default {
       this.$store.dispatch({ type: "addEvent", evento: this.evento });
     },
     Edit() {
-      this.$store.dispatch({ type: "EditEvent", evento: this.evento });
+      this.$store.dispatch({ type: "editEvent", evento: this.evento });
     },
     openLoading() {
       const loading = this.$loading({
@@ -75,23 +87,30 @@ export default {
         text: "Loading",
         spinner: "el-icon-loading",
         background: "rgba(0, 0, 0, 0.7)"
-      })
+      });
     },
-    closeLoading(){
+    closeLoading() {
       const loading = this.$loading({
-          lock: true,
-          text: 'Loading',
-          spinner: 'el-icon-loading',
-          background: 'rgba(0, 0, 0, 0.7)'
-        });
-         loading.close();
+        lock: true,
+        text: "Loading",
+        spinner: "el-icon-loading",
+        background: "rgba(0, 0, 0, 0.7)"
+      });
+      loading.close();
     },
     uploadImg() {
+      let imgCount = this.$refs.files.files.length;
+
       this.openLoading();
-      cloudinaryService.uploadImg(event).then(res => {
-        this.evento.imgs.push(res.url);
+      cloudinaryService.uploadImg(event, imgCount).then(res => {
+        console.log(res);
+
+        this.evento.imgs.push(...res);
         this.closeLoading();
       });
+    },
+    removeImg(idx) {
+      this.evento.imgs.splice(idx, 1)
     }
   },
   async created() {
@@ -107,7 +126,7 @@ export default {
 </script>
 
 <style scoped>
-  .cancel-btn{
-    margin-left: 15px;
-  }
+.cancel-btn {
+  margin-left: 15px;
+}
 </style>

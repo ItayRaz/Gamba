@@ -13,4 +13,16 @@
 
 .el-form {
     padding: 30px;
+    .imgs-to-add{
+        grid-template-columns: 0fr 0fr 0fr;
+        gap: 10px;
+        img{
+            position: relative;
+            width: 145px;
+            margin-left: 5px;
+        }
+        button {
+            left: 5px;
+        }
+    }
 }
