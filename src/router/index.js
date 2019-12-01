@@ -8,6 +8,8 @@ import eventDetails from '../views/EventDetails.vue';
 
 import EventPage from '../views/EventPage.vue';
 import UserDetails from '../views/UserDetails.vue';
+import joinEvento from '../views/JoinEvento.vue';
+import QuickJoin from '../views/QuickJoin.vue';
 
 Vue.use(VueRouter)
 
@@ -38,6 +40,22 @@ const routes = [
     path: '/event/:id',
     name: 'event-details',
     component: eventDetails,
+    children:[
+      {
+        path: 'join',
+        component: joinEvento,
+        children:[
+          {
+            path:'signup',
+            component: SignupPage
+          },
+          {
+            path:'quick',
+            component: QuickJoin
+          }
+        ]
+      }
+    ]
   },
   {
     path: '/signup',
