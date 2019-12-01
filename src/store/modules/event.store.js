@@ -8,6 +8,8 @@ export default {
     },
     mutations: {
         setEvents(state, { eventos }) {
+            console.log('eventos', state.eventos);
+            
             state.eventos = eventos;
         },
         removeEvent(state, { eventoId }) {
@@ -25,16 +27,14 @@ export default {
             })
             state.eventos = sortedEvents;
         },
-        addEvent(state, {evento}) {
+        addEvent(state, {evento}) {            
             state.eventos.unshift(evento);
         },
         saveEvent(state, {evento}) {
             const idx = state.eventos.findIndex(evento => evento._id === evento._id);
             state.eventos.splice(idx, 1, evento)
         },
-        setCurrEvent(state, {evento}) { //test
-            console.log(evento);
-            
+        setCurrEvent(state, {evento}) { //test            
             state.currEvent = evento;
         }
     },

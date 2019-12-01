@@ -15,7 +15,7 @@
             <p>{{evento.members.length}} members are going</p>
             <p>Organisiert von David M. und 2 andere</p>
           </div>
-          <MapDetails></MapDetails>
+          <MapDetails :eventCoords="evento.location.coords"></MapDetails>
           <div class="join-container">
             <button @click="joinEvento" class="join">Join us!</button>
           </div>

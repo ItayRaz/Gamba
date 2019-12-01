@@ -5,7 +5,6 @@
         <el-input v-model="evento.title"></el-input>
       </el-form-item>
       <el-form-item label="Event start time">
-        <!-- <el-col :span="8"> -->
         <el-date-picker
           v-if="evento.time"
           type="date"
@@ -15,13 +14,10 @@
           value-format="timestamp"
         ></el-date-picker>
       </el-form-item>
-      <!-- </el-col> -->
-      <!-- <el-col class="line" :span="2"> Duration </el-col> -->
       <div class="flex wrap">
         <el-form-item label="Event Duration">
           <el-col :span="8">
             <el-input-number v-if="evento.time" v-model="evento.time.duration"></el-input-number>
-            <!-- <el-slider v-if="evento.time" small show-input v-model="evento.time.duration"></el-slider> -->
           </el-col>
         </el-form-item>
         <el-form-item label="Price">
@@ -31,14 +27,9 @@
       <el-form-item label="Categories">
         <event-category v-model="evento.categories"></event-category>
       </el-form-item>
-      <!-- <el-form-item label="Activity type">
-    <el-checkbox-group v-model="evento.type">
-      <el-checkbox label="Online activities" name="type"></el-checkbox>
-      <el-checkbox label="Promotion activities" name="type"></el-checkbox>
-      <el-checkbox label="Offline activities" name="type"></el-checkbox>
-      <el-checkbox label="Simple brand exposure" name="type"></el-checkbox>
-    </el-checkbox-group>
-      </el-form-item>-->
+      <el-form-item label="Adress">
+        <el-input placeholder v-model="evento.location.address_line_1" clearable></el-input>
+      </el-form-item>
       <el-form-item label="Description">
         <el-input type="textarea" v-model="evento.desc"></el-input>
       </el-form-item>
@@ -68,6 +59,7 @@
 import { log } from "util";
 import cloudinaryService from "../services/cloudinary.service";
 import eventCategory from "../components/EventCategory";
+import { gmapApi } from "vue2-google-maps";
 export default {
   data() {
     return {
@@ -76,10 +68,16 @@ export default {
   },
   methods: {
     Create() {
-      this.$store.dispatch({ type: "addEvent", evento: this.evento });
+      this.$geocoder.send(this.evento.location, response => {
+        this.evento.location.coords = response.results[0].geometry.location;
+        this.$store.dispatch({ type: "addEvent", evento: this.evento });
+      });
     },
     Edit() {
-      this.$store.dispatch({ type: "editEvent", evento: this.evento });
+      this.$geocoder.send(this.evento.location, response => {
+        this.evento.location.coords = response.results[0].geometry.location;
+        this.$store.dispatch({ type: "editEvent", evento: this.evento });
+      })
     },
     openLoading() {
       const loading = this.$loading({
@@ -110,8 +108,11 @@ export default {
       });
     },
     removeImg(idx) {
-      this.evento.imgs.splice(idx, 1)
+      this.evento.imgs.splice(idx, 1);
     }
+  },
+  computed: {
+    google: gmapApi
   },
   async created() {
     let eventoId = this.$route.params.id;
