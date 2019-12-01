@@ -7,23 +7,26 @@
       <div class="logo-subline">Don't Miss The Best Events Around!</div>
       </div>
     </section>
-    <router-view></router-view>
+    Close to you:
+    <evento-list :eventos="aroundEventos"/>
+    popular:
+    <evento-list :eventos="popularEvents"/>
   </section>
 </template>
 
 <script>
-// import eventoList from '../components/evento-list'
 import EventoList from '../components/EventList'
 
 export default {
-  data() {
-    return {
-
-    }
-  },
   computed: {
     eventos() {
       return this.$store.getters.eventos
+    },
+    aroundEventos() {
+      return this.$store.getters.eventosAround;
+    },
+    popularEvents() {
+      return this.$store.getters.popularEvents;
     }
   },
   mutations: {

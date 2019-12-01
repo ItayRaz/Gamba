@@ -5,6 +5,7 @@
             <input autofocus type="text" placeholder="User name" v-model="user.username"/>
             <input type="text" placeholder="Password" v-model="user.password"/>
             <input type="text" placeholder="img src" v-model="user.img"/>
+            <textarea type="text" placeholder="Something about you?" v-model="user.about"/>
             <button>Sign in</button>
         </form>
         {{user}}
@@ -23,7 +24,7 @@ export default {
             if (!this.user.username || !this.user.password) return;
             this.$store.dispatch({type: 'signIn', user: {...this.user}})
                 .then(user => {
-                    // console.log(user);
+                    console.log(user);
                     // this.$router.push('/');
                 })
         }

@@ -4,10 +4,10 @@
       <hr />
       <section class="details-header">
         <div>
-          <img class="main-img" :src="evento.imgs[mainImg]" />
+          <img v-if="evento.imgs.length" class="main-img" :src="evento.imgs[mainImg]" />
           <EventGallery @setMainImg="setImg" :imgs="evento.imgs"></EventGallery>
         </div>
-        
+
         <div class="details-header title">
           <h2>{{evento.title}}</h2>
           <div class="title-txt">
@@ -16,17 +16,11 @@
             <p>Organisiert von David M. und 2 andere</p>
           </div>
           <MapDetails :eventCoords="evento.location.coords"></MapDetails>
+          {{windowHieght}}
           <div class="join-container">
-            <button @click="joinEvento" class="join">Join us!</button>
+            <button @click="joinEvento" :class="join">Join us!</button>
           </div>
         </div>
-         <!-- <section class="details-links">
-            <p>Events</p>
-            <p>Members</p>
-            <p>Coneversation</p>
-            <p>More</p>
-            <p class="join">Join us</p>
-          </section> -->
       </section>
       <section class="details-content">
         <div class="details-txt">
@@ -36,8 +30,8 @@
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Explicabo temporibus nobis, quaerat sint rerum incidunt blanditiis quo unde, reiciendis enim at eligendi cum adipisci sed assumenda veritatis. Enim, natus sint.
           </p>
         </div>
-        <UserGallery :users="evento.members"></UserGallery>
-        <Creator :creator="evento.creator"></Creator>
+        <UserGallery :users="members"></UserGallery>
+        <Creator v-if="evento.creator.id" :creator="evento.creator"></Creator>
       </section>
     </section>
     <router-view :evento="evento"></router-view>
@@ -62,30 +56,48 @@ export default {
   data() {
     return {
       evento: null,
-      mainImg: 1
+      mainImg: 1,
+      windowHieght: 0
     };
   },
-  methods:{
-    setImg(imgIdx){
-      this.mainImg = imgIdx
+  computed: {
+    members() {
+      return this.evento.members;
     },
-    joinEvento(){
-      this.$router.push(`${this.evento._id}/join`) // ask!
-
+    join(){
+      if(this.windowHieght >=250) return {join:true , down:true} 
+      return {join:true}
+    }
+    
+  },
+  methods: {
+    setImg(imgIdx) {
+      this.mainImg = imgIdx;
+    },
+    getHeight(){
+      this.windowHieght = window.pageYOffset;
+      console.log(window.pageYOffset);
+      
+    },
+    joinEvento() {
+      if (this.$store.getters.logedInUser) {
+        this.evento.members.unshift(this.$store.getters.logedInUser);
+        this.$store.dispatch({ type: "editEvent", evento: this.evento });
+      } else {
+        this.$router.push(`${this.evento._id}/join`); // ask!
+      }
     }
   },
   async created() {
     const eventoId = this.$route.params.id;
     this.evento = await this.$store.dispatch({ type: "getEvent", eventoId });
-  },
-
-  
+    document.querySelector('body').onscroll = this.getHeight
+  }
 };
 </script>
 
 
 <style  scoped>
-
 .details-header {
   display: flex;
   flex-basis: row;
@@ -108,12 +120,9 @@ export default {
 .details-content {
   display: flex;
   flex-direction: column;
-
-  }
+}
 
 .details-txt {
   max-width: 600px;
 }
-
-
 </style>

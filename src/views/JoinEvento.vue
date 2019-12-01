@@ -16,6 +16,11 @@
 <script>
 export default {
   props: ["evento"],
+  computed:{
+    loggedInUser(){
+      return this.$store.getters.logedInUser
+    }
+  },
   methods: {
     backToEvento() {
       this.$router.push(`/event/${this.evento._id}`);
@@ -26,6 +31,16 @@ export default {
     toQuickJoin() {
       this.$router.push(`/event/${this.evento._id}/join/quick`);
     }
+  },
+  watch:{
+    loggedInUser(){
+      this.evento.members.unshift(this.$store.getters.logedInUser);
+      this.$store.dispatch({type:'editEvent',evento: this.evento})
+        .then(()=> this.$router.push(`/event/${this.evento._id}`))
+      
+    }
+
   }
+ 
 };
 </script>

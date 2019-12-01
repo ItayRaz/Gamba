@@ -3,7 +3,7 @@
     <h1>Join Quick</h1>
     <form @submit.prevent="joinGuest">
       <label for>
-        <input type="text" v-model="guest.name" placeholder="Enter your name" required />
+        <input type="text" v-model="guest.username" placeholder="Enter your name" required />
       </label>
       <button>Go</button>
     </form>
@@ -16,7 +16,7 @@ export default {
   data() {
     return {
       guest: {
-        name: "",
+        username: "",
       }
     };
   },
