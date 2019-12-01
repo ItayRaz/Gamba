@@ -73,7 +73,7 @@ export default {
             return eventoService.query(filterBy)
                 .then(eventos => {
                     // context.commit({ type: 'sortEventByDist', data: { eventos, context } });
-                    context.commit({ type: 'setEvents', data: { eventos, context } });
+                    context.commit({ type: 'setEvents', eventos});
                     return eventos;
                 })
         },
