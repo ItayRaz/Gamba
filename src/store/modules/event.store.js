@@ -90,8 +90,8 @@ export default {
         }
     },
     actions: {
-        loadEvents(context, {filterBy, isSetEvents}) {
-            console.log('isSetEvents:', isSetEvents, typeof(isSetEvents));
+        loadEvents(context, {filterBy, isSetEvents = true}) {
+            // console.log('isSetEvents:', isSetEvents, typeof(isSetEvents));
             if (typeof(isSetEvents) === 'undefined') isSetEvents = true;
             return eventoService.query(filterBy)
                 .then(eventos => {

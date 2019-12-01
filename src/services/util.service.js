@@ -19,6 +19,8 @@ function saveToSessionStorage(key, value) {
     sessionStorage[key] = JSON.stringify(value);
 }
 function loadFromSessionStorage(key, value) {
+    var data = sessionStorage[key];
+    if (!data) return false;
     return JSON.parse(sessionStorage[key]);
 }
 function clearSessionStorage() {
