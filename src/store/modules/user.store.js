@@ -60,8 +60,11 @@ export default {
                 })
         },
         getCurrCoords(context) {
-            navigator.geolocation.getCurrentPosition((coords) => {
-                context.commit({type: 'setCurCoords', coords}),
+            return navigator.geolocation.getCurrentPosition((coords) => {
+                context.commit({type: 'setCurCoords', coords})
+                console.log(coords);
+                
+                return coords,
                 err => err; 
             })
         },

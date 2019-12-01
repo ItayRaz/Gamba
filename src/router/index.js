@@ -8,6 +8,11 @@ import eventDetails from '../views/EventDetails.vue';
 
 import EventPage from '../views/EventPage.vue';
 import UserDetails from '../views/UserDetails.vue';
+import joinEvento from '../views/JoinEvento.vue';
+import QuickJoin from '../views/QuickJoin.vue';
+
+
+import EventsAround from '../views/EventsAround.vue';//testing
 
 Vue.use(VueRouter)
 
@@ -23,19 +28,42 @@ const routes = [
     component: Home,
   },
   {
-    path: '/event/edit/:id?',
-    name: 'event-edit',
-    component: eventEdit
-  },
-  {
     path: '/event',
     name: 'event-page',
     component: EventPage,
+    children: [
+      {
+        path: 'edit/:id?',
+        name: 'event-edit',
+        component: eventEdit
+      },
+    ]
+  },
+  {
+    path: '/event/around',
+    name: 'event-around',
+    component: EventsAround 
   },
   {
     path: '/event/:id',
     name: 'event-details',
     component: eventDetails,
+    children:[
+      {
+        path: 'join',
+        component: joinEvento,
+        children:[
+          {
+            path:'signup',
+            component: SignupPage
+          },
+          {
+            path:'quick',
+            component: QuickJoin
+          }
+        ]
+      }
+    ]
   },
   {
     path: '/signup',

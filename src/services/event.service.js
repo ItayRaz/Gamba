@@ -19,19 +19,12 @@ function query(filterBy = {}) {
 }
 
 function save(evento) {
-    if (evento._id) return httpService.put(`${BASE_API}/${evento._id}`, evento);  
+    if (evento._id) return httpService.put(`${BASE_API}/${evento._id}`, evento);
+    else {
+    }
     return httpService.post(BASE_API, evento);
-    // else {
-    //     evento.createdAt = Date.now();
-    //     evento.location = {
-    //     Coords: {
-    //         lat: 34.77318,
-    //         lng: 32.097768
-    //       },
-    //       name: "Tel aviv port"
-    // }
-    // } 
-}
+} 
+
 
 function remove(_id) {
     return httpService.remove(`${BASE_API}/${_id}`);
@@ -44,25 +37,25 @@ function get(_id) {
 
 function _getNewEveto() {
     return {
-        name: '',
+        title: '',
         location: {
-          Coords: {
-            lat: 34.77318,
-            lng: 32.097768
-          },
-          name: 'Tel aviv port'
+            Coords: {
+                lat: 0,
+                lng: 0,
+            },
+            name: ''
         },
         desc: '',
         imgs: [],
-        creatorId: '',
+        creator: {},
         createdAt: Date.now(),
-        Price: 0,
-        attendsIds: [],
+        price: 0,
+        members: [],
         time: {
-          start: Date.now(),
-          duration: 0
+            start: Date.now(),
+            duration: 0
         },
-        category: ''
+        categories: []
     }
 }
 

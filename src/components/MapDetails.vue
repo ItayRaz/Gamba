@@ -1,0 +1,47 @@
+
+<template >
+    <GmapMap
+      :center="center"
+      :zoom="14"
+      map-type-id="terrain"
+      style="width:300px;height:200px;"
+      :options="{
+   zoomControl: true,
+   mapTypeControl: false,
+   scaleControl: false,
+   streetViewControl: false,
+   rotateControl: false,
+   fullscreenControl: true,
+   disableDefaultUi: false
+ }"
+    >
+      <GmapMarker
+        :key="index"
+        v-for="(m, index) in markers"
+        :position="m.position"
+        :clickable="true"
+        :draggable="false"
+        @click="center=m.position"
+      />
+    </GmapMap>
+  </section>
+  
+</template>
+
+
+<script>
+
+export default {
+  data() {
+    return {
+      center: {
+          "lat": 32.100033,
+          "lng": 34.805509
+        },
+        markers: [{position:{lat: 32.100033,
+          lng: 34.805509}}]
+    }
+  },  
+};
+</script>
+
