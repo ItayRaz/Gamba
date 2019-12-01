@@ -19,8 +19,8 @@ export default {
     confirmPopup
   },
   created() {
-    this.$store.dispatch({type:'getCurrCoords'})
-    this.$store.dispatch({type:'loadEvents'})
+    this.$store.dispatch({type:'getCurrCoords'});
+    this.$store.dispatch({type:'loadEvents'});
 
     this.$store.dispatch('getLogedUser');    
   },

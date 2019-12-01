@@ -20,8 +20,6 @@ function query(filterBy = {}) {
 
 function save(evento) {
     if (evento._id) return httpService.put(`${BASE_API}/${evento._id}`, evento);
-    else {
-    }
     return httpService.post(BASE_API, evento);
 } 
 
@@ -39,11 +37,11 @@ function _getNewEveto() {
     return {
         title: '',
         location: {
-            Coords: {
-                lat: 0,
-                lng: 0,
-            },
-            name: ''
+            // Coords: {
+            //     lat: 0,
+            //     lng: 0,
+            // },
+            address_line_1: ''
         },
         desc: '',
         imgs: [],
