@@ -29,11 +29,11 @@ function remove(_id) {
 }
 
 function get(_id) {
-    if (!_id) return Promise.resolve(_getNewEveto())
+    if (!_id) return Promise.resolve(_getNewEvento())
     return httpService.get(`${BASE_API}/${_id}`);
 }
 
-function _getNewEveto() {
+function _getNewEvento() {
     return {
         title: '',
         location: {

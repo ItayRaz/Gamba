@@ -4,6 +4,7 @@
     <router-link to="/event/edit">
       <button>Add Event</button>
     </router-link>
+    <router-view></router-view>
     <event-list :eventos="eventos" />
   </main>
 </template>
