@@ -13,7 +13,7 @@ h1, h2, h3, h4, h5, h6, p {
     margin: 0;
 }
 
-button:hover {
+button:hover, select:hover {
     cursor: pointer;
 }
 
@@ -28,4 +28,13 @@ a:hover, .router-link-exact-active {
 img {
     // width: 100%;
     object-fit: cover;
+}
+
+input, select {
+    background: unset;
+    border: unset;
+    border-bottom: 1px solid black;
+    outline: none;
+    padding: 5px;
+    padding-left: 0;
 }

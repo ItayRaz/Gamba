@@ -23,7 +23,6 @@ export default {
   },
   computed: {
     eventos() {
-      console.log(this.$store.getters.eventos);
       return this.$store.getters.eventos;
     },
     eventosCategories() {

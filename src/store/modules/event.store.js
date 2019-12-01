@@ -34,7 +34,7 @@ export default {
             const idx = state.eventos.findIndex(evento => evento._id === evento._id);
             state.eventos.splice(idx, 1, evento)
         },
-        setCurrEvent(state, { evento }) { //test            
+        setCurrEvent(state, { evento }) {          
             state.currEvent = evento;
         },
         setFilter(state, { filterBy }) {
@@ -75,11 +75,14 @@ export default {
             return state.currEvent;
         },
         eventosCategories(state) {
-            // return state.eventos.reduce((acc, evento) => {
-            //     if (evento.category && !acc.includes(evento.category.toLowerCase())) acc.push(evento.category.toLowerCase());
-            //     return acc;
-            // }, []) || [];
-            return [];
+            return state.eventos.reduce((acc, evento) => {
+                if (evento.categories) {
+                    evento.categories.forEach(category => {
+                        if (!acc.includes(category.toLowerCase())) acc.push(category.toLowerCase());
+                    });
+                }
+                return acc;
+            }, []) || [];
         }
     },
     actions: {

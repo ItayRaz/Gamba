@@ -1,0 +1,13 @@
+.event-page {
+    padding-top: 10px;
+    .actions {
+        padding: 0 10px;
+        .evento-filter {
+            >*:not(:last-child) {
+                margin-right: 10px;
+            }
+            .search-input {
+            }
+        }
+    }
+}
