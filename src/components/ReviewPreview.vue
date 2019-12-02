@@ -1,11 +1,13 @@
 <template>
-    <section class="flex align-center wrap review-preview width-all">
+    <section class="flex align-center review-preview width-all">
         <!-- <router-link v-if="review.reviewer._id !== 'guest'" :to="review.reviewer._id"><img :src="review.reviewer.img" alt=""></router-link>
         <img v-else :src="review.reviewer.img"> -->
-        <router-link v-if="review.reviewer._id !== 'guest'" :to="review.reviewer._id"><avatar class="avatar" :username="review.reviewer.username" :src="review.reviewer.img" :size="50" rounded/></router-link>
-        <avatar v-else class="avatar" :username="review.reviewer._id" :src="review.reviewer.img" :size="50" rounded></avatar>
+        <div class="avatar-container flex align-center justify-center">
+            <router-link v-if="review.reviewer._id !== 'guest'" :to="review.reviewer._id"><avatar class="avatar" :username="review.reviewer.username" :src="review.reviewer.img" :size="50" rounded/></router-link>
+            <avatar v-else class="avatar" :username="review.reviewer._id" :src="review.reviewer.img" :size="50" rounded></avatar>
+        </div>
         <div class="flex column">
-            <div class="flex column">
+            <div class="flex column info">
                 <p v-if="review.reviewer._id !== 'guest'"><router-link :to="review.reviewer._id">{{review.reviewer.name}}</router-link></p>
                 <p v-else>{{review.reviewer._id}}</p>
                 <p>{{review.txt}}</p>

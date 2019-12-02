@@ -65,7 +65,10 @@ function _getNewUser() {
         password: '',
         isAdmin: false,
         img: '',
+        coverImg: '',
         about: '',
-        createdAt: Date.now()
+        createdAt: Date.now(),
+        email: '',
+        mobile: 0
     }
 }

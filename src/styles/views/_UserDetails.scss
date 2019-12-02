@@ -1,19 +1,29 @@
 .user-details {
-    padding-top: 10px;
+    // padding-top: 10px;
+    position: relative;
+    .cover-img {
+        width: 100%;
+        height: 60vh;
+        background-color: rgba(0, 0, 0, 0.2);
+    }
     .profile {
         max-width: 400px;
         margin-bottom: 20px;
+        position: relative;
+        top: -100px;
+
         .info {
-            // img {
-            .avatar {
-                width: 200px;
-                height: 200px;
-                border: 2px solid $clr3;
-                margin-right: 20px;
-                margin-bottom: 30px;
-                border-radius: 50%;
-                object-fit: cover;
-            }
+            padding-top: 20px;
+        }
+        // img {
+        .avatar {
+            width: 200px;
+            height: 200px;
+            border: 2px solid white;
+            margin-right: 20px;
+            margin-bottom: 30px;
+            border-radius: 50%;
+            object-fit: cover;
         }
         .about {
             margin-bottom: 20px;
@@ -39,7 +49,7 @@
             }
         }
     }
-    @media (max-width: 550px) {
+    @media (max-width: 630px) {
         .user-reviews-container {
             >* {
                 width: 100%;

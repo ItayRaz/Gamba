@@ -20,7 +20,7 @@
     border-left: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-.title-container {
+.main-title-container {
     width: 90vw;
     height: 200px;
     display: flex;
@@ -30,6 +30,14 @@
     color: $clr2;
     background-color: $clr4;
     margin: 20px 0;
+}
+
+.title-container {
+    height: 100px;
+    width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .main-footer {

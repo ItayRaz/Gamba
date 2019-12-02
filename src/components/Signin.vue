@@ -4,7 +4,10 @@
         <form @submit.prevent="SignIn" class="flex column align-center justify-center sign-in">
             <input autofocus type="text" placeholder="User name" v-model="user.username"/>
             <input type="text" placeholder="Password" v-model="user.password"/>
-            <input type="text" placeholder="img src" v-model="user.img"/>
+            <input type="text" placeholder="Profile image" v-model="user.img"/>
+            <input type="text" placeholder="Cover image" v-model="user.coverImg"/>
+            <input type="text" placeholder="Email" v-model="user.email"/>
+            <input type="text" placeholder="Mobile" v-model="user.mobile"/>
             <textarea type="text" placeholder="Something about you?" v-model="user.about"/>
             <button>{{SigninBtnMsg}}</button>
         </form>
