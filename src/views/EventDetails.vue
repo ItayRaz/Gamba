@@ -1,39 +1,67 @@
 <template>
-  <section class="details-container flex column">
+  <section class="details-container">
     <section v-if="evento" class="event-details">
-      <hr />
-      <section class="details-header">
-        <div class="img-container">
-          <transition name="fade">  
+      <div class="ratio-16-9">
+        <transition name="fade">
           <img v-if="evento.imgs.length && showImg" class="main-img" :src="evento.imgs[mainImg]" />
-           </transition>
-          <EventGallery class="gallery-dots" @setMainImg="setImg" :imgs="evento.imgs"></EventGallery>
+        </transition>
+        <!-- <EventGallery class="gallery-dots" @setMainImg="setImg" :imgs="evento.imgs"></EventGallery> -->
+        <div class="flex">
+          <h1 class="title">{{evento.title}}</h1>
         </div>
-        <div class="details-header title">
-          <div class="title-txt">
-          <h2>{{evento.title}}</h2>
-            <p>{{evento.location.name}}</p>
-            <p>{{evento.members.length}} members are going</p>
-            <p v-if="evento.price">Price: {{evento.price}}$</p>
-            <p>{{evento.time.start| moment("dddd, MMMM Do YYYY")}}</p>
-          </div>
-          <div class="map">
-          <MapDetails :eventCoords="evento.location.coords"></MapDetails>
-          </div>
-          <div class="join-container">
-            <button v-if="isLoggedInUserAttending" @click="leaveEvento" :class="join">Leave</button>
-            <button v-else @click="joinEvento" :class="join">Join us!</button>
-          </div>
+      </div>
+      <div class="important-details flex column" :class="down">
+        <div class="flex space-between evento-time">
+          <h1>{{evento.time.start| moment("dddd")}}</h1>|
+          <h1>{{evento.time.start| moment("L")}}</h1>
         </div>
-        
-      </section>
-      <section class="details-content">
+        <div class="evento-location">
+          <h1>{{evento.location.address_line_1}}</h1>
+        </div>
+        <div class="join-container">
+          <button class="join" v-if="isLoggedInUserAttending" @click="leaveEvento" >Leave</button>
+          <button class="join" v-else @click="joinEvento">Join us!</button>
+        </div>
+        <hr />
+        <div class="secondry-details">
+          <hr />
+          <div class="flex space-between">
+            <h1>At:</h1>
+            <h1>{{evento.time.start | moment("LT")}}</h1>
+          </div>
+          <hr />
+          <div v-if="evento.price" class="flex space-between">
+            <h1 v-if="evento.price">Price:</h1>
+            <h1>{{evento.price}}$</h1>
+          </div>
+          <hr />
+        </div>
+      </div>
+
+      <section class="evento-details">
+        <div class="evento-categories">
+          <ul class="clean-list flex space-around">
+            <li v-for="(type,idx) in evento.categories" :key="idx">
+              <h1 class="space pointer">{{type}}</h1>
+            </li>
+          </ul>
+        </div>
+
         <div class="details-txt">
           <h1>What is going to be...</h1>
           <p>{{evento.desc}}</p>
         </div>
         <UserGallery :users="members"></UserGallery>
-        <Creator v-if="evento.creator.id" :creator="evento.creator"></Creator>
+        <div class="map space">
+          <MapDetails :eventCoords="evento.location.coords"></MapDetails>
+        </div>
+
+        <div class="evento-creator">
+      <!-- <Creator v-if="evento.creator.id" :creator="evento.creator"></Creator> -->
+          <h1>For more details you can contact ...</h1>
+          <h1> Email:</h1>
+          <h1>Phone:</h1>
+        </div>
       </section>
     </section>
     <router-view :evento="evento"></router-view>
@@ -67,21 +95,23 @@ export default {
     members() {
       return this.evento.members;
     },
-    join() {
-      if (this.windowHieght >= 250) return { join: true, down: true };
-      return { join: true };
+    down() {  
+      if(this.windowHieght >= 700){
+        return{'importent-details':true ,down: false , stop: true };   
+      }
+      if (this.windowHieght >= 350) return {'importent-details':true ,down: true };
+      return { 'importent-details':true };
     },
-    logedInUser(){
+    logedInUser() {
       return this.$store.getters.logedInUser;
     },
-     isLoggedInUserAttending(){
-      if(!this.logedInUser) return false;
-      var memberIdx = this.evento.members.findIndex(member =>{
+    isLoggedInUserAttending() {
+      if (!this.logedInUser) return false;
+      var memberIdx = this.evento.members.findIndex(member => {
         return member._id === this.logedInUser._id;
-      })
-      if(memberIdx !== -1) return true;
+      });
+      if (memberIdx !== -1) return true;
       return false;
-      
     }
   },
   methods: {
@@ -93,20 +123,22 @@ export default {
     },
     joinEvento() {
       if (this.$store.getters.logedInUser) {
-        this.evento.members.unshift(this.$store.getters.logedInUser);
+        var user = {...this.$store.getters.logedInUser};
+        delete user.password;
+        this.evento.members.unshift(user);
         this.$store.dispatch({ type: "editEvent", evento: this.evento });
       } else {
         this.$router.push(`${this.evento._id}/join`); // ask!
       }
     },
-    leaveEvento(){
-      var memberIdx = this.evento.members.findIndex(member =>{
+    leaveEvento() {
+      var memberIdx = this.evento.members.findIndex(member => {
         return member._id === this.logedInUser._id;
-      })
-      if(memberIdx === -1 ) return;
-      this.evento.members.splice(memberIdx,1);
+      });
+      if (memberIdx === -1) return;
+      this.evento.members.splice(memberIdx, 1);
       this.$store.dispatch({ type: "editEvent", evento: this.evento });
-    },
+    }
   },
   async created() {
     const eventoId = this.$route.params.id;
@@ -114,13 +146,13 @@ export default {
     document.querySelector("body").onscroll = this.getHeight;
   },
   watch: {
-    mainImg(){
-      this.showImg=!this.showImg
+    mainImg() {
+      this.showImg = !this.showImg;
       setTimeout(() => {
-        this.showImg=!this.showImg
+        this.showImg = !this.showImg;
       }, 1000);
     }
-  },
+  }
 };
 </script>
 

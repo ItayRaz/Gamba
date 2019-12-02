@@ -4,10 +4,8 @@
     <ul class="clean-list">
       <li v-for="(user, idx) in eventoUsers" :key="idx">
         <div class="user-review">
-        <avatar :username="user.username" :src="user.img" :size="70" rounded></avatar>
-        <p>{{user.username}}</p>
+        <avatar :username="user.username" :src="user.img" :size="50" rounded></avatar>
         </div>
-
       </li>
     </ul>
   </section>
