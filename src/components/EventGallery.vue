@@ -2,7 +2,7 @@
   <section v-if="imgs.length" class="event-gallery flex align-center">
     <!-- <button @click="getNextImg(-1)">⇠</button> -->
     <ul  class="clean-list flex row">
-      <li
+      <li class="pointer"
         v-for="(img,idx) in imgsToShow"
         
         :key="idx"

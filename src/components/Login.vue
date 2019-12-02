@@ -1,12 +1,11 @@
 <template>
-    <section>
+    <section class="flex column align-center">
         <h2>Log in</h2>
-        <form @submit.prevent="logIn" class="flex column align-center justify-center">
+        <form @submit.prevent="logIn" class="flex column align-center justify-center log-in">
             <input autofocus type="text" placeholder="User name" v-model="loginInfo.username"/>
             <input type="text" placeholder="Password" v-model="loginInfo.password"/>
             <button>Log in</button>
         </form>
-        {{loginInfo}}
     </section>
 </template>
 

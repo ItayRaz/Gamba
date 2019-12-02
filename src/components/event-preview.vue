@@ -1,8 +1,11 @@
 <template>
   <section class="evento-preview">
     <div class="prev-header">
-      <img v-if="evento.imgs.length > 0" :src="evento.imgs[0]" alt="">
-      <img v-else src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" alt="">
+      <transition name="fade">  
+      <img v-if="evento.imgs.length > 0 && showImg" :src="evento.imgs[currImg]" alt="">
+      <!-- <img v-else src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" alt=""> -->
+      </transition>
+      <EventGallery class="gallery-dots" @setMainImg="setImg" :imgs="evento.imgs"></EventGallery>
     </div>
     <div class="prev-details flex space-between">
       <div class="info flex column space-between">
@@ -33,16 +36,35 @@
 
 <script>
 import shortText from "./ShortTxt.vue";
+import EventGallery from  './EventGallery.vue'
 
 export default {
   props: ["evento"],
+  data(){
+    return{
+      currImg: 0,
+      showImg:true
+    }
+  },
   methods: {
     removeEvent(eventoId) {
       this.$store.dispatch({ type: "removeEvent", eventoId });
+    },
+    setImg(idx){
+      this.currImg = idx;
     }
   },
   components: {
-    shortText
-  }
+    shortText,
+    EventGallery
+  },
+   watch: {
+    currImg(){
+      this.showImg=!this.showImg
+      setTimeout(() => {
+        this.showImg=!this.showImg
+      }, 1000);
+    }
+  },
 };
 </script>

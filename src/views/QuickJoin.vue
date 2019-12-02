@@ -1,5 +1,5 @@
 <template>
-  <section class="form-container">
+  <section class="flex column align-center space-around">
     <h1>Join Quick</h1>
     <form @submit.prevent="joinGuest">
       <label for>
