@@ -7,11 +7,11 @@
       <div class="logo-subline">Don't Miss The Best Events Around!</div>
       </div>
     </section>
-    <section class="home-lists">
-    <h2>Close to you:</h2> 
-    <evento-list :eventos="aroundEventos"/>
-    <h2>popular:</h2> 
-    <evento-list :eventos="popularEvents"/>
+    <section class="home-lists flex column align-center">
+      <div class="title-container"><h2>Close to you</h2></div> 
+      <evento-list :eventos="aroundEventos"/>
+      <div class="title-container"><h2>popular</h2></div> 
+      <evento-list :eventos="popularEvents"/>
   </section>
     </section>
 </template>
