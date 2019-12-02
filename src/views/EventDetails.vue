@@ -42,7 +42,7 @@
 
       <section class="evento-details">
         <div class="evento-categories">
-          <ul class="clean-list flex space-between">
+          <ul class="clean-list flex justify-start">
             <li v-for="(type,idx) in evento.categories" :key="idx">
               <h1 class="pointer categorie">
                 <span style="color: #f44336">#</span>
@@ -53,8 +53,9 @@
         </div>
 
         <div class="evento-gallery">
-          <div  v-for="(img,idx) in evento.imgs" :key="idx">
-            <img class="grid-img" :src="img" >
+          <div  v-for="(img,idx) in evento.imgs" :key="idx" :class="imgIdx(idx)">
+            <img :src="img" >
+            <!-- <p>hi</p> -->
           </div>
 
         </div>
@@ -128,7 +129,8 @@ export default {
       });
       if (memberIdx !== -1) return true;
       return false;
-    }
+    },
+    
   },
   methods: {
     setImg(imgIdx) {
@@ -154,6 +156,10 @@ export default {
       if (memberIdx === -1) return;
       this.evento.members.splice(memberIdx, 1);
       this.$store.dispatch({ type: "editEvent", evento: this.evento });
+    },
+    imgIdx(idx){
+      return `img-${idx}`;
+
     }
   },
   async created() {
