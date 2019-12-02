@@ -7,11 +7,15 @@
             img {
                 width: 200px;
                 height: 200px;
+                border: 2px solid $clr3;
                 border-radius: 50%;
                 object-fit: cover;
                 margin-right: 20px;
-                margin-bottom: 20px;
+                margin-bottom: 30px;
             }
+        }
+        .about {
+            margin-bottom: 20px;
         }
     }
     .user-reviews-container {
@@ -26,8 +30,11 @@
             margin-top: 20px;
             
             textarea {
-                width: 90%;
-                height: 300px;
+                width: 75%;
+                height: 250px;
+                padding: 20px;
+                box-shadow: 0px 0px 2.5px 0px rgba(0, 0, 0, 0.2);
+                margin-bottom: 20px;
             }
         }
     }
@@ -41,6 +48,7 @@
     .evento-preview {
         width: 250px;
         height: 300px;
+        margin: 5px;
         .prev-avatars {
             display: none;
         }

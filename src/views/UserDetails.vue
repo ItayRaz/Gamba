@@ -10,14 +10,17 @@
                     </div>
                 </div>
                 <p class="about">{{user.about}}</p>
-                <router-link v-if="isLogedUser" :to="'/user/edit/'+user._id"><button>Edit user</button></router-link>
+                <router-link v-if="isLogedUser" :to="'/signup/signin/'+user._id"><button>Edit user</button></router-link>
             </section>
             <div class="user-eventos-container">
-                <!-- <div class="place-holder">user's events comes here</div> -->
-                owned:
-                <eventoList :eventos="ownedEventos"/>
-                member of:
-                <eventoList :eventos="atendedEventos"/>
+                <div v-if="ownedEventos.length !== 0">
+                    {{ownedReviewsMsg}}
+                    <eventoList :eventos="ownedEventos"/>
+                </div>
+                <div v-if="atendedEventos.length !== 0">
+                    member of:
+                    <eventoList :eventos="atendedEventos"/>
+                </div>
             </div>
         </section>
         <section class="user-reviews-container flex wrap width-all">
@@ -63,6 +66,9 @@ export default {
         },
         ownedReviews() {
             return this.reviews.filter(review => review.reviewer._id === this.user._id);
+        },
+        ownedReviewsMsg() {
+            return (this.isLogedUser)? 'Your events' : "User's events";
         }
     },
     methods: {

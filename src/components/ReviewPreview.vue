@@ -1,11 +1,12 @@
 <template>
     <section class="flex align-center wrap review-preview width-all">
-        <img :src="review.reviewer.img" alt="(reviewer img)">
+        <router-link v-if="review.reviewer._id !== 'guest'" :to="review.reviewer._id"><img :src="review.reviewer.img" alt=""></router-link>
+        <img v-else :src="review.reviewer.img">
         <div class="flex column">
             <div class="flex column">
+                <p v-if="review.reviewer._id !== 'guest'"><router-link :to="review.reviewer._id">{{review.reviewer.name}}</router-link></p>
+                <p v-else>{{review.reviewer._id}}</p>
                 <p>{{review.txt}}</p>
-                <p v-if="review.reviewer._id !== 'guest'">by: <router-link :to="review.reviewer._id">{{review.reviewer.name}}</router-link></p>
-                <p v-else>by: {{review.reviewer._id}}</p>
             </div>
             <div v-if="isCreator">
                 <button @click="remove">X</button>

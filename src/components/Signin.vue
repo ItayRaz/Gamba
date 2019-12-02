@@ -6,7 +6,7 @@
             <input type="text" placeholder="Password" v-model="user.password"/>
             <input type="text" placeholder="img src" v-model="user.img"/>
             <textarea type="text" placeholder="Something about you?" v-model="user.about"/>
-            <button>Sign in</button>
+            <button>{{SigninBtnMsg}}</button>
         </form>
         {{user}}
     </section>
@@ -19,13 +19,18 @@ export default {
             user: {}
         }
     },
+    computed: {
+        SigninBtnMsg() {
+            return (this.user._id)? 'Save' : 'Sign in';
+        }
+    },
     methods: {
         SignIn() {
             if (!this.user.username || !this.user.password) return;
             this.$store.dispatch({type: 'signIn', user: {...this.user}})
                 .then(user => {
                     console.log(user);
-                    // this.$router.push('/');
+                    this.$emit('logedIn');
                 })
         }
     },

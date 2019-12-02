@@ -4,7 +4,7 @@
         <h3 v-if="logedUser">User: {{logedUser.username}}</h3>
         <ul class="main-nav clean-list flex align-center wrap">
             <li><router-link to="/event">Events</router-link></li>
-            <li><router-link to="/signup">Sign-up</router-link></li>
+            <li><router-link to="/signup/login">{{signupMsg}}</router-link></li>
             <li><router-link to="/about">About</router-link></li>
             <li v-if="logedUser"><router-link :to="'/user/'+logedUser._id">Profile</router-link></li>
         </ul>
@@ -16,6 +16,9 @@ export default {
     computed: {
         logedUser() {
             return this.$store.getters.logedInUser;
+        },
+        signupMsg() {
+            return (this.logedUser)? 'Log-out' : 'Log-in';
         }
     }
 }

@@ -25,8 +25,11 @@ export default {
             var loginInfo = this.loginInfo;
             if (!loginInfo.username || !loginInfo.password) return;
             console.log(loginInfo);
-            this.$store.dispatch({type: 'login', loginInfo});
-            this.loginInfo = {username: '', password: ''}
+            this.$store.dispatch({type: 'login', loginInfo})
+                .then(user => {
+                    this.loginInfo = {username: '', password: ''};
+                    this.$router.push('/');
+                })
         }
     }
 }

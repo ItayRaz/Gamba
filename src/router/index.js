@@ -11,6 +11,9 @@ import UserDetails from '../views/UserDetails.vue';
 import joinEvento from '../views/JoinEvento.vue';
 import QuickJoin from '../views/QuickJoin.vue';
 
+import LogIn from '../components/Login.vue';
+import SignIn from '../components/Signin.vue';
+
 
 import EventsAround from '../views/EventsAround.vue';//testing
 
@@ -68,7 +71,19 @@ const routes = [
   {
     path: '/signup',
     name: 'signup-page',
-    component: SignupPage
+    component: SignupPage,
+    children: [
+    {
+      path: 'login',
+      name: 'login',
+      component: LogIn
+    },
+    {
+      path: 'signin/:_id?',
+      name: 'signin',
+      component: SignIn
+    }
+  ]
   },
   {
     path: '/user/:id',

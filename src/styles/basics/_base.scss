@@ -30,7 +30,7 @@ img {
     object-fit: cover;
 }
 
-input, select {
+input, select, textarea {
     background: unset;
     border: unset;
     border-bottom: 1px solid black;
@@ -38,3 +38,7 @@ input, select {
     padding: 5px;
     padding-left: 0;
 }
+
+// textarea {
+//     padding: 10px;
+// }
