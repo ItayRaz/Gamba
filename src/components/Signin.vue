@@ -15,7 +15,8 @@
 export default {
     data() {
         return {
-            user: {}
+            user: {},
+            isEdit: false
         }
     },
     computed: {
@@ -29,13 +30,15 @@ export default {
             this.$store.dispatch({type: 'signIn', user: {...this.user}})
                 .then(user => {
                     console.log(user);
-                    this.$emit('logedIn');
+                    if (this.isEdit) this.$router.push('/user/'+this.user._id);
+                    else this.$emit('logedIn');
                 })
         }
     },
     created() {
         var _id = this.$route.params._id;
         if (!_id) _id = '';
+        else this.isEdit = true;
         this.$store.dispatch({type: 'getUser', _id})
             .then(user => {
                 this.user = user;
