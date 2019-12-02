@@ -3,6 +3,7 @@ import eventoService from '../../services/event.service.js';
 export default {
     state: {
         eventos: [],
+        aroundEventos: [],
         currEvent: {},
         filterby: {}
     },
@@ -16,18 +17,18 @@ export default {
             const idx = state.eventos.findIndex(evento => evento._id === eventoId);
             state.eventos.splice(idx, 1)
         },
-        // sortEventByDist(state, { eventos, context }) {
-        //     var currCoords = context.getters.currCoords;
-        //     const sortedEvents = eventos.sort((ev1, ev2) => {
-        //         var dis1 = Math.abs(ev1.location.coords.lat - currCoords.lat) +
-        //                    Math.abs(ev1.location.coords.lng - currCoords.lng);
-        //         var dis2 = Math.abs(ev2.location.coords.lat - currCoords.lat) +
-        //                    Math.abs(ev2.location.coords.lng - currCoords.lng);
-        //         return dis1 - dis2;
-        //     })
-        //     // state.eventos = sortedEvents;
-        //     return eventos;
-        // },
+        setSortedEventByDist(state, { eventos, context }) {
+            var currCoords = context.getters.currCoords;
+            const sortedEvents = eventos.sort((ev1, ev2) => {
+                var dis1 = Math.abs(ev1.location.coords.lat - currCoords.lat) +
+                           Math.abs(ev1.location.coords.lng - currCoords.lng);
+                var dis2 = Math.abs(ev2.location.coords.lat - currCoords.lat) +
+                           Math.abs(ev2.location.coords.lng - currCoords.lng);
+                return dis1 - dis2;
+            }).slice(0,4);
+            state.aroundEventos = sortedEvents;
+            return eventos;
+        },
         addEvent(state, { evento }) {
             state.eventos.unshift(evento);
         },
@@ -46,7 +47,7 @@ export default {
         eventos(state) {
             return state.eventos;
         },
-        eventosToShow(state, geters) {
+        eventosToShow(state, getters) {
             let eventosToShow = JSON.parse(JSON.stringify(state.eventos));
             let filter = state.filterby;
             if (filter.searchStr) {
@@ -71,18 +72,7 @@ export default {
             return popularEvents;
         },
         eventosAround(state, getters) {
-            // const eventosAround = state.eventos.slice(0, state.eventos.length / 2);
-            var eventos = getters.eventos;
-            var currCoords = getters.currCoords;
-            console.log(currCoords);
-            var sortedEventos = eventos.sort((ev1, ev2) => {
-                var dis1 = Math.abs(ev1.location.coords.lat - currCoords.lat) +
-                           Math.abs(ev1.location.coords.lng - currCoords.lng);
-                var dis2 = Math.abs(ev2.location.coords.lat - currCoords.lat) +
-                           Math.abs(ev2.location.coords.lng - currCoords.lng);
-                return dis1 - dis2;
-            })
-            return sortedEventos.slice(0, 4);
+            return state.aroundEventos;
         },
         nightLifeEvents(state) {
             return state.eventos.filter(evento => evento.categories.includes('Night Life'))
@@ -107,7 +97,6 @@ export default {
     },
     actions: {
         async loadEvents(context, {filterBy, isSetEvents = true}) {
-            // console.log('isSetEvents:', isSetEvents, typeof(isSetEvents));
             if (typeof(isSetEvents) === 'undefined') isSetEvents = true;
             // var eventos = await eventoService.query(filterBy);
             var eventos = await eventoService.query();
@@ -120,7 +109,7 @@ export default {
                 }
             }
             if (isSetEvents) {
-                // context.commit({ type: 'sortEventByDist', eventos, context});
+                context.commit({type: 'setSortedEventByDist', context, eventos});
                 context.commit({ type: 'setEventos', eventos, context});
             }
             return eventos;

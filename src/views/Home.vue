@@ -22,29 +22,45 @@
 import EventoList from '../components/EventList'
 
 export default {
+  data() {
+    return {
+      // aroundEventos: []
+    }
+  },
   computed: {
-    // eventos() {
-    //   return this.$store.getters.eventos
-    // },
+    eventos() {
+      return this.$store.getters.eventos;
+    },
     aroundEventos() {
-      // console.log(this.$store.getters.eventosAround);
-      return this.$store.getters.eventosAround;
+      return this.$store.getters.eventosAround;  
     },
     popularEvents() {
-      console.log('popular');
+      // console.log('popular');
       return this.$store.getters.popularEvents;
     },
     nightLifeEvents() {
       return this.$store.getters.nightLifeEvents;
     }
   },
-  mutations: {
-    removeEvent() {
-      
+  methods: {
+    setEventsAround() {
+      var eventos = this.eventos;
+      var currCoords = this.$store.getters.currCoords;
+      var aroundEventos = eventos.sort((ev1, ev2) => {
+        let dis1 = Math.abs(ev1.location.coords.lat - currCoords.lat) +
+                   Math.abs(ev1.location.coords.lng - currCoords.lng);
+        let dis2 = Math.abs(ev2.location.coords.lat - currCoords.lat) +
+                   Math.abs(ev2.location.coords.lng - currCoords.lng);
+        return dis1 - dis2;
+      }).slice(0, 4);
+      this.aroundEventos = aroundEventos;
     }
   },
   components: {
     EventoList
+  },
+  created() {
+    // this.setEventsAround();
   }
 }
 </script>

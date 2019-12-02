@@ -32,28 +32,6 @@ export default {
     eventosCategories() {
       return this.$store.getters.eventosCategories;
     },
-//     eventosToShow() {
-//       var eventosToShow = [...this.eventos];
-//       var filter = this.filterBy;
-
-//       // console.log('getting filtered eventos')
-//       if (filter.searchStr) {
-//         eventosToShow = eventosToShow.filter(evento => {
-//           return evento.title
-//             .toLowerCase()
-//             .includes(filter.searchStr.toLowerCase());
-//           //                evento.desc.toLowerCase().includes(filter.searchStr.toLowerCase)
-//         });
-//         // }
-//         // if (filter.category) {
-//         //     eventosToShow = eventosToShow.filter(evento => {
-//         //         return filter.category === 'All' || filter.category.toLowerCase() === evento.category.toLowerCase;
-//         //     })
-//         // }
-//         return eventosToShow;
-//       }
-//     }
-//   
   },
   methods: {
     setFilter(filterBy) {
