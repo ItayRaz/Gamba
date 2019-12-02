@@ -1,7 +1,7 @@
 <template>
     <!-- <button v-if="isLogedIn" @click="logout">Log out</button>
     <main v-else> -->
-    <main>
+    <main class="container">
         <router-link :to="routerLink"><button @click="isSignIn = !isSignIn">{{btnMsg}}</button></router-link>
         <router-view @logedIn="logedIn"/>
     </main>
