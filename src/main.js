@@ -26,9 +26,9 @@ Vue.use(VueGoogleMaps, {
 import Geocoder from "@pderas/vue2-geocoder";
 
 Vue.use(Geocoder, {
-    defaultCountryCode: null, // e.g. 'CA'
-    defaultLanguage:    null, // e.g. 'en'
-    defaultMode:        'address', // or 'lat-lng'
+    defaultCountryCode: null, 
+    defaultLanguage:    null, 
+    defaultMode:        'address', 
     googleMapsApiKey:   'AIzaSyC0AAcennjMo2tqULw0Jy4xeADyspU0Lu8'
 });
 

@@ -1,5 +1,5 @@
 <template>
-  <main v-if="eventos" class="evento-page container">
+  <main v-if="eventos" class="evento-page flex column align-center">
     <div class="flex justify-center">
     <section class="flex actions space-between align-center">
       <evento-filter :categories="eventosCategories" @setFilter="setFilter" />
