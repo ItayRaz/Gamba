@@ -42,7 +42,16 @@ export default {
             return review
         },
         async getReviews(context, {filterBy}) {
-            var reviews = await reviewService.query(filterBy);
+            // var reviews = await reviewService.query(filterBy);
+            var reviews = await reviewService.query();
+            if (filterBy) {
+                if (filterBy.reviewerId) {
+                    reviews = reviews.filter(review => review.reviewerId === filterBy.reviewerId);
+                }
+                if (filterBy.aboutId) {
+                    reviews = reviews.filter(review => review.aboutId === filterBy.aboutId);
+                }
+            }
             context.commit({type: 'setReviews', reviews});
             return reviews;
         },

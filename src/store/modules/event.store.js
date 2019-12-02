@@ -90,17 +90,23 @@ export default {
         }
     },
     actions: {
-        loadEvents(context, {filterBy, isSetEvents = true}) {
+        async loadEvents(context, {filterBy, isSetEvents = true}) {
             // console.log('isSetEvents:', isSetEvents, typeof(isSetEvents));
             if (typeof(isSetEvents) === 'undefined') isSetEvents = true;
-            return eventoService.query(filterBy)
-                .then(eventos => {
-                    if (isSetEvents) {
-                        context.commit({ type: 'sortEventByDist', eventos, context});
-                        // context.commit({ type: 'setEvents', eventos});
-                    }
-                    return eventos;
-                })
+            // var eventos = await eventoService.query(filterBy);
+            var eventos = await eventoService.query();
+            if (filterBy) {
+                if (filterBy.creatorId) {
+                    eventos = eventos.filter(ev => ev.creator._id === filterBy.creatorId);
+                }
+                if (filterBy.memberId) {
+                    eventos = eventos.filter(ev => ev.members.find(member => member._id === filterBy.memberId));
+                }
+                if (isSetEvents) {
+                    context.commit({ type: 'sortEventByDist', eventos, context});
+                }
+            }
+            return eventos;
         },
         removeEvent(context, { eventoId }) {
             context.dispatch({ type: 'Confirm', msg: 'Are you sure you want to remove this Event? you would not be able to restore it.' })
