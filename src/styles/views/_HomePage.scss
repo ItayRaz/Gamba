@@ -30,4 +30,34 @@
     background-color: #fff;
     position: sticky;
     top: 650px;
+    .popular-events{
+        background-image: url(~@/assets/img1.jpg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .closeby-events {
+        background-image: url(~@/assets/wine4.jpg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .night-events {
+        background-image: url(~@/assets/party.jpg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+}
+
+.main-title-container {
+    width: 90vw;
+    height: 280px;
+    display: flex;
+    color: #f9edec;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    // color: $clr2;
+    margin: 20px 0;
 }

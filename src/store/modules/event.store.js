@@ -71,6 +71,9 @@ export default {
             const eventosAround = state.eventos.slice(0, 4);
             return eventosAround;
         },
+        nightLifeEvents(state) {
+            return state.eventos.filter(evento => evento.categories.includes('Night Life'))
+        },
         otherEvents(state) {
             const otherEvents = state.eventos.slice(state.eventos.length / 2);
             return otherEvents;
