@@ -3,7 +3,8 @@
         <section class="flex space-around wrap">
             <section class="profile flex column">
                 <div class="info flex align-center wrap">
-                    <img :src="user.img" alt="User image"/>
+                    <!--<img :src="user.img" alt="User image"/>-->
+                    <avatar class="avatar" :username="user.username" :src="user.img" :size="200" rounded></avatar>
                     <div class="flex column">
                         <h1>User: {{user.username}}</h1>
                         <small>{{isAdminMsg}}</small>
@@ -43,6 +44,8 @@
 import eventoList from '../components/EventList.vue';
 import userReviewEdit from '../components/UserReviewEdit.vue';
 import reviewList from '../components/ReviewList.vue';
+
+import Avatar from "vue-avatar";
 
 export default {
     data() {
@@ -123,7 +126,8 @@ export default {
     components: {
         eventoList,
         userReviewEdit,
-        reviewList
+        reviewList,
+        Avatar
     }
 }
 </script>

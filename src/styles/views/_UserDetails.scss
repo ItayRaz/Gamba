@@ -4,14 +4,15 @@
         max-width: 400px;
         margin-bottom: 20px;
         .info {
-            img {
+            // img {
+            .avatar {
                 width: 200px;
                 height: 200px;
                 border: 2px solid $clr3;
-                border-radius: 50%;
-                object-fit: cover;
                 margin-right: 20px;
                 margin-bottom: 30px;
+                border-radius: 50%;
+                object-fit: cover;
             }
         }
         .about {
@@ -45,12 +46,26 @@
             }
         }
     }
-    .evento-preview {
-        width: 250px;
-        height: 300px;
-        margin: 5px;
-        .prev-avatars {
-            display: none;
+    .user-eventos-container {
+        margin-bottom: 30px;
+        max-width: 60%;
+        >* {
+            width: 100%;
+        }
+    }
+    @media (max-width: 1000px) {
+        .user-eventos-container {
+            max-width: 100%;
+        }
+    }
+    .evento-list {
+        .evento-preview {
+            width: 250px;
+            height: 300px;
+            margin: 5px;
+            .prev-avatars {
+                display: none;
+            }
         }
     }
 }

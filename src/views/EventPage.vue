@@ -1,11 +1,13 @@
 <template>
   <main v-if="eventos" class="evento-page">
-    <section class="flex align-center space-between actions">
+    <div class="flex justify-center">
+    <section class="flex actions space-between align-center">
       <evento-filter :categories="eventosCategories" @setFilter="setFilter" />
       <router-link to="/event/edit">
-        <button>Add Event</button>
+        <button>Add Event <i class="fa fa-plus"></i></button>
       </router-link>
     </section>
+    </div>
     <router-view></router-view>
     <event-list :eventos="eventos" />
   </main>
