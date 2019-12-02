@@ -31,7 +31,7 @@ export default {
             // var filteredEventos = [...this.eventos];
 
             return this.eventos.sort((ev1, ev2) => {
-                return (ev1.time.start > ev2.time.start)? 1 : -1;
+                return (ev1.time.start - ev2.time.start)
             })
         }
     },

@@ -7,7 +7,7 @@ export default {
         filterby: {}
     },
     mutations: {
-        setEvents(state, { eventos }) {
+        setEventos(state, { eventos }) {
             console.log('eventos', state.eventos);
 
             state.eventos = eventos;
@@ -16,17 +16,18 @@ export default {
             const idx = state.eventos.findIndex(evento => evento._id === eventoId);
             state.eventos.splice(idx, 1)
         },
-        sortEventByDist(state, { eventos, context }) {
-            var currCoords = context.getters.currCoords;
-            const sortedEvents = eventos.sort((ev1, ev2) => {
-                var dis1 = Math.abs(ev1.location.coords.lat - currCoords.lat) +
-                           Math.abs(ev1.location.coords.lng - currCoords.lng);
-                var dis2 = Math.abs(ev2.location.coords.lat - currCoords.lat) +
-                           Math.abs(ev2.location.coords.lng - currCoords.lng);
-                return dis1 - dis2;
-            })
-            state.eventos = sortedEvents;
-        },
+        // sortEventByDist(state, { eventos, context }) {
+        //     var currCoords = context.getters.currCoords;
+        //     const sortedEvents = eventos.sort((ev1, ev2) => {
+        //         var dis1 = Math.abs(ev1.location.coords.lat - currCoords.lat) +
+        //                    Math.abs(ev1.location.coords.lng - currCoords.lng);
+        //         var dis2 = Math.abs(ev2.location.coords.lat - currCoords.lat) +
+        //                    Math.abs(ev2.location.coords.lng - currCoords.lng);
+        //         return dis1 - dis2;
+        //     })
+        //     // state.eventos = sortedEvents;
+        //     return eventos;
+        // },
         addEvent(state, { evento }) {
             state.eventos.unshift(evento);
         },
@@ -43,6 +44,9 @@ export default {
     },
     getters: {
         eventos(state) {
+            return state.eventos;
+        },
+        eventosToShow(state, geters) {
             let eventosToShow = JSON.parse(JSON.stringify(state.eventos));
             let filter = state.filterby;
             if (filter.searchStr) {
@@ -66,10 +70,22 @@ export default {
             const popularEvents = sortedEventsByMembers.slice(0, 4);
             return popularEvents;
         },
-        eventosAround(state) {
+        eventosAround(state, getters) {
             // const eventosAround = state.eventos.slice(0, state.eventos.length / 2);
-            const eventosAround = state.eventos.slice(0, 4);
-            return eventosAround;
+            var eventos = getters.eventos;
+            var currCoords = getters.currCoords;
+            console.log(currCoords);
+            var sortedEventos = eventos.sort((ev1, ev2) => {
+                var dis1 = Math.abs(ev1.location.coords.lat - currCoords.lat) +
+                           Math.abs(ev1.location.coords.lng - currCoords.lng);
+                var dis2 = Math.abs(ev2.location.coords.lat - currCoords.lat) +
+                           Math.abs(ev2.location.coords.lng - currCoords.lng);
+                return dis1 - dis2;
+            })
+            return sortedEventos.slice(0, 4);
+        },
+        nightLifeEvents(state) {
+            return state.eventos.filter(evento => evento.categories.includes('Night Life'))
         },
         otherEvents(state) {
             const otherEvents = state.eventos.slice(state.eventos.length / 2);
@@ -102,9 +118,10 @@ export default {
                 if (filterBy.memberId) {
                     eventos = eventos.filter(ev => ev.members.find(member => member._id === filterBy.memberId));
                 }
-                if (isSetEvents) {
-                    context.commit({ type: 'sortEventByDist', eventos, context});
-                }
+            }
+            if (isSetEvents) {
+                // context.commit({ type: 'sortEventByDist', eventos, context});
+                context.commit({ type: 'setEventos', eventos, context});
             }
             return eventos;
         },

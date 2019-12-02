@@ -27,7 +27,7 @@ export default {
   },
   computed: {
     eventos() {
-      return this.$store.getters.eventos;
+      return this.$store.getters.eventosToShow;
     },
     eventosCategories() {
       return this.$store.getters.eventosCategories;

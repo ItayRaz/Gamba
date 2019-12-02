@@ -1,6 +1,6 @@
 <template>
     <header class="main-header flex align-center space-between wrap">
-        <router-link to="/"><h1 class="logo">Gamba</h1></router-link>
+        <router-link to="/"><h1 class="logo">Gam<span>ba</span></h1></router-link>
         <!-- <h3 v-if="logedUser">User: {{logedUser.username}}</h3> -->
         <ul class="main-nav clean-list flex align-center wrap">
             <li><router-link to="/event">Events</router-link></li>

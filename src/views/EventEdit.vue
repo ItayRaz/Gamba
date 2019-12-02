@@ -68,16 +68,24 @@ export default {
   },
   methods: {
     Create() {
+      if (!this.evento.imgs.length)
+        this.evento.imgs.push(
+          "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
+        );
       this.$geocoder.send(this.evento.location, response => {
         this.evento.location.coords = response.results[0].geometry.location;
         this.$store.dispatch({ type: "addEvent", evento: this.evento });
       });
     },
     Edit() {
+      if (!this.evento.imgs.length)
+        this.evento.imgs.push(
+          "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
+        );
       this.$geocoder.send(this.evento.location, response => {
         this.evento.location.coords = response.results[0].geometry.location;
         this.$store.dispatch({ type: "editEvent", evento: this.evento });
-      })
+      });
     },
     openLoading() {
       const loading = this.$loading({

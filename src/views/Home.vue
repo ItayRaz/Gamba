@@ -8,10 +8,12 @@
       </div>
     </section>
     <section class="home-lists flex column align-center">
-      <div class="title-container"><h2>Close to you</h2></div> 
-      <evento-list :eventos="aroundEventos"/>
-      <div class="title-container"><h2>popular</h2></div> 
+      <div class="main-title-container popular-events"><h2>Popular Events</h2></div> 
       <evento-list :eventos="popularEvents"/>
+      <div class="main-title-container closeby-events"><h2>Close to you</h2></div> 
+      <evento-list :eventos="aroundEventos"/>
+      <div class="main-title-container night-events"><h2>Night Life</h2></div> 
+      <evento-list :eventos="nightLifeEvents"/>
   </section>
     </section>
 </template>
@@ -21,14 +23,19 @@ import EventoList from '../components/EventList'
 
 export default {
   computed: {
-    eventos() {
-      return this.$store.getters.eventos
-    },
+    // eventos() {
+    //   return this.$store.getters.eventos
+    // },
     aroundEventos() {
+      // console.log(this.$store.getters.eventosAround);
       return this.$store.getters.eventosAround;
     },
     popularEvents() {
+      console.log('popular');
       return this.$store.getters.popularEvents;
+    },
+    nightLifeEvents() {
+      return this.$store.getters.nightLifeEvents;
     }
   },
   mutations: {
