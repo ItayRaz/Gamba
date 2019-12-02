@@ -18,9 +18,12 @@
         <div class="evento-location">
           <h1>{{evento.location.address_line_1}}</h1>
         </div>
-        <div class="join-container">
-          <button class="join" v-if="isLoggedInUserAttending" @click="leaveEvento" >Leave</button>
-          <button class="join" v-else @click="joinEvento">Join us!</button>
+        <div class="join-container flex align-center justify-center">
+          <button class="join" v-if="isLoggedInUserAttending" @click="leaveEvento">Leave</button>
+          <button class="join" v-else @click="joinEvento">
+            Join us
+            <i class="fa fa-plus"></i>
+          </button>
         </div>
         <hr />
         <div class="secondry-details">
@@ -34,32 +37,44 @@
             <h1 v-if="evento.price">Price:</h1>
             <h1>{{evento.price}}$</h1>
           </div>
-          <hr />
         </div>
       </div>
 
       <section class="evento-details">
         <div class="evento-categories">
-          <ul class="clean-list flex space-around">
+          <ul class="clean-list flex space-between">
             <li v-for="(type,idx) in evento.categories" :key="idx">
-              <h1 class="pointer categorie">{{type}}</h1>
+              <h1 class="pointer categorie">
+                <span style="color: #f44336">#</span>
+                {{type}}
+              </h1>
             </li>
           </ul>
         </div>
 
+        <div class="evento-gallery">
+          <div  v-for="(img,idx) in evento.imgs" :key="idx">
+            <img class="grid-img" :src="img" >
+          </div>
+
+        </div>
+
         <div class="details-txt">
-          <h1>What is going to be...</h1>
+          <h2>What is going to be...</h2>
           <p>{{evento.desc}}</p>
         </div>
+        <div class="attendies">
+        <h2>Attendies</h2>
         <UserGallery :users="members"></UserGallery>
+        </div>
         <div class="map space">
           <MapDetails :eventCoords="evento.location.coords"></MapDetails>
         </div>
 
         <div class="evento-creator">
-      <!-- <Creator v-if="evento.creator.id" :creator="evento.creator"></Creator> -->
+          <!-- <Creator v-if="evento.creator.id" :creator="evento.creator"></Creator> -->
           <h1>For more details you can contact ...</h1>
-          <h1> Email:</h1>
+          <h1>Email:</h1>
           <h1>Phone:</h1>
         </div>
       </section>
@@ -95,12 +110,13 @@ export default {
     members() {
       return this.evento.members;
     },
-    down() {  
-      if(this.windowHieght >= 700){
-        return{'importent-details':true ,down: false , stop: true };   
+    down() {
+      if (this.windowHieght >= 700) {
+        return { "importent-details": true, down: false, stop: true };
       }
-      if (this.windowHieght >= 350) return {'importent-details':true ,down: true };
-      return { 'importent-details':true };
+      if (this.windowHieght >= 350)
+        return { "importent-details": true, down: true };
+      return { "importent-details": true };
     },
     logedInUser() {
       return this.$store.getters.logedInUser;
@@ -123,7 +139,7 @@ export default {
     },
     joinEvento() {
       if (this.$store.getters.logedInUser) {
-        var user = {...this.$store.getters.logedInUser};
+        var user = { ...this.$store.getters.logedInUser };
         delete user.password;
         this.evento.members.unshift(user);
         this.$store.dispatch({ type: "editEvent", evento: this.evento });
