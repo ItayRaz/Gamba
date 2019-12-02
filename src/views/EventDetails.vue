@@ -75,6 +75,7 @@ export default {
       return this.$store.getters.logedInUser;
     },
      isLoggedInUserAttending(){
+      if(!this.logedInUser) return false;
       var memberIdx = this.evento.members.findIndex(member =>{
         return member._id === this.logedInUser._id;
       })
