@@ -35,7 +35,7 @@
       </el-form-item>
       <el-form-item class="flex wrap">
         <h3>Event Images:</h3>
-        <input type="file" ref="files" multiple @change="uploadImg" />
+        <input class="file-input" type="file" ref="files" multiple @change="uploadImg" />
         <router-link v-if="this.$route.params.id" to="/event">
           <el-button type="primary" @click="Edit" to="/">Edit</el-button>
         </router-link>
