@@ -4,7 +4,9 @@
       <hr />
       <section class="details-header">
         <div>
-          <img v-if="evento.imgs.length" class="main-img" :src="evento.imgs[mainImg]" />
+          <transition name="fade">  
+          <img v-if="evento.imgs.length && showImg" class="main-img" :src="evento.imgs[mainImg]" />
+           </transition>
           <EventGallery @setMainImg="setImg" :imgs="evento.imgs"></EventGallery>
         </div>
         <div class="details-header title">
@@ -12,7 +14,7 @@
           <h2>{{evento.title}}</h2>
             <p>{{evento.location.name}}</p>
             <p>{{evento.members.length}} members are going</p>
-            <p>Price: {{evento.price}}$</p>
+            <p v-if="evento.price">Price: {{evento.price}}$</p>
             <p>{{evento.time.start| moment("dddd, MMMM Do YYYY")}}</p>
           </div>
           <div class="map">
@@ -55,8 +57,9 @@ export default {
   data() {
     return {
       evento: null,
-      mainImg: 1,
-      windowHieght: 0
+      mainImg: 0,
+      windowHieght: 0,
+      showImg: true
     };
   },
   computed: {
@@ -88,7 +91,15 @@ export default {
     const eventoId = this.$route.params.id;
     this.evento = await this.$store.dispatch({ type: "getEvent", eventoId });
     document.querySelector("body").onscroll = this.getHeight;
-  }
+  },
+  watch: {
+    mainImg(){
+      this.showImg=!this.showImg
+      setTimeout(() => {
+        this.showImg=!this.showImg
+      }, 1000);
+    }
+  },
 };
 </script>
 

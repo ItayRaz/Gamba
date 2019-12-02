@@ -44,21 +44,21 @@ export default {
   data() {
     return {
       markers: null,
-      center: null,
+      center: { lat: 32.109333, lng: 34.855499 },
       address: {
         name: ""
       },
     }
   },
   computed: {
+    google: gmapApi,
+
     setWidth() {
       if (this.isShowingDetails) return "width: 300px; height: 200px";
       return "width: 600px; height: 500px";
     },
-    google: gmapApi,
-    
-    
   },
+  
   methods: {
     setMarkerIcon(idx,position) {
       if (!idx) return "http://maps.google.com/mapfiles/ms/icons/red-dot.png";
@@ -67,15 +67,10 @@ export default {
       return "http://maps.google.com/mapfiles/ms/icons/blue-dot.png";
     },
    setEventoAddress() {
-     console.log(this.address)
       var eventoCoords = this.$geocoder.send(this.address, response => {
-        eventoCoords = response.results[0].geometry.location;
-        console.log('test1',eventoCoords);
-        
+        eventoCoords = response.results[0].geometry.location;        
         return eventoCoords
-      });
-      console.log(eventoCoords);
-      
+      });      
       
     },
     showDetails(ev){
@@ -90,14 +85,16 @@ export default {
     this.markers = this.eventos.map(evento => {
       return {
         position: {
-          lat: evento.location.Coords.lat,
-          lng: evento.location.Coords.lng
+          lat: +evento.location.coords.lat,
+          lng: +evento.location.coords.lng
         }
       };
     });
-    if (this.wishedCoords) this.center = this.wishedCoords;
-    else this.center = { lat: 32.109333, lng: 34.855499 };
-    this.markers.unshift({ position: this.center });
+    console.log(eventos);
+    
+    // if (this.wishedCoords) this.center = this.wishedCoords;
+    // else this.center = { lat: 32.109333, lng: 34.855499 };
+    // this.markers.unshift({ position: this.center });
   
     
     

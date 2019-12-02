@@ -13,6 +13,7 @@ import QuickJoin from '../views/QuickJoin.vue';
 
 import LogIn from '../components/Login.vue';
 import SignIn from '../components/Signin.vue';
+import LocalSignUp from '../components/LocalSignUp';
 
 
 import EventsAround from '../views/EventsAround.vue';//testing
@@ -58,7 +59,7 @@ const routes = [
         children:[
           {
             path:'signup',
-            component: SignupPage
+            component: LocalSignUp
           },
           {
             path:'quick',

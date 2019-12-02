@@ -1,16 +1,23 @@
 <template>
   <section v-if="imgs.length" class="event-gallery flex align-center">
-    <button @click="getNextImg(-1)">⇠</button>
+    <!-- <button @click="getNextImg(-1)">⇠</button> -->
     <ul  class="clean-list flex row">
       <li
         v-for="(img,idx) in imgsToShow"
-        :class="{middle : idx === Math.floor(imgs.length/2)}"
+        
         :key="idx"
       >
-        <img class="img-details" :src="img" />
+        <p v-if="idx === currImg" @click="setImg(idx)">⚪</p>
+        <p v-else @click="setImg(idx)">⚫</p>
+        <!-- <img class="img-details" :src="img" /> -->
+        <!-- :class="{middle : idx === Math.floor(imgs.length/2)}" -->
+        <!-- <p v-if="idx === Math.floor(imgs.length/2)" @click="getNextImg(-1)">⚪</p> -->
+        <!-- <p v-else @click="getNextImg(1)">⚫</p> -->
+
+
       </li>
     </ul>
-    <button @click="getNextImg(1)">⇢</button>
+    <!-- <button @click="getNextImg(1)">⇢</button> -->
   </section>
 </template>
 
@@ -21,7 +28,7 @@ export default {
     return {
       currImg: 0,
       imgCounter: 0,
-
+      changeImgs: 0,
       imgsToShow: this.imgs
     };
   },
@@ -47,14 +54,39 @@ export default {
       }
 
       this.$emit("setMainImg", this.currImg);
+    },
+    setImg(idx){
+      clearInterval(this.changeImgs)
+      this.currImg = idx;
+      this.$emit("setMainImg", this.currImg);
+      this.switchImgs();
+    },
+    switchImgs(){
+      this.changeImgs = setInterval(() => {
+      this.currImg++;
+      if(this.currImg >= this.imgs.length) this.currImg=0;
+      this.$emit("setMainImg", this.currImg);
+
+    }, 6000);
+
     }
+
   },
   created() {
-    this.$emit("setMainImg", this.currImg);
-    if(this.imgs.length) this.currImg = Math.floor(this.imgs.length/2)
-    console.log(this.imgs);
-    
-  }
+    // this.$emit("setMainImg", this.currImg);
+    // if(this.imgs.length) this.currImg = Math.floor(this.imgs.length/2)
+    // console.log(this.imgs);
+    // this.changeImgs = setInterval(() => {
+    //   this.currImg++;
+    //   if(this.currImg >= this.imgs.length) this.currImg=0;
+    //   this.$emit("setMainImg", this.currImg);
+
+    // }, 6000);
+    this.switchImgs();
+  },
+  destroyed() {
+    if(this.changeImgs) clearInterval(this.changeImg)
+  },
 };
 </script>
 
