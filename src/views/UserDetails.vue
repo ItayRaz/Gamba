@@ -1,5 +1,5 @@
 <template>
-    <main class="user-details flex column" v-if="user">
+    <main class="user-details flex column container" v-if="user">
         <section class="flex space-around wrap">
             <section class="profile flex column">
                 <div class="info flex align-center wrap">
