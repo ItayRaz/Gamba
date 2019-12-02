@@ -52,12 +52,21 @@
           </ul>
         </div>
 
+        <div class="evento-gallery">
+          <div  v-for="(img,idx) in evento.imgs" :key="idx">
+            <img class="grid-img" :src="img" >
+          </div>
+
+        </div>
+
         <div class="details-txt">
           <h2>What is going to be...</h2>
           <p>{{evento.desc}}</p>
         </div>
+        <div class="attendies">
         <h2>Attendies</h2>
         <UserGallery :users="members"></UserGallery>
+        </div>
         <div class="map space">
           <MapDetails :eventCoords="evento.location.coords"></MapDetails>
         </div>
