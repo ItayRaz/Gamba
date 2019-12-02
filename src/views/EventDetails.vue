@@ -42,7 +42,7 @@
         <div class="evento-categories">
           <ul class="clean-list flex space-around">
             <li v-for="(type,idx) in evento.categories" :key="idx">
-              <h1 class="space pointer">{{type}}</h1>
+              <h1 class="pointer categorie">{{type}}</h1>
             </li>
           </ul>
         </div>
