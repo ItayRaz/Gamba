@@ -1,14 +1,13 @@
 <template>
-    <section>
+    <section class="flex column align-center">
         <h2>Sign in</h2>
-        <form @submit.prevent="SignIn" class="flex column align-center justify-center">
+        <form @submit.prevent="SignIn" class="flex column align-center justify-center sign-in">
             <input autofocus type="text" placeholder="User name" v-model="user.username"/>
             <input type="text" placeholder="Password" v-model="user.password"/>
             <input type="text" placeholder="img src" v-model="user.img"/>
             <textarea type="text" placeholder="Something about you?" v-model="user.about"/>
             <button>{{SigninBtnMsg}}</button>
         </form>
-        {{user}}
     </section>
 </template>
 
