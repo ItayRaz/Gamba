@@ -3,11 +3,11 @@
     <section v-if="evento" class="event-details">
       <hr />
       <section class="details-header">
-        <div>
+        <div class="img-container">
           <transition name="fade">  
           <img v-if="evento.imgs.length && showImg" class="main-img" :src="evento.imgs[mainImg]" />
            </transition>
-          <EventGallery @setMainImg="setImg" :imgs="evento.imgs"></EventGallery>
+          <EventGallery class="gallery-dots" @setMainImg="setImg" :imgs="evento.imgs"></EventGallery>
         </div>
         <div class="details-header title">
           <div class="title-txt">
@@ -21,7 +21,8 @@
           <MapDetails :eventCoords="evento.location.coords"></MapDetails>
           </div>
           <div class="join-container">
-            <button @click="joinEvento" :class="join">Join us!</button>
+            <button v-if="isLoggedInUserAttending" @click="leaveEvento" :class="join">Leave</button>
+            <button v-else @click="joinEvento" :class="join">Join us!</button>
           </div>
         </div>
         
@@ -69,6 +70,17 @@ export default {
     join() {
       if (this.windowHieght >= 250) return { join: true, down: true };
       return { join: true };
+    },
+    logedInUser(){
+      return this.$store.getters.logedInUser;
+    },
+     isLoggedInUserAttending(){
+      var memberIdx = this.evento.members.findIndex(member =>{
+        return member._id === this.logedInUser._id;
+      })
+      if(memberIdx !== -1) return true;
+      return false;
+      
     }
   },
   methods: {
@@ -85,7 +97,15 @@ export default {
       } else {
         this.$router.push(`${this.evento._id}/join`); // ask!
       }
-    }
+    },
+    leaveEvento(){
+      var memberIdx = this.evento.members.findIndex(member =>{
+        return member._id === this.logedInUser._id;
+      })
+      if(memberIdx === -1 ) return;
+      this.evento.members.splice(memberIdx,1);
+      this.$store.dispatch({ type: "editEvent", evento: this.evento });
+    },
   },
   async created() {
     const eventoId = this.$route.params.id;

@@ -75,3 +75,10 @@
 .fit-content {
     width: fit-content;
 }
+
+.pointer{
+    cursor: pointer;
+    &:hover{
+        cursor: pointer;
+    }
+}
