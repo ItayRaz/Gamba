@@ -35,7 +35,10 @@ export default {
   },
   watch:{
     loggedInUser(){
-      this.evento.members.unshift(this.$store.getters.logedInUser);
+      var user = {...this.$store.getters.logedInUser};
+      delete user.password;
+      this.evento.members.unshift(user);
+      // this.evento.members.unshift(this.$store.getters.logedInUser);
       this.$store.dispatch({type:'editEvent',evento: this.evento})
         .then(()=> this.$router.push(`/event/${this.evento._id}`))
       

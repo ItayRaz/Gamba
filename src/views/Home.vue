@@ -23,13 +23,15 @@ import EventoList from '../components/EventList'
 
 export default {
   computed: {
-    eventos() {
-      return this.$store.getters.eventos
-    },
+    // eventos() {
+    //   return this.$store.getters.eventos
+    // },
     aroundEventos() {
+      // console.log(this.$store.getters.eventosAround);
       return this.$store.getters.eventosAround;
     },
     popularEvents() {
+      console.log('popular');
       return this.$store.getters.popularEvents;
     },
     nightLifeEvents() {
