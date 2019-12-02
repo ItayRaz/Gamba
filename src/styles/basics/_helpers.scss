@@ -74,3 +74,10 @@
 .grid {
     display: grid;
 }
+
+.pointer{
+    cursor: pointer;
+    &:hover{
+        cursor: pointer;
+    }
+}
