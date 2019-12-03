@@ -53,12 +53,3 @@ function _getNewEvento() {
         membersLimit: 0
     }
 }
-
-// function saveComment(evento, comment) {
-//     if (comment._id) return httpService.put(`${BASE_API}/${evento._id}`, evento);
-//     else return httpService.post(BASE_API, evento);
-// }
-
-// function removeComment(evento, commentId) {
-//     return httpService.remove(`${BASE_API}/${_id}`);
-// }
