@@ -56,7 +56,7 @@ export default {
     //   this.$store.getters.logedInUser;
     console.log('!!!!!!');
     
-      console.log(this.$store.getters.logedInUser);
+    console.log(this.$store.getters.logedInUser);
       
       
       
