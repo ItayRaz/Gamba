@@ -1,6 +1,6 @@
 <template>
     <section class="flex align-center column-evento-preview">
-        <router-link :to="'/event/'+evento._id"><img :src="evento.imgs[0]" alt=""></router-link>
+        <router-link class="evento-img" :to="'/event/'+evento._id"><img :src="evento.imgs[0]" alt=""></router-link>
         <div class="flex column info">
             <div class="flex align-center creator">
                 <p>Event by: </p>

@@ -4,15 +4,14 @@
         <section class="flex space-around wrap">
             <section class="profile flex column">
                 <div class="flex align-center wrap">
-                    <!--<img :src="user.img" alt="User image"/>-->
                     <avatar class="avatar" :username="user.username" :src="user.img" :size="200" rounded></avatar>
                     <div class="flex column info">
                         <h1>{{user.username}}</h1>
                         <small>{{isAdminMsg}}</small>
+                        <router-link class="edit-user-link" v-if="isLogedUser" :to="'/signup/signin/'+user._id">Edit Profile</router-link>
                     </div>
                 </div>
                 <p class="about">{{user.about}}</p>
-                <router-link v-if="isLogedUser" :to="'/signup/signin/'+user._id"><button>Edit user</button></router-link>
             </section>
             <div class="user-eventos-container flex column align-center">
                 <div v-if="ownedEventos.length !== 0" class="flex column align-center">
@@ -25,18 +24,18 @@
                 </div>
             </div>
         </section>
-        <section class="user-reviews-container flex wrap width-all">
-            <div class="flex column align-center width-all">
+        <section class="user-reviews-container flex column width-all">
+            <user-review-edit @saveReview="saveReview" :id="''"/>
+            <review-list :reviews="aboutReviews"/>
+            <!--<div class="flex column align-center width-all">
                 <div class="width-all">
                     aboutReviews:
-                    <review-list :reviews="aboutReviews"/>
                 </div>
-                <!-- <div class="width-all">
+                <div class="width-all">
                     ownedReviews:
                     <review-list :reviews="ownedReviews"/>
-                </div> -->
-            </div>
-            <user-review-edit @saveReview="saveReview" :id="''"/>
+                </div>
+            </div> -->
         </section>
     </main>
 </template>
