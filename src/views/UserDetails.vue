@@ -1,5 +1,5 @@
 <template>
-    <main class="user-details flex column container" v-if="user">
+    <main class="user-details flex column" v-if="user">
         <img class="cover-img" :src="user.coverImg" alt="">
         <section class="flex space-around wrap">
             <section class="profile flex column">
@@ -7,7 +7,7 @@
                     <!--<img :src="user.img" alt="User image"/>-->
                     <avatar class="avatar" :username="user.username" :src="user.img" :size="200" rounded></avatar>
                     <div class="flex column info">
-                        <h1>User: {{user.username}}</h1>
+                        <h1>{{user.username}}</h1>
                         <small>{{isAdminMsg}}</small>
                     </div>
                 </div>

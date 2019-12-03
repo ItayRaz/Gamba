@@ -19,10 +19,12 @@ export default {
     confirmPopup
   },
   created() {
-    this.$store.dispatch('getLogedUser');    
     this.$store.dispatch({type:'getCurrCoords'});
     this.$store.dispatch({type:'loadEvents'});
-
+    // this.$store.dispatch('getLogedUser');    
+    try {
+      this.$store.dispatch('getLogedUser');    
+    } catch(err) {throw err};
   },
  
 };

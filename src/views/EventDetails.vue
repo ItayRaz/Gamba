@@ -167,6 +167,14 @@ export default {
     }
   },
   async created() {
+    document.body.scrollIntoView()
+
+
+    
+    // window.pageYOffset = 0;
+    
+
+
     const eventoId = this.$route.params.id;
     this.evento = await this.$store.dispatch({ type: "getEvent", eventoId });
     document.querySelector("body").onscroll = this.getHeight;

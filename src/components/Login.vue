@@ -26,8 +26,10 @@ export default {
             console.log(loginInfo);
             this.$store.dispatch({type: 'login', loginInfo})
                 .then(user => {
-                    this.loginInfo = {username: '', password: ''};
-                    this.$router.push('/');
+                    if (user) {
+                        this.loginInfo = {username: '', password: ''};
+                        this.$router.push('/');
+                    }
                 })
         }
     }

@@ -29,7 +29,6 @@ export default {
         },
         setCurCoords(state, {coords}) {
             state.currCoords = coords.coords;
-            console.log(state.currCoords);
         },
         setCurrUser(state, {user}) {
             state.currUser = user;
@@ -38,15 +37,21 @@ export default {
     actions: {
         signIn(context, {user}) {
             return userService.signIn(user)
-                .then(user => {
-                    console.log('store got user:'. user);
+                .then(data => {
+                    var user = data;
+                    if (data.ops) user = data.ops[0];
                     context.dispatch({type: 'login', loginInfo: {username: user.username, password: user.password}});
                     return user;
                 })
         },
         login(context, {loginInfo}) {
             return userService.login(loginInfo)
-                .then(user => context.commit({type: 'setLogedUser', user}));
+                .then(user => {
+                    if (user) {
+                        context.commit({type: 'setLogedUser', user});
+                        return user;
+                    } else return Promise.reject();
+                });
         },
         logOut(context) {
             return userService.logOut()
@@ -62,8 +67,6 @@ export default {
         getCurrCoords(context) {
             return navigator.geolocation.getCurrentPosition((coords) => {
                 context.commit({type: 'setCurCoords', coords})
-                console.log(coords);
-                
                 return coords,
                 err => err; 
             })
@@ -72,7 +75,8 @@ export default {
             var user = userService.getLogedUser();
             if (user) {
                 context.dispatch({type: 'login', loginInfo: {username: user.username, password: user.password}});
-            }
+                return user;
+            } else return false;
         }
     }
 }
