@@ -1,12 +1,12 @@
 <template>
-  <div id="calender">
-    <h1>My Calendar</h1>
+<div class="cal-container">
+  <div id="calender" v-if="user">
+    <h1>Your Events</h1>
     <calendar-view
-        :events="getEventos"
+      :events="userEventos"
       :show-date="showDate"
       class="theme-default holiday-us-traditional holiday-us-official"
-      @click-date="showEvento"
-      @click-event="foo"
+      @click-event="showEvento"
     >
       <calendar-view-header
         slot="header"
@@ -16,6 +16,7 @@
       />
     </calendar-view>
   </div>
+</div>
 </template>
 <script>
 import { CalendarView, CalendarViewHeader } from "vue-simple-calendar";
@@ -29,47 +30,50 @@ export default {
   data() {
     return {
       showDate: new Date(),
-      user: null
+      user: {},
+      userEventos: []
     };
   },
   components: {
     CalendarView,
     CalendarViewHeader
   },
-  computed:{
-      getEventos(){
-          return [{id: "2hjdhk", startDate: new Date(), title: 'Raviv', url: 'http://localhost:8080/'}]
-      }
-  },
   methods: {
     setShowDate(d) {
       this.showDate = d;
     },
-    showEvento(){
-        console.log('!!');
+    showEvento(calendarItem, windowEvent) {
+      this.$router.push(`/event/${calendarItem.id}`);
     },
-    foo(calendarItem, windowEvent){
-        console.log(calendarItem);
+    formatDate(time){
+     var date = new Date(time).toGMTString()
+     return date;
+     
     }
   },
-  created(){
-    //   this.$store.getters.logedInUser;
-    console.log('!!!!!!');
+  async created() {
+    this.user = await this.$store.dispatch("getLogedUser");
+
+    this.userEventos = await this.$store.dispatch({
+      type: "loadEvents",
+      filterBy: { memberId: this.user._id },
+      isSetEvents: false
+    });
     
-    console.log(this.$store.getters.logedInUser);
-      
-      
-      
+    this.userEventos = this.userEventos.map(evento => {
+      return {id:evento._id, startDate: new Date() ,title:evento.title}});    
   }
 };
 </script>
 <style>
 #calender {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   color: #2c3e50;
+  width: 100%;
   height: 67vh;
-  margin-left: 10px;
-  margin-right: 10px;
   margin-top: 100px;
   margin-bottom: 50px;
 }
