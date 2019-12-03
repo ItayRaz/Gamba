@@ -31,10 +31,10 @@
                     aboutReviews:
                     <review-list :reviews="aboutReviews"/>
                 </div>
-                <div class="width-all">
+                <!-- <div class="width-all">
                     ownedReviews:
                     <review-list :reviews="ownedReviews"/>
-                </div>
+                </div> -->
             </div>
             <user-review-edit @saveReview="saveReview" :id="''"/>
         </section>
@@ -68,9 +68,9 @@ export default {
         aboutReviews() {
             return this.reviews.filter(review => review.aboutId === this.user._id);
         },
-        ownedReviews() {
-            return this.reviews.filter(review => review.reviewer._id === this.user._id);
-        },
+        // ownedReviews() {
+        //     return this.reviews.filter(review => review.reviewer._id === this.user._id);
+        // },
         ownedReviewsMsg() {
             return (this.isLogedUser)? 'Your events' : "User's events";
         }
@@ -84,13 +84,12 @@ export default {
             this.atendedEventos = atendedEventos
         },
         async getReviews() {
-            var ownedReviews = await this.$store.dispatch({type: 'getReviews', filterBy: {reviewerId: this.user._id}});
-            this.ownedReviews = ownedReviews;
+            // var ownedReviews = await this.$store.dispatch({type: 'getReviews', filterBy: {reviewerId: this.user._id}});
 
             var aboutReviews = await this.$store.dispatch({type: 'getReviews', filterBy: {aboutId: this.user._id}});
-            this.aboutReviews = aboutReviews;
 
-            this.reviews = [...ownedReviews, ...aboutReviews];
+            // this.reviews = [...ownedReviews, ...aboutReviews];
+            this.reviews = [...aboutReviews];
         },
         async getUser() {
             var _id = this.$route.params.id;

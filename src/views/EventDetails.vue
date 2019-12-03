@@ -56,7 +56,6 @@
         <div class="evento-gallery">
           <div  v-for="(img,idx) in evento.imgs" :key="idx" :class="imgIdx(idx)">
             <img :src="img" >
-            <!-- <p>hi</p> -->
           </div>
 
         </div>
@@ -82,6 +81,18 @@
       </section>
     </section>
     <router-view :evento="evento"></router-view>
+
+    <form @submit.prevent="addComment">
+      <input @ type="text" v-model="newComment"/>
+      <button>submit</button>
+    </form>
+
+    <comment-list v-if="evento.comments" :reviews="evento.comments"/>
+    <!--<ul v-if="evento.comments">
+      <li v-for="comment in evento.comments">
+        {{comment}}
+      </li>
+    </ul>-->
   </section>
 </template>
 
@@ -93,19 +104,26 @@ import EventGallery from "@/components/EventGallery";
 import UserGallery from "@/components/UserGallery";
 import Creator from "@/components/Creator";
 
+import CommentList from '../components/ReviewList.vue';
+
+import socketService from '../services/socket.service.js';
+import utils from '../services/util.service.js';
+
 export default {
   components: {
     MapDetails,
     EventGallery,
     UserGallery,
-    Creator
+    Creator,
+    CommentList
   },
   data() {
     return {
       evento: null,
       mainImg: 0,
       windowHieght: 0,
-      showImg: true
+      showImg: true,
+      newComment: ''
     };
   },
   computed: {
@@ -164,6 +182,37 @@ export default {
     imgIdx(idx){
       return `img-${idx}`;
 
+    },
+    addComment() {
+      if (!this.newComment) return;
+      var user = this.$store.getters.logedInUser;
+      var reviewer = (user)? {username: user.username, _id: user._id, img: user.img}
+                           : {username: 'guest', _id: 'guest'};
+      var comment = {
+        txt: this.newComment,
+        reviewer,
+        createdAt: Date.now(),
+        _id: utils.getRandomId()
+      }
+      socketService.emit('newComment', {comment, eventoId: this.evento._id});
+
+      if (!this.evento.comments) this.evento.comments = [];
+      this.evento.comments.unshift(comment);
+
+      this.newComment = '';
+    },
+    connectToSocket() {
+      socketService.emit('joinRoom', this.evento._id);
+      
+      socketService.on('addComment', comment => {
+        if (!this.evento.comments) this.evento.comments = [];
+        if (this.evento.comments.find(currComment => currComment._id === comment._id)) return;
+        this.evento.comments.unshift(comment);
+        this.$store.dispatch({type: 'editEvent', evento: this.evento});
+      })
+    },
+    disConnectSocket() {
+      socketService.emit('leaveRoom', this.evento.id);
     }
   },
   async created() {
@@ -178,6 +227,11 @@ export default {
     const eventoId = this.$route.params.id;
     this.evento = await this.$store.dispatch({ type: "getEvent", eventoId });
     document.querySelector("body").onscroll = this.getHeight;
+
+    this.connectToSocket();
+  },
+  destroyed() {
+    this.disConnectSocket()
   },
   watch: {
     mainImg() {

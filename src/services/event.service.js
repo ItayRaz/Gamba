@@ -50,15 +50,7 @@ function _getNewEvento() {
             duration: 0
         },
         categories: ['General'],
-        membersLimit: 0
+        membersLimit: 0,
+        comments: []
     }
 }
-
-// function saveComment(evento, comment) {
-//     if (comment._id) return httpService.put(`${BASE_API}/${evento._id}`, evento);
-//     else return httpService.post(BASE_API, evento);
-// }
-
-// function removeComment(evento, commentId) {
-//     return httpService.remove(`${BASE_API}/${_id}`);
-// }

@@ -16,6 +16,7 @@ export default {
             state.eventos.splice(idx, 1)
         },
         setSortedEventByDist(state, { eventos, context }) {
+            if (!eventos) return [];
             var currCoords = context.getters.currCoords;
             const sortedEvents = eventos.sort((ev1, ev2) => {
                 var dis1 = Math.abs(ev1.location.coords.lat - currCoords.lat) +
