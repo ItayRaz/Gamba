@@ -49,6 +49,7 @@ function _getNewEvento() {
             start: Date.now(),
             duration: 0
         },
-        categories: ['General']
+        categories: ['General'],
+        membersLimit: 0
     }
 }

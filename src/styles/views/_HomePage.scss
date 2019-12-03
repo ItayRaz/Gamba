@@ -13,6 +13,8 @@
         z-index: 4;
         position: absolute;
         text-align: center;
+        text-shadow: 0 0 5px black;
+        font-weight: bold;
     }
     .logo {
         font-size: 4rem;
@@ -42,10 +44,10 @@
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
-        h2 {
-            position: absolute;
-            z-index: 5;
-        }
+        // h2 {
+        //     position: absolute;
+        //     z-index: 5;
+        // }
     }
     .night-events {
         background-image: url(~@/assets/party.jpg);

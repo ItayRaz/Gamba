@@ -3,14 +3,16 @@
     <div class="flex justify-center">
     <section class="flex actions space-between align-center">
       <evento-filter :categories="eventosCategories" @setFilter="setFilter" />
+    </section>
+    </div>
+    <div class="add-event">
       <router-link to="/event/edit">
         <button>Add Event <i class="fa fa-plus"></i></button>
       </router-link>
-    </section>
     </div>
     <router-view></router-view>
-    <event-list :eventos="eventos" />
-  </main>
+    <event-list :eventos="eventos"/>
+  </main>   
 </template>
 
 <script>
@@ -47,3 +49,12 @@ export default {
   }
 };
 </script>
+
+
+<style scoped>
+.add-event{
+  position: absolute;
+  /* top: 10px; */
+}
+
+</style>

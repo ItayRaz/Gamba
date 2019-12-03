@@ -15,7 +15,7 @@
         ></el-date-picker>
       </el-form-item>
       <div class="flex wrap">
-        <el-form-item label="Event Duration">
+        <el-form-item label="Duration">
           <el-col :span="8">
             <el-input-number v-if="evento.time" v-model="evento.time.duration"></el-input-number>
           </el-col>
@@ -23,11 +23,14 @@
         <el-form-item label="Price">
           <el-input-number v-model="evento.price"></el-input-number>
         </el-form-item>
+        <el-form-item label="Members Limit">
+          <el-input-number v-model="evento.membersLimit"></el-input-number>
+        </el-form-item>
       </div>
       <el-form-item label="Categories">
         <event-category v-model="evento.categories"></event-category>
       </el-form-item>
-      <el-form-item label="Adress">
+      <el-form-item label="Address">
         <el-input placeholder v-model="evento.location.address_line_1" clearable></el-input>
       </el-form-item>
       <el-form-item label="Description">
@@ -37,10 +40,10 @@
         <h3>Event Images:</h3>
         <input class="file-input" type="file" ref="files" multiple @change="uploadImg" />
         <router-link v-if="this.$route.params.id" to="/event">
-          <el-button type="primary" @click="Edit" to="/">Edit</el-button>
+          <el-button type="primary" @click="Edit" to="/">editEvento</el-button>
         </router-link>
         <router-link v-else to="/event">
-          <el-button type="primary" @click="Create" to="/">Create</el-button>
+          <el-button type="primary" @click="createEvento" to="/">Create</el-button>
         </router-link>
         <router-link class="cancel-btn" to="/event">
           <el-button>Cancel</el-button>
@@ -67,7 +70,7 @@ export default {
     };
   },
   methods: {
-    Create() {
+    createEvento() {
       if (!this.evento.imgs.length)
         this.evento.imgs.push(
           "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
@@ -77,7 +80,7 @@ export default {
         this.$store.dispatch({ type: "addEvent", evento: this.evento });
       });
     },
-    Edit() {
+    editEvento() {
       if (!this.evento.imgs.length)
         this.evento.imgs.push(
           "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"

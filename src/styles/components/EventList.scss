@@ -31,6 +31,13 @@
       align-items: center;
       position: relative;
       margin-bottom: 30px;
+      .full-img {
+        position: absolute;
+        width: 80px;
+        height: 65px;
+        object-fit: contain;
+        right: 10px;
+      }
       .gallery-dots {
         position: absolute;
         bottom: -10px;
@@ -69,18 +76,34 @@
       }
     }
     .prev-details {
+      color: #4b4b4b;
       position: absolute;
       bottom: 0;
       height: 30%;
       width: 100%;
       padding: 10px;
+      .seats-left {
+        background-color: white;
+        position: absolute;
+        right: 10px;
+        top: -245px;
+        padding: 5px;
+        font-weight: bold;
+        border-radius: 8px;
+      }
+      .member-count {
+        font-weight: bold;
+        position: absolute;
+        right: 10px;
+        color: black;
+      }
       .info {
         height: 100%;
       }
       .prev-avatars {
-        width: 143px;
+        width: 110px;
         position: absolute;
-        right: -50px;
+        right: -16px;
         top: 50px;
         ul {
           list-style-type: none;
@@ -147,4 +170,8 @@
       }
     }
   }
+}
+
+.few-left {
+  color: $clr4;
 }
