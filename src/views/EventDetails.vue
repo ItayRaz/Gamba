@@ -85,17 +85,11 @@
     </section>
     <router-view :evento="evento"></router-view>
 
-    <form @submit.prevent="addComment">
-      <input @ type="text" v-model="newComment"/>
+    <!-- <form @submit.prevent="addComment">
+      <input @ type="text" v-model="newComment" placeholder="say something?"/>
       <button>submit</button>
     </form>
-
-    <!-- <comment-list v-if="evento.comments" :reviews="evento.comments"/> -->
-    <!--<ul v-if="evento.comments">
-      <li v-for="comment in evento.comments">
-        {{comment}}
-      </li>
-    </ul>-->
+    <comment-list v-if="evento.comments" :reviews="evento.comments"/> -->
   </section>
 </template>
 
