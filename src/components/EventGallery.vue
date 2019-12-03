@@ -2,8 +2,8 @@
   <section v-if="imgs.length" class="event-gallery flex align-center">
     <img src alt />
     <div class="btn-img flex">
-      <button class="left" @click="getNextImg(-1)">⇠</button>
-      <button class="right" @click="getNextImg(1)">⇢</button>
+      <button class="left" @click="getNextImg(-1)"><i class="fa fa-chevron-left"></i></button>
+      <button class="right" @click="getNextImg(1)"><i class="fa fa-chevron-right"></i></button>
     </div>
     <ul class="clean-list flex row">
       <li class="pointer" v-for="(img,idx) in imgsToShow" :key="idx">
@@ -65,11 +65,11 @@ export default {
     }
   },
   created() {
-    this.switchImgs();
+    // this.switchImgs();
   },
-  destroyed() {
-    if (this.changeImgs) clearInterval(this.changeImg);
-  }
+  // destroyed() {
+  //   if (this.changeImgs) clearInterval(this.changeImg);
+  // }
 };
 </script>
 

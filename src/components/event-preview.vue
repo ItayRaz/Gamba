@@ -71,7 +71,7 @@ export default {
       this.showImg=!this.showImg
       setTimeout(() => {
         this.showImg=!this.showImg
-      }, 1000);
+      }, 300);
     }
   },
   created() {
