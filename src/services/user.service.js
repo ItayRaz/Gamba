@@ -35,7 +35,9 @@ function get(_id) {
 }
 
 function getLogedUser() {
-    return utilService.loadFromSessionStorage(USER_SESSION_KEY);
+    var user = utilService.loadFromSessionStorage(USER_SESSION_KEY);
+    if (!user) return false;
+    return user
 }
 
 function signIn(user) {
@@ -69,6 +71,6 @@ function _getNewUser() {
         about: '',
         createdAt: Date.now(),
         email: '',
-        mobile: 0
+        mobile: null
     }
 }

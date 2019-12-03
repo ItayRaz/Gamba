@@ -32,7 +32,6 @@ export default {
             if (!this.user.username || !this.user.password) return;
             this.$store.dispatch({type: 'signIn', user: {...this.user}})
                 .then(user => {
-                    console.log(user);
                     if (this.isEdit) this.$router.push('/user/'+this.user._id);
                     else this.$emit('logedIn');
                 })

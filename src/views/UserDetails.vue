@@ -7,7 +7,7 @@
                     <!--<img :src="user.img" alt="User image"/>-->
                     <avatar class="avatar" :username="user.username" :src="user.img" :size="200" rounded></avatar>
                     <div class="flex column info">
-                        <h1>User: {{user.username}}</h1>
+                        <h1>{{user.username}}</h1>
                         <small>{{isAdminMsg}}</small>
                     </div>
                 </div>

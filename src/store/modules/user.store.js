@@ -37,16 +37,25 @@ export default {
     },
     actions: {
         signIn(context, {user}) {
+            console.log('store is saving user..,', user);
             return userService.signIn(user)
-                .then(user => {
-                    console.log('store got user:'. user);
+                .then(data => {
+                    var user = data;
+                    if (data.ops) user = data.ops[0];
                     context.dispatch({type: 'login', loginInfo: {username: user.username, password: user.password}});
                     return user;
                 })
         },
         login(context, {loginInfo}) {
             return userService.login(loginInfo)
-                .then(user => context.commit({type: 'setLogedUser', user}));
+                .then(user => {
+                    // var user = data.ops[0];
+                    console.log(user);
+                    if (user) {
+                        context.commit({type: 'setLogedUser', user});
+                        return user;
+                    } else return promise.reject();
+                });
         },
         logOut(context) {
             return userService.logOut()
@@ -72,7 +81,8 @@ export default {
             var user = userService.getLogedUser();
             if (user) {
                 context.dispatch({type: 'login', loginInfo: {username: user.username, password: user.password}});
-            }
+                return user;
+            } else return false;
         }
     }
 }
