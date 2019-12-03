@@ -64,17 +64,10 @@
   text-align: center;
 }
 
-.evento-categories{
-  // height: 8vh;
-  // background-color: #29252591;
-  .categorie{
-    padding: 10px;
-    // background-color: #fff;
-    // color: black;
-  }
+
+.categorie{
+      padding: 15px;
 }
-
-
 
 .space{
   margin-top: 15px;
@@ -146,7 +139,6 @@
   'a b b '
   'd d d ';
   gap: 5px;
-  // 'menu footer footer footer';
   img{
     object-fit: cover;
     width: 100%;
