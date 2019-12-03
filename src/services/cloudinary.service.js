@@ -4,10 +4,11 @@ export default {
 }
 
 function uploadImg(ev, imgCount) {
+    if (!imgCount) imgCount = 1;
     const CLOUD_NAME = 'dfsjcqagx'
     const PRESET_NAME = 'asi4evfv'
     const UPLOAD_URL = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`
-    const imgUrls = [];
+    const imgUrls = [];    
     for (let i = 0; i < imgCount; i++) {
         const formData = new FormData();
         formData.append('file', ev.target.files[i])
