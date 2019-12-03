@@ -219,12 +219,7 @@ export default {
     }
   },
   async created() {
-    document.body.scrollIntoView()
-
-
-    
-    // window.pageYOffset = 0;
-    
+    document.body.scrollIntoView()    
 
 
     const eventoId = this.$route.params.id;

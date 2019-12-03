@@ -1,8 +1,8 @@
 <template>
-  <div id="calender">
+  <div id="calender" v-if="user">
     <h1>My Calendar</h1>
     <calendar-view
-        :events="getEventos"
+      :events="eventos"
       :show-date="showDate"
       class="theme-default holiday-us-traditional holiday-us-official"
       @click-date="showEvento"
@@ -29,7 +29,8 @@ export default {
   data() {
     return {
       showDate: new Date(),
-      user: null
+      user: {},
+      userEventos: []
     };
   },
   components: {
@@ -37,29 +38,37 @@ export default {
     CalendarViewHeader
   },
   computed:{
-      getEventos(){
-          return [{id: "2hjdhk", startDate: new Date(), title: 'Raviv', url: 'http://localhost:8080/'}]
-      }
+    eventos(){
+      this.userEventos = this.userEventos.map(evento => {
+      return {id:evento._id, startDate: evento.time.start ,title:evento.title}
+    })
+
+    }
   },
   methods: {
     setShowDate(d) {
       this.showDate = d;
     },
-    showEvento(){
-        console.log('!!');
+    showEvento() {
+      console.log("!!");
     },
-    foo(calendarItem, windowEvent){
-        console.log(calendarItem);
+    foo(calendarItem, windowEvent) {
+      console.log(calendarItem);
     }
   },
-  created(){
-    //   this.$store.getters.logedInUser;
-    console.log('!!!!!!');
+  async created() {
+    this.user = await this.$store.dispatch("getLogedUser");
+    console.log(this.user);
+
+    this.userEventos = await this.$store.dispatch({
+      type: "loadEvents",
+      filterBy: { memberId: this.user._id },
+      isSetEvents: false
+    });
     
-    console.log(this.$store.getters.logedInUser);
-      
-      
-      
+    console.log(this.userEventos);
+    
+    
   }
 };
 </script>
