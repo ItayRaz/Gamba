@@ -1,23 +1,20 @@
 <template>
   <section v-if="imgs.length" class="event-gallery flex align-center">
-    <!-- <button @click="getNextImg(-1)">⇠</button> -->
-    <ul  class="clean-list flex row">
-      <li class="pointer"
-        v-for="(img,idx) in imgsToShow"
-        
-        :key="idx"
-      >
-        <p v-if="idx === currImg" @click="setImg(idx)">⚪</p>
-        <p v-else @click="setImg(idx)">⚫</p>
+    <img src alt />
+    <div class="btn-img flex">
+      <button class="left" @click="getNextImg(-1)">⇠</button>
+      <button class="right" @click="getNextImg(1)">⇢</button>
+    </div>
+    <ul class="clean-list flex row">
+      <li class="pointer" v-for="(img,idx) in imgsToShow" :key="idx">
+        <p v-if="idx === currImg" @click="setImg(idx)"><i class="fa fa-circle"></i></p>
+        <p v-else @click="setImg(idx)"><i class="fa fa-circle"></i></p>
         <!-- <img class="img-details" :src="img" /> -->
         <!-- :class="{middle : idx === Math.floor(imgs.length/2)}" -->
         <!-- <p v-if="idx === Math.floor(imgs.length/2)" @click="getNextImg(-1)">⚪</p> -->
         <!-- <p v-else @click="getNextImg(1)">⚫</p> -->
-
-
       </li>
     </ul>
-    <!-- <button @click="getNextImg(1)">⇢</button> -->
   </section>
 </template>
 
@@ -42,51 +39,37 @@ export default {
       var imgsReplace;
 
       if (diff < 1) {
-        imgsReplace = this.imgsToShow.slice(0,this.imgs.length-1);
-        imgsReplace.unshift(this.imgsToShow[this.imgs.length-1]);
+        imgsReplace = this.imgsToShow.slice(0, this.imgs.length - 1);
+        imgsReplace.unshift(this.imgsToShow[this.imgs.length - 1]);
         this.imgsToShow = imgsReplace;
-      }
-      else{
-        imgsReplace = this.imgsToShow.slice(1,this.imgs.length);        
+      } else {
+        imgsReplace = this.imgsToShow.slice(1, this.imgs.length);
         imgsReplace.push(this.imgsToShow[0]);
         this.imgsToShow = imgsReplace;
-
       }
 
       this.$emit("setMainImg", this.currImg);
     },
-    setImg(idx){
-      clearInterval(this.changeImgs)
+    setImg(idx) {
+      clearInterval(this.changeImgs);
       this.currImg = idx;
       this.$emit("setMainImg", this.currImg);
       this.switchImgs();
     },
-    switchImgs(){
+    switchImgs() {
       this.changeImgs = setInterval(() => {
-      this.currImg++;
-      if(this.currImg >= this.imgs.length) this.currImg=0;
-      this.$emit("setMainImg", this.currImg);
-
-    }, 6000);
-
+        this.currImg++;
+        if (this.currImg >= this.imgs.length) this.currImg = 0;
+        this.$emit("setMainImg", this.currImg);
+      }, 6000);
     }
-
   },
   created() {
-    // this.$emit("setMainImg", this.currImg);
-    // if(this.imgs.length) this.currImg = Math.floor(this.imgs.length/2)
-    // console.log(this.imgs);
-    // this.changeImgs = setInterval(() => {
-    //   this.currImg++;
-    //   if(this.currImg >= this.imgs.length) this.currImg=0;
-    //   this.$emit("setMainImg", this.currImg);
-
-    // }, 6000);
     this.switchImgs();
   },
   destroyed() {
-    if(this.changeImgs) clearInterval(this.changeImg)
-  },
+    if (this.changeImgs) clearInterval(this.changeImg);
+  }
 };
 </script>
 

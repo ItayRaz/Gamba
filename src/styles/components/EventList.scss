@@ -33,9 +33,11 @@
       margin-bottom: 30px;
       .gallery-dots {
         position: absolute;
-        bottom: -40px;
+        bottom: -10px;
         right: 50%;
         transform: translate(50%, 0);
+        // display: block;
+
         display: none;
         z-index: 100;
         p {
