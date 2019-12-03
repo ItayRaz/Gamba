@@ -14,6 +14,7 @@ import QuickJoin from '../views/QuickJoin.vue';
 import LogIn from '../components/Login.vue';
 import SignIn from '../components/Signin.vue';
 import LocalSignUp from '../components/LocalSignUp';
+import EventoCalender from '../views/EventoCalender.vue';
 
 
 import EventsAround from '../views/EventsAround.vue';//testing
@@ -47,6 +48,11 @@ const routes = [
     path: '/event/around',
     name: 'event-around',
     component: EventsAround 
+  },
+  {
+    path: '/event/calender',
+    name: 'event-calender',
+    component: EventoCalender
   },
   {
     path: '/event/:id',
