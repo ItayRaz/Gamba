@@ -21,6 +21,7 @@ export default {
   created() {
     this.$store.dispatch({type:'getCurrCoords'});
     this.$store.dispatch({type:'loadEvents'});
+    // this.$store.dispatch('getLogedUser');    
     try {
       this.$store.dispatch('getLogedUser');    
     } catch(err) {throw err};

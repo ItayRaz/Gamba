@@ -9,8 +9,6 @@ export default {
     },
     mutations: {
         setEventos(state, { eventos }) {
-            console.log('eventos', state.eventos);
-
             state.eventos = eventos;
         },
         removeEvent(state, { eventoId }) {

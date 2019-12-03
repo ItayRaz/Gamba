@@ -29,7 +29,6 @@ export default {
         },
         setCurCoords(state, {coords}) {
             state.currCoords = coords.coords;
-            console.log(state.currCoords);
         },
         setCurrUser(state, {user}) {
             state.currUser = user;
@@ -37,7 +36,6 @@ export default {
     },
     actions: {
         signIn(context, {user}) {
-            console.log('store is saving user..,', user);
             return userService.signIn(user)
                 .then(data => {
                     var user = data;
@@ -49,12 +47,10 @@ export default {
         login(context, {loginInfo}) {
             return userService.login(loginInfo)
                 .then(user => {
-                    // var user = data.ops[0];
-                    console.log(user);
                     if (user) {
                         context.commit({type: 'setLogedUser', user});
                         return user;
-                    } else return promise.reject();
+                    } else return Promise.reject();
                 });
         },
         logOut(context) {
@@ -71,8 +67,6 @@ export default {
         getCurrCoords(context) {
             return navigator.geolocation.getCurrentPosition((coords) => {
                 context.commit({type: 'setCurCoords', coords})
-                console.log(coords);
-                
                 return coords,
                 err => err; 
             })

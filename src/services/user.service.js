@@ -19,7 +19,6 @@ export default {
 
 function query(filterBy = {}) {
     var queryStr = utilService.getQuerysStr(filterBy);
-    console.log(queryStr)
     return httpService.get(BASE_API + queryStr);
 }
 
@@ -37,11 +36,10 @@ function get(_id) {
 function getLogedUser() {
     var user = utilService.loadFromSessionStorage(USER_SESSION_KEY);
     if (!user) return false;
-    return user
+    return user;
 }
 
 function signIn(user) {
-    console.log('user service is signing user..');
     if (user._id) return httpService.put(`${BASE_API}/${user._id}`, user);
     else return httpService.post(BASE_API, user);
 }
