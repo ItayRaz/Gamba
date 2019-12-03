@@ -19,7 +19,7 @@
           <h1>{{evento.location.address_line_1}}</h1>
         </div>
         <div class="join-container flex align-center justify-center">
-          <button class="join" v-if="isLoggedInUserAttending" @click="leaveEvento">Leave</button>
+          <button class="leave" v-if="isLoggedInUserAttending" @click="leaveEvento">Leave</button>
           <img v-else-if="seatsLeft === 0" src="@/assets/full.png">
           <button class="join" v-else @click="joinEvento">
             Join us

@@ -1,12 +1,7 @@
 .actions {
-  padding: 0 10px;
-  width: 310px;
-      button {
-        background: none;
-        border: 1px solid gray;
-        padding: 8px;
-        border-radius: 8px;
-      }
+  width: 50%;
+  padding: 10px;
+
   .evento-filter {
     > *:not(:last-child) {
       margin-right: 10px;
@@ -37,6 +32,3 @@
   color: gray;
   padding: 0 2px;
 }
-
-
-
