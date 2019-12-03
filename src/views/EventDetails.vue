@@ -30,12 +30,12 @@
         <div class="secondry-details">
           <hr />
           <div class="flex space-between">
-            <h1>At:</h1>
+            <h1>At: </h1>
             <h1>{{evento.time.start | moment("LT")}}</h1>
           </div>
           <hr />
           <div v-if="evento.price" class="flex space-between">
-            <h1 v-if="evento.price">Price:</h1>
+            <h1 v-if="evento.price">Price</h1>
             <h1>{{evento.price}}$</h1>
           </div>
         </div>
@@ -57,23 +57,26 @@
           <div  v-for="(img,idx) in evento.imgs" :key="idx" :class="imgIdx(idx)">
             <img :src="img" >
           </div>
-
         </div>
 
         <div class="details-txt">
           <h2>What is going to be...</h2>
           <p>{{evento.desc}}</p>
         </div>
-        <div class="attendies">
-        <h2>Attendies</h2>
-        <UserGallery :users="members"></UserGallery>
+
+        <div class="flex details-3 space-between">
+          <div class="attendies">
+            <h2>Who is coming...</h2>
+            <UserGallery :users="members"></UserGallery>
+          </div>
+            <div class="map space">
+              <MapDetails :eventCoords="evento.location.coords"></MapDetails>
+            </div>
         </div>
-        <div class="map space">
-          <MapDetails :eventCoords="evento.location.coords"></MapDetails>
-        </div>
+      
 
         <div class="evento-creator">
-          <!-- <Creator v-if="evento.creator.id" :creator="evento.creator"></Creator> -->
+          <Creator v-if="evento.creator.id" :creator="evento.creator"></Creator>
           <h1>For more details you can contact ...</h1>
           <h1>Email:</h1>
           <h1>Phone:</h1>
@@ -87,7 +90,7 @@
       <button>submit</button>
     </form>
 
-    <comment-list v-if="evento.comments" :reviews="evento.comments"/>
+    <!-- <comment-list v-if="evento.comments" :reviews="evento.comments"/> -->
     <!--<ul v-if="evento.comments">
       <li v-for="comment in evento.comments">
         {{comment}}
@@ -119,7 +122,7 @@ export default {
   },
   data() {
     return {
-      evento: null,
+      evento: {},
       mainImg: 0,
       windowHieght: 0,
       showImg: true,
@@ -131,7 +134,7 @@ export default {
       return this.evento.members;
     },
     down() {
-      if (this.windowHieght >= 700) {
+      if (this.windowHieght >= 740) {        
         return { "importent-details": true, down: false, stop: true };
       }
       if (this.windowHieght >= 350)
@@ -216,12 +219,7 @@ export default {
     }
   },
   async created() {
-    document.body.scrollIntoView()
-
-
-    
-    // window.pageYOffset = 0;
-    
+    document.body.scrollIntoView()    
 
 
     const eventoId = this.$route.params.id;

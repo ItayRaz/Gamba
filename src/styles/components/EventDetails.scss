@@ -16,7 +16,12 @@
   text-shadow: -2px 0px 5px black;
 }
 
-.attendies {
+
+.details-3{
+  width:96vw;
+}
+
+.attendies{
   margin-top: 20px;
 }
 
@@ -46,9 +51,9 @@
   top: 200px;
 }
 
-.stop {
-  position: absolute;
-  bottom: -600px;
+.stop{
+  position: absolute;  
+  bottom: -550px;
 }
 
 .evento-time {
@@ -101,8 +106,14 @@
   }
 }
 
-.details-txt {
-  margin-top: 20px;
+
+
+.details-txt{
+  margin-top:20px;
+  p{
+    margin-top:10px;
+    line-height: 27px;
+  }
 }
 
 .map {

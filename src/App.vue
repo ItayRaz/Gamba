@@ -25,7 +25,7 @@ export default {
     try {
       this.$store.dispatch('getLogedUser');    
     } catch(err) {
-      // throw err
+    //  throw err
     };
   },
  

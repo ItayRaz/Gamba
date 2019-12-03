@@ -1,16 +1,16 @@
 <template>
     <!-- <button v-if="isLogedIn" @click="logout">Log out</button>
     <main v-else> -->
-    <main class="container">
-        <router-link :to="routerLink"><button @click="isSignIn = !isSignIn">{{btnMsg}}</button></router-link>
+    <main class="signup-page flex column align-center">
         <router-view @logedIn="logedIn"/>
+        <router-link :to="routerLink" @click.native="isSignIn = !isSignIn">{{btnMsg}}</router-link>
     </main>
 </template>
 
 <script>
 
 export default {
-    data() {
+    data()  {
         return {
             isSignIn: false
         }
@@ -23,7 +23,7 @@ export default {
             return this.$store.getters.logedInUser;
         },
         routerLink() {
-            return (!this.isSignIn)? '/signup/login' : '/signup/signin';
+            return (this.isSignIn)? '/signup/login' : '/signup/signin';
         }
     },
     methods: {
@@ -35,7 +35,9 @@ export default {
         }
     },
     created() {
-        // this.logout();
+        this.logout();
+        this.isSignIn = (this.$route.path === '/signup/login')? false : true; 
+        console.log(this.$route.path)
     }
 }
 </script>

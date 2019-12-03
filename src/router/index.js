@@ -42,6 +42,11 @@ const routes = [
         name: 'event-edit',
         component: eventEdit
       },
+      {
+        path: '/event/calender',
+        name: 'event-calender',
+        component: EventoCalender
+      },
     ]
   },
   {
@@ -49,11 +54,7 @@ const routes = [
     name: 'event-around',
     component: EventsAround 
   },
-  {
-    path: '/event/calender',
-    name: 'event-calender',
-    component: EventoCalender
-  },
+  
   {
     path: '/event/:id',
     name: 'event-details',

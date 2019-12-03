@@ -7,10 +7,17 @@
         box-shadow: 0px 0px 2.5px 0px rgba(0, 0, 0, 0.2);
         // margin: 2.5px;
         margin: 2.5px 0;
+        margin-right: 0;
+        margin-left: 0;
         overflow: hidden;
-        img {
-            width: 100px;
+        .evento-img {
             height: 100%;
+            width: 30%;
+            img {
+                width: 100%;
+                // width: 30%;
+                height: 100%;
+            }
             margin-right: 20px;
         }
         .info {
@@ -32,15 +39,25 @@
             right: 10px;
         }
     }
-    @media (max-width: 450px) {
+}
+@media (max-width: 450px) {
+    .column-evento-list {
         .column-evento-preview {
-            width: 95vw;
+            width: 90vw !important;
+            .evento-img {
+                width: 25%;
+                margin-right: 5px;
+            }
+            // width: fit-content;
         }
+        
     }
-    @media (max-width: 390px) {
+}
+@media (max-width: 390px) {
+    .column-evento-list {
         .column-evento-preview {
             .members-avatar-container {
-                display: none;
+                display: none !important;
             }
         }
     }
