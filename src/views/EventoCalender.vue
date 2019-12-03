@@ -1,12 +1,12 @@
 <template>
+<div class="cal-container">
   <div id="calender" v-if="user">
-    <h1>My Calendar</h1>
+    <h1>Your Events</h1>
     <calendar-view
-      :events="eventos"
+      :events="userEventos"
       :show-date="showDate"
       class="theme-default holiday-us-traditional holiday-us-official"
-      @click-date="showEvento"
-      @click-event="foo"
+      @click-event="showEvento"
     >
       <calendar-view-header
         slot="header"
@@ -16,6 +16,7 @@
       />
     </calendar-view>
   </div>
+</div>
 </template>
 <script>
 import { CalendarView, CalendarViewHeader } from "vue-simple-calendar";
@@ -37,28 +38,21 @@ export default {
     CalendarView,
     CalendarViewHeader
   },
-  computed:{
-    eventos(){
-      this.userEventos = this.userEventos.map(evento => {
-      return {id:evento._id, startDate: evento.time.start ,title:evento.title}
-    })
-
-    }
-  },
   methods: {
     setShowDate(d) {
       this.showDate = d;
     },
-    showEvento() {
-      console.log("!!");
+    showEvento(calendarItem, windowEvent) {
+      this.$router.push(`/event/${calendarItem.id}`);
     },
-    foo(calendarItem, windowEvent) {
-      console.log(calendarItem);
+    formatDate(time){
+     var date = new Date(time).toGMTString()
+     return date;
+     
     }
   },
   async created() {
     this.user = await this.$store.dispatch("getLogedUser");
-    console.log(this.user);
 
     this.userEventos = await this.$store.dispatch({
       type: "loadEvents",
@@ -66,19 +60,20 @@ export default {
       isSetEvents: false
     });
     
-    console.log(this.userEventos);
-    
-    
+    this.userEventos = this.userEventos.map(evento => {
+      return {id:evento._id, startDate: new Date() ,title:evento.title}});    
   }
 };
 </script>
 <style>
 #calender {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   color: #2c3e50;
+  width: 100%;
   height: 67vh;
-  margin-left: 10px;
-  margin-right: 10px;
   margin-top: 100px;
   margin-bottom: 50px;
 }
