@@ -19,6 +19,10 @@
 }
 
 
+.details-3{
+  width:96vw;
+}
+
 .attendies{
   margin-top: 20px;
 }
@@ -52,7 +56,7 @@
 
 .stop{
   position: absolute;  
-  bottom: -600px;
+  bottom: -550px;
 }
 
 .evento-time{
@@ -102,6 +106,10 @@
 
 .details-txt{
   margin-top:20px;
+  p{
+    margin-top:10px;
+    line-height: 27px;
+  }
 }
 
 .map{
