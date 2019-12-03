@@ -20,6 +20,7 @@
         </div>
         <div class="join-container flex align-center justify-center">
           <button class="join" v-if="isLoggedInUserAttending" @click="leaveEvento">Leave</button>
+          <img v-if="seatsLeft === 0" src="@/assets/full.png">
           <button class="join" v-else @click="joinEvento">
             Join us
             <i class="fa fa-plus"></i>
@@ -130,6 +131,9 @@ export default {
       if (memberIdx !== -1) return true;
       return false;
     },
+    seatsLeft() {
+      return this.evento.membersLimit - this.evento.members.length
+    }
     
   },
   methods: {

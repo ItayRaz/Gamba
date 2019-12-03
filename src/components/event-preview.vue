@@ -6,13 +6,16 @@
       <!-- <img v-else src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" alt=""> -->
       </transition>
       <EventGallery class="gallery-dots" @setMainImg="setImg" :imgs="evento.imgs"></EventGallery>
+      <img v-if="seatsLeft === 0" class="full-img" src="@/assets/full.png">
     </div>
     <div class="prev-details flex space-between">
+      <div v-if="evento.membersLimit && seatsLeft < 10 && seatsLeft> 0" class="seats-left few-left">{{seatsLeft}} Seats Left!</div>
       <div class="info flex column space-between">
         <h3>{{evento.title}}</h3>
-        <h5>{{evento.time.start | moment("dddd, MMMM Do YYYY")}}</h5>
+        <h5>{{evento.time.start | moment("MM.DD.YY")}}</h5>
         <div>Price: {{evento.price}}$</div>
         <router-link :to="'/event/'+evento._id">Read More</router-link>
+        <div class="member-count">{{evento.members.length}} <i class="fa fa-user"></i></div>
       </div>
     <div class="prev-avatars">
       <div>
@@ -54,6 +57,11 @@ export default {
       this.currImg = idx;
     }
   },
+  computed: {
+    seatsLeft() {
+      return this.evento.membersLimit - this.evento.members.length
+    }
+  },
   components: {
     shortText,
     EventGallery
@@ -66,5 +74,8 @@ export default {
       }, 1000);
     }
   },
+  created() {
+    this.$store.dispatch({type:'loadEvents'});
+  }
 };
 </script>
