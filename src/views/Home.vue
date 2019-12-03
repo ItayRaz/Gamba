@@ -2,15 +2,16 @@
   <section>
     <section class="app-hero flex column align-center justify-center">
       <img src="~@/assets/hero.jpg">
+      <div class="img-dimer"></div>  
       <div class="hero-txt">
       <div class="logo">Have Fun</div>
       <div class="logo-subline">Don't Miss The Best Events Around!</div>
       </div>
     </section>
-    <section class="home-lists flex column align-center">
+    <section class="home-lists flex column align-center">  
       <div class="main-title-container popular-events"><h2>Popular Events</h2></div> 
       <evento-list :eventos="popularEvents"/>
-      <div class="main-title-container closeby-events"><h2>Close to you</h2></div> 
+      <div class="main-title-container closeby-events"><div class="img-dimer"></div><h2>Events Nearby</h2></div> 
       <evento-list :eventos="aroundEventos"/>
       <div class="main-title-container night-events"><h2>Night Life</h2></div> 
       <evento-list :eventos="nightLifeEvents"/>
