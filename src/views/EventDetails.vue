@@ -188,7 +188,7 @@ export default {
     },
     addComment() {
       if (!this.newComment) return;
-      var user = this.$store.getters.loggedInUser;
+      var user = this.$store.getters.logedInUser;
       var reviewer = (user)? {username: user.username, _id: user._id, img: user.img}
                            : {username: 'guest', _id: 'guest'};
       var comment = {
@@ -209,6 +209,7 @@ export default {
       
       socketService.on('addComment', comment => {
         if (!this.evento.comments) this.evento.comments = [];
+        if (this.evento.comments.find(currComment => currComment._id === comment._id)) return;
         this.evento.comments.unshift(comment);
         this.$store.dispatch({type: 'editEvent', evento: this.evento});
       })

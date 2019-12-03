@@ -50,6 +50,7 @@ function _getNewEvento() {
             duration: 0
         },
         categories: ['General'],
-        membersLimit: 0
+        membersLimit: 0,
+        comments: []
     }
 }
