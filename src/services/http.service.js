@@ -3,8 +3,8 @@
 
 import Axios from 'axios';
 var axios = Axios.create({
-    // withCredentials: true
-    withCredentials: false
+    withCredentials: true
+    // withCredentials: false
 });
 
 export default {
