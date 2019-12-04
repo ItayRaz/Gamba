@@ -1,13 +1,13 @@
 <template>
-  <section class="details-container">
-    <section v-if="evento" class="event-details">
+  <section v-if="evento._id" class="details-container">
+    <section class="event-details">
       <div class="img-container">
-        <img class="main-img" :src="evento.imgs[0]" />
+        <img v-if="evento" class="main-img" :src="evento.imgs[0]" />
         <div class="flex">
           <h1 class="title">{{evento.title}}</h1>
         </div>
       </div>
-      <div class="important-details flex column" :class="down">
+      <div class="important-details flex column">
         <div class="flex space-between evento-time">
           <h1>{{evento.time.start| moment("LLLL")}}</h1>
         </div>
@@ -74,7 +74,7 @@
           <MapDetails :eventCoords="evento.location.coords"></MapDetails>
         </div>
 
-        <div class="evento-creator">
+        <div v-if="evento.creator._id!=='guest'" class="evento-creator">
           <h2>Creator</h2>
           <Creator :creator="evento.creator"></Creator>
         </div>
@@ -126,7 +126,6 @@ export default {
     return {
       evento: {},
       mainImg: 0,
-      windowHieght: 0,
       showImg: true,
       newComment: ""
     };
@@ -134,14 +133,6 @@ export default {
   computed: {
     members() {
       return this.evento.members;
-    },
-    down() {
-      if (this.windowHieght >= 740) {
-        return { "importent-details": true, down: false, stop: true };
-      }
-      if (this.windowHieght >= 350)
-        return { "importent-details": true, down: true };
-      return { "importent-details": true };
     },
     logedInUser() {
       return this.$store.getters.logedInUser;
@@ -228,7 +219,7 @@ export default {
 
     const eventoId = this.$route.params.id;
     this.evento = await this.$store.dispatch({ type: "getEvent", eventoId });
-    // document.querySelector("body").onscroll = this.getHeight;
+    document.querySelector("body").onscroll = this.getHeight;
 
     this.connectToSocket();
   },
