@@ -1,7 +1,7 @@
 <template>
   <section>
     <section class="app-hero flex column align-center justify-center">
-      <img src="~@/assets/hero.jpg">
+      <img src="~@/assets/hero.jpeg">
       <div class="hero-txt">
       <div class="logo">Gam<span>ba</span></div>
       <div class="logo-subline">Don't Miss The Best Events Around!</div>

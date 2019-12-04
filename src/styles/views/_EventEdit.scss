@@ -2,6 +2,7 @@
 .event-edit{
     position: absolute;
     right: 50%;
+    top: 120px;
     transform: translate(50%, 0px);
     width: 75%;
     z-index: 1;
@@ -30,5 +31,11 @@
     }
     .file-input{
         border-bottom: none;
+    }
+}
+
+@media (max-width: 540px) {
+    .event-edit {
+        width: 100%;
     }
 }

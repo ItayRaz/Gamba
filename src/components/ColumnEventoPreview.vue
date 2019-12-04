@@ -9,9 +9,10 @@
             <router-link :to="'/event/'+evento._id"><short-txt :txt="evento.title" :txtLimit="15"/></router-link>
         </div>
         <div class="members-avatar-container flex" v-if="evento.members">
-            <div v-for="idx in evento.members.slice(0,1).length">
+            <router-link :to="'/user/'+evento.members[0]._id"><avatar class="avatar" :username="evento.members[0].name" :src="evento.members[0].img" :size="30" rounded/></router-link>
+            <!-- <div v-for="idx in evento.members.slice(0,1).length">
                 <router-link :to="'/user/'+evento.members[idx-1]._id"><avatar class="avatar" :username="evento.members[idx-1].name" :src="evento.members[idx-1].img" :size="30" rounded/></router-link>
-            </div>
+            </div> -->
             <!-- <avatar v-for="idx in 3" class="avatar" :key="idx" :username="'Aviv'" :src="''" :size="30" rounded></avatar> -->
         </div>
     </section>
