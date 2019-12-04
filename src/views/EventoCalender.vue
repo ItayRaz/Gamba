@@ -28,7 +28,7 @@ export default {
     return {
       showDate: new Date(),
       user: {},
-      userEventos: []
+      userEventos: [],
     };
   },
   components: {
@@ -47,16 +47,14 @@ export default {
     },
     closeCalender(){
       this.$router.push(`/user/${this.user._id}`)
-    }
+    },
   },
   async created() {
     this.user = await this.$store.dispatch("getLogedUser");
     if(!this.user){
       this.userEventos = await this.$store.dispatch({
       type: "loadEvents",
-      isSetEvents: false});
-
-      
+      isSetEvents: false});      
     }
     else{
       this.userEventos = await this.$store.dispatch({
@@ -65,7 +63,7 @@ export default {
         isSetEvents: false
       });
     }
-    
+
     this.userEventos = this.userEventos.map(evento => {
       return {id:evento._id, startDate: new Date() ,title:evento.title}});    
   }
