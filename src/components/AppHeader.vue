@@ -1,5 +1,5 @@
 <template>
-    <header :class="{'filled': scrolHeight > 200}" ref="appHeader" class="main-header flex align-center space-between wrap">
+    <header :class="headerClass" ref="appHeader" class="main-header flex align-center space-between wrap">
         <div class="screen" @click="toggleNav"></div>
         <router-link to="/"><h1 class="logo">Gam<span>ba</span></h1></router-link>
         <!-- <h3 v-if="logedUser">User: {{logedUser.username}}</h3> -->
@@ -31,6 +31,11 @@ export default {
         signupMsg() {
             return (this.logedUser)? 'Log-out' : 'Log-in';
         },
+        headerClass() {
+            var path = this.$route.path;
+            if (path.includes('/event')) return {'filled': true};
+            return {'filled': this.scrolHeight > 200}
+        }
         // scrolHeight() {
         //     return window.pageYOffset;
         // }
