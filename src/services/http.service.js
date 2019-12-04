@@ -6,7 +6,7 @@ var axios = Axios.create({
     withCredentials: true
     // withCredentials: false
 });
-
+ 
 // export default {
 //     get(API, data){
 //         return ajax(API, 'GET', data)
