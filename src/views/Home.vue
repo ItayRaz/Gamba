@@ -7,13 +7,13 @@
       <div class="logo-subline">Don't Miss The Best Events Around!</div>
       </div>
     </section>
-    <section class="home-lists flex column align-center">  
+    <section class="home-lists flex column">  
       <div class="main-title-container popular-events"><h2>Popular Events</h2></div> 
-      <evento-list :eventos="popularEvents"/>
+      <evento-list class="container" :eventos="popularEvents"/>
       <div class="main-title-container closeby-events"><h2>Events Nearby</h2></div> 
-      <evento-list :eventos="aroundEventos"/>
+      <evento-list class="container" :eventos="aroundEventos"/>
       <div class="main-title-container night-events"><h2>Night Life</h2></div> 
-      <evento-list :eventos="nightLifeEvents"/>
+      <evento-list class="container" :eventos="nightLifeEvents"/>
   </section>
     </section>
 </template>

@@ -6,6 +6,7 @@
         <button class="hamburger" @click="toggleNav">H</button>
         <ul class="main-nav clean-list flex align-center wrap" @click="toggleNav">
             <li><router-link class="flex align-center justify-center" to="/event">Events</router-link></li>
+            <li><router-link class="flex align-center justify-center" to="/event/edit">Add-Event</router-link></li>
             <li><router-link class="flex align-center justify-center" to="/signup/login">{{signupMsg}}</router-link></li>
             <li><router-link class="flex align-center justify-center" to="/about">About</router-link></li>
             <li v-if="logedUser"><router-link class="flex align-center justify-center" :to="'/user/'+logedUser._id">Profile</router-link></li>
