@@ -3,7 +3,11 @@
 import httpService from './http.service.js';
 import utilService from './util.service.js';
 
-const BASE_API = '//localhost:3030/api/evento';
+// const BASE_API = '//localhost:3030/api/evento';
+
+const BASE_API = (process.env.NODE_ENV === 'production')
+? '/'
+: '//localhost:3030/api/evento'
 
 export default {
     query,
