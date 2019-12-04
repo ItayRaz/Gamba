@@ -13,7 +13,8 @@ export default {
     query,
     save,
     remove,
-    get
+    get,
+    getNewComment
 }
 
 function query(filterBy = {}) {
@@ -56,5 +57,15 @@ function _getNewEvento() {
         categories: ['General'],
         membersLimit: 0,
         comments: []
+    }
+}
+
+function getNewComment(user, txt) {
+    var reviewer = (user)? {name: user.username, _id: user._id, img: user.img}
+                         : {name: 'guest', _id: 'guest'};
+    return {
+        txt,
+        reviewer,
+        createdAt: Date.now(),
     }
 }

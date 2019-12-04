@@ -1,5 +1,5 @@
 <template>
-    <section class="flex column align-center">
+    <section class="flex column align-center log-in">
         <h2>Log in</h2>
         <form @submit.prevent="logIn" class="flex column align-center justify-center log-in">
             <input autofocus type="text" placeholder="User name" v-model="loginInfo.username"/>

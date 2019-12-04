@@ -1,22 +1,17 @@
 <template>
-<div class="cal-container">
-  <div id="calender" v-if="user">
-    <h1>Your Events</h1>
-    <calendar-view
-      :events="userEventos"
-      :show-date="showDate"
-      class="theme-default holiday-us-traditional holiday-us-official"
-      @click-event="showEvento"
-    >
-      <calendar-view-header
-        slot="header"
-        slot-scope="t"
-        :header-props="t.headerProps"
-        @input="setShowDate"
-      />
-    </calendar-view>
+  <div class="cal-container">
+    <div id="calender" v-if="user">
+      <h1>Your Events</h1>
+      <h3>{{Date.now() | moment('MMMM')}}</h3>
+      <calendar-view
+        :events="userEventos"
+        :show-date="showDate"
+        class="theme-default holiday-us-traditional holiday-us-official"
+        @click-event="showEvento"
+        style="width: 160%"
+      ></calendar-view>
+    </div>
   </div>
-</div>
 </template>
 <script>
 import { CalendarView, CalendarViewHeader } from "vue-simple-calendar";
@@ -35,8 +30,7 @@ export default {
     };
   },
   components: {
-    CalendarView,
-    CalendarViewHeader
+    CalendarView
   },
   methods: {
     setShowDate(d) {
@@ -45,10 +39,9 @@ export default {
     showEvento(calendarItem, windowEvent) {
       this.$router.push(`/event/${calendarItem.id}`);
     },
-    formatDate(time){
-     var date = new Date(time).toGMTString()
-     return date;
-     
+    formatDate(time) {
+      var date = new Date(time).toGMTString();
+      return date;
     }
   },
   async created() {
@@ -80,9 +73,12 @@ export default {
   align-items: center;
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   color: #2c3e50;
-  width: 100%;
+  width: 50vw;
   height: 67vh;
   margin-top: 100px;
   margin-bottom: 50px;
+}
+.hi {
+  background-color: red;
 }
 </style>

@@ -1,16 +1,16 @@
 .sign-in, .log-in {
-    input, textarea {
-        margin-bottom: 30px;
-    }
-    h2 {
-        margin-bottom: 30px;
+    // h2 {
+        // margin-bottom: 40px;
+    // }
+    
+    >*:not(:last-child) {
+        margin-bottom: 15px;
     }
 }
 
 .signup-page {
     padding: 30px;
-
     >*:not(:last-child) {
-        margin-bottom: 30px;
+        margin-bottom: 15px;
     }
 }
