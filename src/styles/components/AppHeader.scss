@@ -22,22 +22,20 @@
         }
         display: none
     }
+
     .logo {
         font-family: PermanentMarker;
     }
     .main-nav {
         >* {
             margin-right: 15px;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
         }
         .user-img {
             width: 50px;
             height: 50px;
             border-radius: 50%;
         }
-    }
-    span {
-        color: $clr4;
     }
     .hamburger {
         font-weight: 900;
