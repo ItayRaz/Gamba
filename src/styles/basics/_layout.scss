@@ -52,5 +52,9 @@
 }
 
 .logo {
+    font-family: PermanentMarker;
     color: $clr7;
+    span {
+        color: $clr4;
+    }
 }
