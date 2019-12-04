@@ -13,6 +13,7 @@
       <div class="info flex column space-between">
         <h3><short-text :txt="evento.title" :txtLimit="19"/></h3>
         <h5>{{evento.time.start | moment("MM.DD.YY")}}</h5>
+        <h4><short-text :txt="evento.location.address_line_1" :txtLimit="18"/></h4>
         <div>Price: {{evento.price}}$</div>
         <router-link :to="'/event/'+evento._id">Read More</router-link>
         <div class="member-count">{{evento.members.length}} <i class="fa fa-user"></i></div>

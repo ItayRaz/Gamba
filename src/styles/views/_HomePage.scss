@@ -38,12 +38,14 @@
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
+        background-attachment: fixed;
     }
     .closeby-events {
         background-image: url(~@/assets/wine4.jpg);
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
+        background-attachment: fixed;
         // h2 {
         //     position: absolute;
         //     z-index: 5;
@@ -54,6 +56,7 @@
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
+        background-attachment: fixed;
     }
 }
 
