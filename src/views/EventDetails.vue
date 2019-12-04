@@ -219,7 +219,6 @@ export default {
 
     const eventoId = this.$route.params.id;
     this.evento = await this.$store.dispatch({ type: "getEvent", eventoId });
-    document.querySelector("body").onscroll = this.getHeight;
 
     this.connectToSocket();
   },
