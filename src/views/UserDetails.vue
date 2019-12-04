@@ -28,7 +28,7 @@
                     <div class="title-container"><h3>{{userTitleMsg}} events</h3></div>
                     <eventoList :eventos="ownedEventos"/>
                 </div>
-                <div v-if="atendedEventos.length !== 0" class="flex column align-center">
+                <div v-if="atendedEventos.length" class="flex column align-center">
                     <div class="title-container"><h3>{{userTitleMsg}} choise</h3></div>
                     <eventoList :eventos="atendedEventos"/>
                 </div>

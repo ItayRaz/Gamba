@@ -1,6 +1,5 @@
 <template>
     <section class="flex column align-center log-in">
-        <img :src="require('@/assets/gameday_svg.svg')" alt="">
         <h2>Log in</h2>
         <form @submit.prevent="logIn" class="flex column align-center justify-center log-in">
             <input autofocus type="text" placeholder="User name" v-model="loginInfo.username"/>

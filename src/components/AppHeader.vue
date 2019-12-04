@@ -34,6 +34,7 @@ export default {
         headerClass() {
             var path = this.$route.path;
             if (path.includes('/event')) return {'filled': true};
+            if (path.includes('/login')) return {'filled': true};
             return {'filled': this.scrolHeight > 200}
         }
         // scrolHeight() {
