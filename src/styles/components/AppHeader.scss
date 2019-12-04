@@ -1,4 +1,16 @@
 .main-header {
+    z-index: 2;
+    position: fixed;
+    top: 0;
+    // padding: 18px;
+    padding: 0 20px;
+    
+    transition: 0.5s;
+    
+    &.filled {
+        background-color: white;
+        box-shadow: 0px 1px 6px 0px rgba(0,0,0,0.25);
+    }
     .screen {
         background-color: rgba(0, 0, 0, 0.1);
         position: fixed;
@@ -10,12 +22,6 @@
         }
         display: none
     }
-    z-index: 2;
-    background-color: white;
-    position: fixed;
-    top: 0;
-    padding: 18px;
-    box-shadow: 0px 1px 6px 0px rgba(0,0,0,0.25);
     .logo {
         font-family: PermanentMarker;
     }
@@ -24,11 +30,19 @@
             margin-right: 15px;
             font-size: 1.5rem;
         }
+        .user-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
     }
     span {
         color: $clr4;
     }
     .hamburger {
+        font-weight: 900;
+        font-size: 2rem;
+        color: black;
         display: none;
     }
 
@@ -63,6 +77,8 @@
         }
     }
     &.open {
+        background-color: white;
+        box-shadow: 0px 1px 6px 0px rgba(0,0,0,0.25);
         .screen {
             display: block;
         }

@@ -16,7 +16,11 @@
                         <router-link class="edit-user-link" v-if="isLogedUser" :to="'/signup/signin/'+user._id">Edit Profile</router-link>
                     </div>
                 </div>
-                <p class="about">{{user.about}}</p>
+                <div class="about">
+                    <p v-if="user.about">{{user.about}}</p>
+                    <p v-if="user.mobile">Mobile: {{user.mobile}}</p>
+                    <p v-if="user.email">Email: {{user.email}}</p>
+                </div>
             </section>
             <section class="user-eventos-container flex column align-center">
                 <div v-if="ownedEventos.length !== 0" class="flex column align-center">
