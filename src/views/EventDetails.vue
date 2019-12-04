@@ -85,11 +85,11 @@
     </section>
     <router-view :evento="evento"></router-view>
 
-    <!-- <form @submit.prevent="addComment">
+    <form @submit.prevent="addComment">
       <input @ type="text" v-model="newComment" placeholder="say something?"/>
       <button>submit</button>
     </form>
-    <comment-list v-if="evento.comments" :reviews="evento.comments"/> -->
+    <comment-list v-if="evento.comments" :reviews="evento.comments"/>
   </section>
 </template>
 
@@ -103,8 +103,8 @@ import Creator from "@/components/Creator";
 
 import CommentList from '../components/ReviewList.vue';
 
+import eventoService from '../services/event.service.js';
 import socketService from '../services/socket.service.js';
-import utils from '../services/util.service.js';
 
 export default {
   components: {
@@ -183,18 +183,8 @@ export default {
     addComment() {
       if (!this.newComment) return;
       var user = this.$store.getters.logedInUser;
-      var reviewer = (user)? {username: user.username, _id: user._id, img: user.img}
-                           : {username: 'guest', _id: 'guest'};
-      var comment = {
-        txt: this.newComment,
-        reviewer,
-        createdAt: Date.now(),
-        _id: utils.getRandomId()
-      }
+      var comment = eventoService.getNewComment(user, this.newComment);
       socketService.emit('newComment', {comment, eventoId: this.evento._id});
-
-      if (!this.evento.comments) this.evento.comments = [];
-      this.evento.comments.unshift(comment);
 
       this.newComment = '';
     },

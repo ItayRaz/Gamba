@@ -40,7 +40,7 @@
         <h3>Event Images:</h3>
         <input class="file-input" type="file" ref="files" multiple @change="uploadImg" />
         <router-link v-if="this.$route.params.id" to="/event">
-          <el-button type="primary" @click="Edit" to="/">editEvento</el-button>
+          <el-button type="primary" @click="editEvento" to="/">editEvento</el-button>
         </router-link>
         <router-link v-else to="/event">
           <el-button type="primary" @click="createEvento" to="/">Create</el-button>

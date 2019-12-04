@@ -51,7 +51,7 @@ export default {
   },
   methods: {
     removeEvent(eventoId) {
-      this.$store.dispatch({ type: "removeEvent", eventoId });
+      this.$store.dispatch({ type: "removeEvento", eventoId });
     },
     setImg(idx){
       this.currImg = idx;
