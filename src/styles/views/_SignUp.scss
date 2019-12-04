@@ -9,8 +9,20 @@
 }
 
 .signup-page {
+    margin-top: $headerHeight;
     padding: 30px;
     >*:not(:last-child) {
         margin-bottom: 15px;
+    }
+    >:last-child {
+        margin-top: 30px;
+    }
+    .signup-svg {
+        width: 50%;
+    }
+    @media (max-width: 500px) {
+        .signup-svg {
+            width: 80%;
+        }
     }
 }
