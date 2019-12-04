@@ -8,7 +8,6 @@
 }
 
 .img-container{
-  margin-top: $headerHeight;
   @include aspect-ratio(100, 30);
 }
 
@@ -146,6 +145,13 @@
       width:70%;
       padding: 10px 10px  10px;
       font-size: 18px;
+      box-shadow: 0 0 1px black;
+      border: none;
+    }
+    button{
+      background-color: #f8cece;
+      padding: 12px;
+      border-radius: 10px;
     }
   }
   margin-bottom: 20px;
@@ -291,10 +297,10 @@
     .evento-reviews{
       width:100%;
     }
-    // .join-container{
-    //   position: sticky;
-    //   top:150px;  
-      
-    // }
+    .join-container .down{
+      position: sticky;
+      top:150px;  
+      float: right;      
+    }
 
   }
