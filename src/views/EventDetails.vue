@@ -9,30 +9,23 @@
       </div>
       <div class="important-details flex column" :class="down">
         <div class="flex space-between evento-time">
-          <h1>{{evento.time.start| moment("dddd")}}</h1>|
-          <h1>{{evento.time.start| moment("L")}}</h1>
+          <h1>{{evento.time.start| moment("LLLL")}}</h1>
         </div>
         <div class="evento-location">
           <h1>{{evento.location.address_line_1}}</h1>
         </div>
         <div class="join-container flex align-center justify-center">
           <button class="leave" v-if="isLoggedInUserAttending" @click="leaveEvento">Leave</button>
-          <img v-else-if="seatsLeft === 0" src="@/assets/full.png" />
+          <img class="full-img" v-else-if="seatsLeft === 0" src="@/assets/full.png" />
           <button class="join" v-else @click="joinEvento">
             Join us
             <i class="fa fa-plus"></i>
           </button>
         </div>
-        <hr />
         <div class="secondry-details">
           <hr />
-          <div class="flex space-between">
-            <h1>At:</h1>
-            <h1>{{evento.time.start | moment("LT")}}</h1>
-          </div>
-          <hr />
-          <div v-if="evento.price" class="flex space-between">
-            <h1 v-if="evento.price">Price</h1>
+          <div v-if="evento.price" class="price flex space-around">
+            <h1 v-if="evento.price">Price:</h1>
             <h1>{{evento.price}}$</h1>
           </div>
         </div>
@@ -62,7 +55,7 @@
         </div>
 
         <div class="attendies">
-          <h2>Who is coming...</h2>
+          <h2>Participence</h2>
         </div>
 
         <div class="prev-avatars">
@@ -82,20 +75,29 @@
         </div>
 
         <div class="evento-creator">
-          <Creator v-if="evento.creator.id" :creator="evento.creator"></Creator>
-          <h1>For more details you can contact ...</h1>
-          <h1>Email:</h1>
-          <h1>Phone:</h1>
+          <h2>Creator</h2>
+          <Creator :creator="evento.creator"></Creator>
         </div>
+
+        <div class="contact">
+          <h2>Contact</h2>
+          <div class="flex space-around">
+            <h1>Email:</h1>
+            <h1>Phone:</h1>
+          </div>
+        </div>
+
+        <div class="evento-reviews">
+          <form class="flex space-between" @submit.prevent="addComment">
+            <input @ type="text" v-model="newComment" placeholder="say something?" />
+            <button>submit</button>
+          </form>
+          <comment-list v-if="evento.comments" :reviews="evento.comments" />
+        </div>
+
       </section>
     </section>
     <router-view :evento="evento"></router-view>
-
-    <form @submit.prevent="addComment">
-      <input @ type="text" v-model="newComment" placeholder="say something?" />
-      <button>submit</button>
-    </form>
-    <comment-list v-if="evento.comments" :reviews="evento.comments" />
   </section>
 </template>
 
@@ -118,7 +120,7 @@ export default {
     EventGallery,
     UserGallery,
     Creator,
-    CommentList
+    CommentList,
   },
   data() {
     return {
