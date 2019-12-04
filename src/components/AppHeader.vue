@@ -33,9 +33,12 @@ export default {
         },
         headerClass() {
             var path = this.$route.path;
+            var params = this.$route.params;
+
+            if (this.scrolHeight > 200) return {'filled': true};
+            if (path.includes('/event') && params.id) return {'filled': false};
             if (path.includes('/event')) return {'filled': true};
             if (path.includes('/login')) return {'filled': true};
-            return {'filled': this.scrolHeight > 200}
         }
         // scrolHeight() {
         //     return window.pageYOffset;
