@@ -4,7 +4,7 @@
       :center="center"
       :zoom="14"
       map-type-id="terrain"
-      style="width:450px;height:250px;"
+      style="width:100%;height:250px;"
       :options="{
    zoomControl: true,
    mapTypeControl: false,
