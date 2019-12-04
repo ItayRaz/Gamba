@@ -6,10 +6,10 @@
                 <p>Event by: </p>
                 <router-link :to="'/user/'+evento.creator._id">{{evento.creator.name}}</router-link>
             </div>
-            <router-link :to="'/event/'+evento._id"><short-txt :txt="evento.title" :txtLimit="20"/></router-link>
+            <router-link :to="'/event/'+evento._id"><short-txt :txt="evento.title" :txtLimit="15"/></router-link>
         </div>
         <div class="members-avatar-container flex" v-if="evento.members">
-            <div v-for="idx in evento.members.slice(0,3).length">
+            <div v-for="idx in evento.members.slice(0,1).length">
                 <router-link :to="'/user/'+evento.members[idx-1]._id"><avatar class="avatar" :username="evento.members[idx-1].name" :src="evento.members[idx-1].img" :size="30" rounded/></router-link>
             </div>
             <!-- <avatar v-for="idx in 3" class="avatar" :key="idx" :username="'Aviv'" :src="''" :size="30" rounded></avatar> -->

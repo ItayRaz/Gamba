@@ -11,7 +11,7 @@ export default {
         setEventos(state, { eventos }) {
             state.eventos = eventos;
         },
-        removeEvent(state, { eventoId }) {
+        removeEvento(state, { eventoId }) {
             const idx = state.eventos.findIndex(evento => evento._id === eventoId);
             state.eventos.splice(idx, 1)
         },
@@ -113,12 +113,13 @@ export default {
             }
             return eventos;
         },
-        removeEvent(context, { eventoId }) {
-            context.dispatch({ type: 'Confirm', msg: 'Are you sure you want to remove this Event? you would not be able to restore it.' })
+        removeEvento(context, { eventoId }) {
+            return context.dispatch({ type: 'Confirm', msg: 'Are you sure you want to remove this Event? you would not be able to restore it.' })
                 .then(() => {
                     return eventoService.remove(eventoId)
-                        .then(() => context.commit({ type: 'removeEvent', eventoId }))
+                        .then(() => context.commit({ type: 'removeEvento', eventoId }))
                 })
+                .catch(() => Promise.reject());
         },
         addEvent(context, { evento }) {
             return eventoService.save(evento)

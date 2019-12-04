@@ -37,7 +37,7 @@ export default {
     },
     methods: {
         remove() {
-            this.$store.dispatch({type: 'removeEvent', eventoId: this.evento._id})
+            this.$store.dispatch({type: 'removeEvento', eventoId: this.evento._id})
         }
     },
     created() {

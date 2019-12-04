@@ -4,7 +4,8 @@
     position: relative;
     .cover-img {
         margin: 0 auto;
-        width: 100%;
+        // width: 100%;
+        width: 90%;
         height: 70vh;
         object-fit: cover;
         // @include aspect-ratio(100, 56);
@@ -15,12 +16,11 @@
         margin-bottom: 20px;
         position: relative;
         top: -100px;
+        padding: 10px;
 
         .info {
             padding-top: 30px;
             .edit-user-link {
-                // margin-left: 10px;
-                // margin-top: 47px;
                 font-size: 0.75rem;
             }
         }
@@ -35,7 +35,9 @@
             object-fit: cover;
         }
         .about {
-            margin-bottom: 20px;
+            // padding: 10px;
+            margin-top: 10px;
+            // margin-bottom: 20px;
         }
     }
     .user-reviews-container {
@@ -74,45 +76,73 @@
             width: 100%;
         }
         .column-evento-list {
-        }
-        .column-evento-preview {
-            width: 350px;
-            // margin: 5px;
-            .prev-avatars {
-                display: none;
+            li {
+                width: 400px;
+                .column-evento-preview {
+                    width: 90%;
+                    // margin: 5px;
+                }
+                position: relative;
+                .btns-container {
+                    width: 10%;
+                    margin: auto auto;
+                    margin-left: 5px;
+                    >*:not(:last-child) {
+                        margin-bottom: 5px;
+                    }
+                    // height: 100%;
+                }
             }
         }
     }
-}
-@media (max-width: 750px) {
-    .user-details {
-        .user-reviews-container {
-            >* {
-                width: 100%;
+    @media (max-width: 500px) {
+        // .user-details {
+            .profile {
+                .avatar {
+                    margin: 0;
+                }
             }
-            .user-review-preview {
-                width: 95vw;
+            .user-reviews-container {
+                >* {
+                    width: 100%;
+                }
             }
-        }
-        .column-eventos-list {
-            // max-width: 100%;
-            .column-evento-preview {
-                width: 95vw;
+            .user-eventos-container {
+                .column-evento-list {
+                    li {
+                        width: 95vw;
+                        // width: 95%;
+                        // position: relative;
+                        .column-evento-preview {
+                            width: 100% !important;
+                            .members-avatar-container {
+                                display: none;
+                            }
+                        }
+                        .btns-container {
+                            position: absolute !important;
+                            right: 20px;
+                            bottom: 50%;
+                            transform: translate(50%, 50%);
+                        }
+                    }
+                    // max-width: 100%;
+                }
             }
-        }
+        // }
     }
 }
-@media (max-width: 1000px) {
-.user-eventos-container {
-    max-width: 100%;
-    .column-eventos-list {
-        max-width: 100%;
-        .column-evento-preview {
-            // width: 95vw;
-        }
-    }
-}
-}
+// @media (max-width: 1000px) {
+// .user-eventos-container {
+//     max-width: 100%;
+//     .column-eventos-list {
+//         max-width: 100%;
+//         .column-evento-preview {
+//             // width: 95vw;
+//         }
+//     }
+// }
+// }
 @media (max-width: 1030px) {
     .user-details {
         margin: 0;
