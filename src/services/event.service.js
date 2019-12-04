@@ -3,7 +3,15 @@
 import httpService from './http.service.js';
 import utilService from './util.service.js';
 
-const BASE_API = '//localhost:3030/api/evento';
+// const BASE_API = '//localhost:3030/api/evento';
+
+const BASE_API = (process.env.NODE_ENV === 'production')
+? '/api/evento'
+: '//localhost:3030/api/evento'
+console.log(process.env.NODE_ENV ,'!!!');
+console.log(BASE_API);
+
+
 
 export default {
     query,
@@ -15,7 +23,7 @@ export default {
 
 function query(filterBy = {}) {
     var queryStr = utilService.getQuerysStr(filterBy);
-    console.log('sending request to', BASE_API+queryStr);
+    console.log('sending request to..', BASE_API+queryStr);
     return httpService.get(BASE_API + queryStr);
 }
 
