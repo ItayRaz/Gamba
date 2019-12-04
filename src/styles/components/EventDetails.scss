@@ -8,7 +8,7 @@
 }
 
 .img-container{
-  @include aspect-ratio(100, 30)
+  @include aspect-ratio(100, 38)
 }
 
 
@@ -128,8 +128,12 @@
 .contact{
   width: 53%;
   margin-top: 10px;
+  height:150px;
   h2{
     padding:15px 0 15px;
+  }
+  h1{
+    margin-bottom: 15px;
   }
 }
 
@@ -141,8 +145,10 @@
     input{
       width:70%;
       padding: 10px 10px  10px;
+      font-size: 18px;
     }
   }
+  margin-bottom: 20px;
 }
 
 .details-content {
@@ -252,7 +258,7 @@
   }
 
   @media (max-width:700px){
-    .details-container , .container{
+    .evento-details , .container{
       margin:unset;
       margin-left:10px;
       margin-right:10px;
