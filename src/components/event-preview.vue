@@ -21,7 +21,8 @@
     <div class="prev-avatars">
       <div>
         <ul>
-          <li v-for="member in members" :key="member._id" :style="{ backgroundImage: `url(${member.img})`}" ></li>
+          <li v-for="member in members" :key="member._id" :style="{ backgroundImage: `url(${member.img})`}" >
+          </li>
         </ul>
       </div>
     </div>

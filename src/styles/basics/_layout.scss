@@ -1,11 +1,12 @@
 .main-header {
-    min-height: 10vh;
+    // min-height: 10vh;
+    height: 70px;
     width: 100vw;
     z-index: 1;
 }
 
 .main-router-view {
-    margin-top: 15vh;
+    // margin-top: 70px;
     // width: 100vw;
     min-height: 90vh;
     // background-color: #fff;
@@ -21,7 +22,8 @@
 
 
 .container {
-    // margin: 0 auto;
+    margin: 0 auto;
+    // max-width: ;
     // width: 90vw;
     // margin-top: 11.5vh;
     // padding: 0 10vw;

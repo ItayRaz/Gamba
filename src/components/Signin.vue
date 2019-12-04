@@ -6,9 +6,9 @@
       <input type="text" placeholder="Password" v-model="user.password" />
       <!-- <input type="text" placeholder="Profile image" v-model="user.img"/> -->
       Profile Picture:
-      <input class="file-input" type="file" ref="files" @change="uploadImg" />
-      Cover image:
       <input class="file-input" type="file" ref="files" @change="uploadImg('userImg')" />
+      Cover image:
+      <input class="file-input" type="file" ref="files" @change="uploadImg" />
       <!-- <input type="text" placeholder="Cover image" v-model="user.coverImg" /> -->
       <input type="text" placeholder="Email" v-model="user.email" />
       <input type="text" placeholder="Mobile" v-model="user.mobile" />

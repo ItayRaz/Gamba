@@ -38,6 +38,11 @@ export default {
         this.logout();
         this.isSignIn = (this.$route.path === '/signup/login')? false : true; 
         console.log(this.$route.path)
+    },
+    watch: {
+        '$route.path'() {
+            this.isSignIn = (this.$route.path === '/signup/login')? false : true; 
+        }
     }
 }
 </script>

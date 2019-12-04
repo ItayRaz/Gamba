@@ -1,11 +1,11 @@
 .user-details {
     // padding-top: 10px;
-    margin: 0 15vh;
+    // margin: 0 15vh;
     position: relative;
     .cover-img {
         margin: 0 auto;
-        // width: 100%;
-        width: 90%;
+        width: 100%;
+        // width: 90%;
         height: 70vh;
         object-fit: cover;
         // @include aspect-ratio(100, 56);
@@ -29,6 +29,7 @@
             width: 200px;
             height: 200px;
             border: 2px solid white;
+            background-color: rgb(224, 224, 224);
             margin-right: 20px;
             margin-bottom: 30px;
             border-radius: 50%;
@@ -38,6 +39,9 @@
             // padding: 10px;
             margin-top: 10px;
             // margin-bottom: 20px;
+            >* {
+                margin-bottom: 10px;
+            }
         }
     }
     .user-reviews-container {
@@ -45,7 +49,7 @@
         >* {
             padding-left: 5px;
             padding-right: 5px;
-            width: 60%;
+            // width: 60%;
             min-width: 250px;
             .review-list {
                 width: 100%;
@@ -98,8 +102,15 @@
     @media (max-width: 500px) {
         // .user-details {
             .profile {
+                top: 0;
                 .avatar {
                     margin: 0;
+                    margin-right: 15px;
+                    width: 100px;
+                    height: 100px;
+                }
+                .info {
+                    padding: 0;
                 }
             }
             .user-reviews-container {
@@ -147,7 +158,8 @@
     .user-details {
         margin: 0;
         .cover-img {
-            width: 95vw;
+            height: 50vh;
+            // width: 95vw;
         }
     }
 } 
