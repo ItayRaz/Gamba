@@ -3,7 +3,7 @@
     <section class="app-hero flex column align-center justify-center">
       <img src="~@/assets/hero.jpg">
       <div class="hero-txt">
-      <div class="logo">Have Fun</div>
+      <div class="logo">Gam<span>ba</span></div>
       <div class="logo-subline">Don't Miss The Best Events Around!</div>
       </div>
     </section>
