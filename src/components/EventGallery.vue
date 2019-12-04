@@ -2,13 +2,13 @@
   <section v-if="imgs.length" class="event-gallery flex align-center">
     <img src alt />
     <div class="btn-img flex">
-      <button class="left" @click="getNextImg(-1)"><i class="fa fa-chevron-left"></i></button>
-      <button class="right" @click="getNextImg(1)"><i class="fa fa-chevron-right"></i></button>
+      <button class="left" @click.stop="getNextImg(-1)"><i class="fa fa-chevron-left"></i></button>
+      <button class="right" @click.stop="getNextImg(1)"><i class="fa fa-chevron-right"></i></button>
     </div>
     <ul class="clean-list flex row">
       <li class="pointer" v-for="(img,idx) in imgsToShow" :key="idx">
-        <p v-if="idx === currImg" @click="setImg(idx)"><i class="fa fa-circle"></i></p>
-        <p v-else @click="setImg(idx)"><i class="fa fa-circle"></i></p>
+        <p v-if="idx === currImg" @click.stop="setImg(idx)"><i class="fa fa-circle"></i></p>
+        <p v-else @click.stop="setImg(idx)"><i class="fa fa-circle"></i></p>
         <!-- <img class="img-details" :src="img" /> -->
         <!-- :class="{middle : idx === Math.floor(imgs.length/2)}" -->
         <!-- <p v-if="idx === Math.floor(imgs.length/2)" @click="getNextImg(-1)">⚪</p> -->

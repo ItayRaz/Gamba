@@ -1,5 +1,5 @@
 <template>
-  <section class="evento-preview">
+  <section class="evento-preview" @click="goToDetails">
     <div class="prev-header">
       <transition name="fade">  
       <img v-if="evento.imgs.length > 0 && showImg" :src="evento.imgs[currImg]" alt="">
@@ -11,7 +11,7 @@
     <div class="prev-details flex space-between">
       <div v-if="evento.membersLimit && seatsLeft < 10 && seatsLeft> 0" class="seats-left few-left">{{seatsLeft}} Seats Left!</div>
       <div class="info flex column space-between">
-        <h3>{{evento.title}}</h3>
+        <h3><short-text :txt="evento.title" :txtLimit="19"/></h3>
         <h5>{{evento.time.start | moment("MM.DD.YY")}}</h5>
         <div>Price: {{evento.price}}$</div>
         <router-link :to="'/event/'+evento._id">Read More</router-link>
@@ -20,10 +20,7 @@
     <div class="prev-avatars">
       <div>
         <ul>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
+          <li v-for="member in members" :key="member._id" :style="{ backgroundImage: `url(${member.img})`}" ></li>
         </ul>
       </div>
     </div>
@@ -55,12 +52,29 @@ export default {
     },
     setImg(idx){
       this.currImg = idx;
+    },
+    goToDetails(){      
+      this.$router.push(`/event/${this.evento._id}`)
     }
   },
   computed: {
     seatsLeft() {
       return this.evento.membersLimit - this.evento.members.length
+    },
+    members() {
+      let memberCount = 0;
+      let members = [];
+      this.evento.members.map(member => {
+        if (memberCount === 4) return;
+        memberCount++
+        members.push({_id: member._id, img: member.img});
+      })
+      return members;
+    },
+    url(){
+      return "jfjf"
     }
+    
   },
   components: {
     shortText,
