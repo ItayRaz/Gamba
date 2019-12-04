@@ -1,14 +1,16 @@
 <template>
   <div class="cal-container">
+    
     <div id="calender" v-if="user">
-      <h1>Your Events</h1>
-      <h3>{{Date.now() | moment('MMMM')}}</h3>
+      <h1 style="color: white">Your Events</h1>
+      <button class="calender-btn" @click="closeCalender">X</button>
+      <h3 style="color: white">{{Date.now() | moment('MMMM')}}</h3>
       <calendar-view
         :events="userEventos"
         :show-date="showDate"
-        class="theme-default holiday-us-traditional holiday-us-official"
+        class="theme-default holiday-us-traditional "
         @click-event="showEvento"
-        style="width: 160%"
+        style="width: 160% ; backgroundColor: #fafafa"
       ></calendar-view>
     </div>
   </div>
@@ -42,6 +44,9 @@ export default {
     formatDate(time) {
       var date = new Date(time).toGMTString();
       return date;
+    },
+    closeCalender(){
+      this.$router.push(`/user/${this.user._id}`)
     }
   },
   async created() {
@@ -66,19 +71,3 @@ export default {
   }
 };
 </script>
-<style>
-#calender {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  color: #2c3e50;
-  width: 50vw;
-  height: 67vh;
-  margin-top: 100px;
-  margin-bottom: 50px;
-}
-.hi {
-  background-color: red;
-}
-</style>

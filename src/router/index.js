@@ -42,11 +42,6 @@ const routes = [
         name: 'event-edit',
         component: eventEdit
       },
-      {
-        path: '/event/calender',
-        name: 'event-calender',
-        component: EventoCalender
-      },
     ]
   },
   {
@@ -96,7 +91,14 @@ const routes = [
   {
     path: '/user/:id',
     name: 'user-details',
-    component: UserDetails
+    component: UserDetails,
+    children:[
+      {
+        path: 'calender',
+        name: 'calender',
+        component: EventoCalender
+      },
+    ]
   },
 ]
 
