@@ -24,6 +24,9 @@
     }
     .logo {
         font-family: PermanentMarker;
+        span {
+            color: $clr4;
+        }
     }
     .main-nav {
         >* {
@@ -35,9 +38,6 @@
             height: 50px;
             border-radius: 50%;
         }
-    }
-    span {
-        color: $clr4;
     }
     .hamburger {
         font-weight: 900;
