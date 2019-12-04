@@ -13,6 +13,7 @@
                     <div class="flex column info">
                         <h1>{{user.username}}</h1>
                         <small>{{isAdminMsg}}</small>
+                        <p @click="showCalender">claender</p>
                         <router-link class="edit-user-link" v-if="isLogedUser" :to="'/signup/signin/'+user._id">Edit Profile</router-link>
                     </div>
                 </div>
@@ -45,7 +46,8 @@
                     <review-list :reviews="ownedReviews"/>
                 </div>
             </div> -->
-        </section>
+        </section>  
+        <router-view></router-view>
     </main>
 </template>
 
@@ -120,6 +122,9 @@ export default {
                     this.getEventos();
                     this.getReviews();
                 })
+        },
+        showCalender(){
+            this.$router.push(`/user/${this.user._id}/calender`)
         }
     },
     created() {

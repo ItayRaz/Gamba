@@ -1,19 +1,21 @@
 <template>
   <section class="event-edit">
     <el-form v-if="evento" el-form ref="form" :model="evento" label-width="120px">
-      <el-form-item label="Event name">
-        <el-input v-model="evento.title"></el-input>
-      </el-form-item>
-      <el-form-item label="Event start time">
-        <el-date-picker
-          v-if="evento.time"
-          type="date"
-          placeholder="Pick a date"
-          v-model="evento.time.start"
-          style="width: 100%;"
-          value-format="timestamp"
-        ></el-date-picker>
-      </el-form-item>
+      <div class="flex wrap space-around start">
+        <el-form-item label="Event name">
+          <el-input v-model="evento.title"></el-input>
+        </el-form-item>
+        <el-form-item label="Event start time">
+          <el-date-picker
+            v-if="evento.time"
+            type="date"
+            placeholder="Pick a date"
+            v-model="evento.time.start"
+            style="width: 100%;"
+            value-format="timestamp"
+          ></el-date-picker>
+        </el-form-item>
+      </div>
       <div class="flex wrap">
         <el-form-item label="Duration">
           <el-col :span="8">
@@ -27,12 +29,14 @@
           <el-input-number v-model="evento.membersLimit"></el-input-number>
         </el-form-item>
       </div>
-      <el-form-item label="Categories">
-        <event-category v-model="evento.categories"></event-category>
-      </el-form-item>
-      <el-form-item label="Address">
-        <el-input placeholder v-model="evento.location.address_line_1" clearable></el-input>
-      </el-form-item>
+      <div class="flex wrap space-around start">
+        <el-form-item label="Categories">
+          <event-category v-model="evento.categories"></event-category>
+        </el-form-item>
+        <el-form-item label="Address">
+          <el-input placeholder v-model="evento.location.address_line_1" clearable></el-input>
+        </el-form-item>
+      </div>
       <el-form-item label="Description">
         <el-input type="textarea" v-model="evento.desc"></el-input>
       </el-form-item>

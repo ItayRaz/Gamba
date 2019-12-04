@@ -81,9 +81,9 @@
 
         <div class="contact">
           <h2>Contact</h2>
-          <div class="flex space-around">
-            <h1>Email:</h1>
-            <h1>Phone:</h1>
+          <div >
+            <h1>Email: gigi1234@gmai.com</h1>
+            <h1>Phone: 05458398840</h1>
           </div>
         </div>
 
