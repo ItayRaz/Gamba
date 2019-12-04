@@ -8,6 +8,7 @@
 }
 
 .img-container{
+  margin-top: $headerHeight;
   @include aspect-ratio(100, 30)
 }
 

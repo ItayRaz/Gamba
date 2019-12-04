@@ -57,23 +57,35 @@
             position: absolute;
             right: 0;
             // top: 10vh;
-            top: 100%;
-            transition: 0.3s;
+            // top: 100%;
+            top: 0;
             transform: translate(100%, 0);
+            transition: 0.3s;
             >* {
                 margin-right: 0;
             }
+            height: 100vh;
+            background-color: #fff;
+            border-left: 1px solid rgba(0, 0, 0, 0.3);
+            // border: 1px solid black;
 
             li {
-                width: 250px;
-                height: 100px;
+                width: 200px;
+                height: 75px;
+                // width: 250px;
+                // height: 100px;
                 >* {
                     width: 100%;
                     height: 100%
                 }
-                border: 1px solid black;
+                // border: 1px solid black;
+                // &:not(:last-child) {
+                //     border-bottom: unset;
+                // }
+                border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+
                 background-color: white;
-                box-shadow: inset 0px 0px 2.5px 0px rgba(0, 0, 0, 0.2);
+                // box-shadow: inset 0px 0px 2.5px 0px rgba(0, 0, 0, 0.2);
             }
         }
     }

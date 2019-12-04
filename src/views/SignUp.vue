@@ -4,6 +4,7 @@
     <main class="signup-page flex column align-center">
         <router-view @logedIn="logedIn"/>
         <router-link :to="routerLink" @click.native="isSignIn = !isSignIn">{{btnMsg}}</router-link>
+        <img class="signup-svg" :src="require('@/assets/gameday_svg.svg')" alt=""/>
     </main>
 </template>
 
