@@ -1,5 +1,17 @@
 .creator-container{
     margin-top: 15px;
-    // max-width:500px;
-    align-items: center;
+    margin-bottom: 15px;
+}
+
+.user-avatar{
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+.user-contact{
+    width:100%;
+    h1{
+        margin-bottom: 10px;
+        font-size: 17px;
+    }
 }

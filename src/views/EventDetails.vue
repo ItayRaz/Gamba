@@ -79,14 +79,6 @@
           <Creator :creator="evento.creator"></Creator>
         </div>
 
-        <div class="contact">
-          <h2>Contact</h2>
-          <div >
-            <h1>Email: gigi1234@gmai.com</h1>
-            <h1>Phone: 05458398840</h1>
-          </div>
-        </div>
-
         <div class="evento-reviews">
           <form class="flex space-between" @submit.prevent="addComment">
             <input @ type="text" v-model="newComment" placeholder="say something?" />
