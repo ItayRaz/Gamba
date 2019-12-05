@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="filter" class="evento-filter flex align-center wrap">
+  <form @submit.prevent="filter" class="evento-filter flex align-center space-around wrap">
     <section class="search-by">
       <i class="fa fa-search"></i>
       <input type="search" @input="filter" v-model="filterBy.searchStr" placeholder="Search Event" />
