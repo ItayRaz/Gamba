@@ -10,7 +10,7 @@
         :show-date="showDate"
         class="theme-default holiday-us-traditional "
         @click-event="showEvento"
-        style="width: 160% ; backgroundColor: #ffff; border-radius: 10px"
+        style="width: 160% ; backgroundColor: #ffff; border-radius: 10px; cursor:pointer;"
       ></calendar-view>
     </div>
   </div>
