@@ -61,6 +61,7 @@ export default {
   },
   created() {
     // this.setEventsAround();
+    document.body.scrollIntoView();
   }
 }
 </script>
