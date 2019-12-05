@@ -8,8 +8,7 @@ import utilService from './util.service.js';
 const BASE_API = (process.env.NODE_ENV === 'production')
 ? '/api/evento'
 : '//localhost:3030/api/evento'
-console.log(process.env.NODE_ENV ,'!!!');
-console.log(BASE_API);
+
 
 
 

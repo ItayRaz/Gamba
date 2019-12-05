@@ -3,7 +3,7 @@
     <h2>Sign in</h2>
     <form @submit.prevent="SignIn" class="flex column align-center justify-center sign-in">
       <input autofocus type="text" placeholder="User name" v-model="user.username" />
-      <input type="text" placeholder="Password" v-model="user.password" />
+      <input type="password" placeholder="Password" v-model="user.password" />
       <!-- <input type="text" placeholder="Profile image" v-model="user.img"/> -->
       Profile Picture:
       <input class="file-input" type="file" ref="files" @change="uploadImg('userImg')" />
@@ -66,8 +66,8 @@ export default {
       this.openLoading();
       cloudinaryService.uploadImg(event, imgCount).then(res => {
         console.log(res);
-        if (type === "userImg") this.user.img = res;
-        else this.user.coverImg = res;
+        if (type === "userImg") this.user.img = res[0];
+        else this.user.coverImg = res[0];
         this.closeLoading();
       });
     }

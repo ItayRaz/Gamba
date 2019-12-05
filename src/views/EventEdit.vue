@@ -130,6 +130,7 @@ export default {
     google: gmapApi
   },
   async created() {
+    document.body.scrollIntoView();
     let eventoId = this.$route.params.id;
     if (!eventoId) eventoId = "";
     await this.$store.dispatch({ type: "getEvent", eventoId });

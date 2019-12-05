@@ -3,7 +3,7 @@
         <h2>Log in</h2>
         <form @submit.prevent="logIn" class="flex column align-center justify-center log-in">
             <input autofocus type="text" placeholder="User name" v-model="loginInfo.username"/>
-            <input type="text" placeholder="Password" v-model="loginInfo.password"/>
+            <input type="password" placeholder="Password" v-model="loginInfo.password"/>
             <button>Log in</button>
         </form>
     </section>
@@ -32,6 +32,9 @@ export default {
                     }
                 })
         }
+    },
+    created() {
+        document.body.scrollIntoView();
     }
 }
 </script>

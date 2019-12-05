@@ -131,6 +131,7 @@ export default {
     },
     created() {
         this.init();
+        document.body.scrollIntoView();
     },
     watch: {
         '$route.params.id'() {
