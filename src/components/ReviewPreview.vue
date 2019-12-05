@@ -8,7 +8,7 @@
         </div>
         <div class="flex column">
             <div class="flex column info">
-                <p v-if="review.reviewer._id !== 'guest'"><router-link :to="review.reviewer._id">{{review.reviewer.name}}</router-link></p>
+                <p v-if="review.reviewer._id !== 'guest' && review.reviewer._id !== 'System'"><router-link :to="'/user/'+review.reviewer._id">{{review.reviewer.name}}</router-link></p>
                 <p v-else>{{review.reviewer._id}}</p>
                 <p>{{review.txt}}</p>
             </div>
