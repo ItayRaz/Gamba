@@ -2,7 +2,9 @@
   <div id="app">
     <confirm-popup/>
     <app-header class="main-header"/>
+    <transition name="fade" mode="out-in">
     <router-view class="main-router-view"/>
+    </transition>
     <app-footer class="main-footer"/>
   </div>
 </template>
