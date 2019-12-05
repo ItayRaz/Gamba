@@ -52,12 +52,14 @@
         </section>  
         <router-view></router-view>
     </main>
+    <!-- <loading v-else></loading> -->
 </template>
 
 <script>
 import eventoList from '../components/ColumnEventoList.vue';
 import userReviewEdit from '../components/UserReviewEdit.vue';
 import reviewList from '../components/ReviewList.vue';
+import loading from '../components/Loading.vue';
 
 import Avatar from "vue-avatar";
 
@@ -68,6 +70,7 @@ export default {
             ownedEventos: [],
             atendedEventos: [],
             reviews: [],
+            isLoading: true
         }
     },
     computed: {
@@ -144,7 +147,8 @@ export default {
         eventoList,
         userReviewEdit,
         reviewList,
-        Avatar
+        Avatar,
+        loading
     }
 }
 </script>

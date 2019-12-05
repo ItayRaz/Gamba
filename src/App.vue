@@ -2,7 +2,9 @@
   <div id="app">
     <confirm-popup/>
     <app-header class="main-header"/>
+    <transition name="fade" :duration="500">
     <router-view class="main-router-view"/>
+    </transition>
     <app-footer class="main-footer"/>
   </div>
 </template>
@@ -16,7 +18,7 @@ export default {
   components: {
     AppHeader,
     AppFooter,
-    confirmPopup
+    confirmPopup,
   },
   created() {
     this.$store.dispatch({type:'getCurrCoords'});
