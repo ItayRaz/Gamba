@@ -18,6 +18,7 @@
                 </div>
                 <div class="about">
                     <p v-if="user.about">{{user.about}}</p>
+                    <!-- <pre v-if="user.about">{{user.about}}</pre> -->
                     <p v-if="user.mobile">Mobile: {{user.mobile}}</p>
                     <p v-if="user.email">Email: {{user.email}}</p>
                 </div>

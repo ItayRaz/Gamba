@@ -190,7 +190,8 @@ export default {
     connectToSocket() {
       socketService.emit("joinRoom", this.evento._id);
 
-      socketService.on("addComment", comment => {
+      socketService.on("addComment", ({comment, room}) => {
+        if (room !== this.evento._id) return;
         if (!this.evento.comments) this.evento.comments = [];
         if (this.evento.comments.find(currComment => currComment._id === comment._id)) return;
         this.evento.comments.unshift(comment);
@@ -198,7 +199,7 @@ export default {
       });
     },
     disConnectSocket() {
-      socketService.emit("leaveRoom", this.evento.id);
+      socketService.emit("leaveRoom", this.evento._id);
     }
   },
   async created() {

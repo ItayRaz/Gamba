@@ -23,7 +23,7 @@ export default {
                            Math.abs(ev1.location.coords.lng - currCoords.lng);
                 var dis2 = Math.abs(ev2.location.coords.lat - currCoords.lat) +
                            Math.abs(ev2.location.coords.lng - currCoords.lng);
-                return dis1 - dis2;
+                return dis2 - dis1;
             }).slice(0,4);
             state.aroundEventos = sortedEvents;
             return eventos;
