@@ -200,12 +200,7 @@ export default {
 
       socketService.on("addComment", comment => {
         if (!this.evento.comments) this.evento.comments = [];
-        if (
-          this.evento.comments.find(
-            currComment => currComment._id === comment._id
-          )
-        )
-          return;
+        if (this.evento.comments.find(currComment => currComment._id === comment._id)) return;
         this.evento.comments.unshift(comment);
         this.$store.dispatch({ type: "editEvent", evento: this.evento });
       });
