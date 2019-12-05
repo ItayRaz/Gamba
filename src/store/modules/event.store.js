@@ -17,13 +17,26 @@ export default {
         },
         setSortedEventByDist(state, { eventos, context }) {
             if (!eventos) return [];
-            var currCoords = context.getters.currCoords;
+            var currCoords = {lat: context.getters.currCoords.latitude, lng: context.getters.currCoords.longitude};
+            console.log('curr coords:', currCoords);
             const sortedEvents = eventos.sort((ev1, ev2) => {
-                var dis1 = Math.abs(ev1.location.coords.lat - currCoords.lat) +
-                           Math.abs(ev1.location.coords.lng - currCoords.lng);
-                var dis2 = Math.abs(ev2.location.coords.lat - currCoords.lat) +
-                           Math.abs(ev2.location.coords.lng - currCoords.lng);
-                return dis2 - dis1;
+                // var dis1 = Math.abs(ev1.location.coords.lat - currCoords.lat) +
+                //            Math.abs(ev1.location.coords.lng - currCoords.lng);
+
+                // var dis2 = Math.abs(ev2.location.coords.lat - currCoords.lat) +
+                //            Math.abs(ev2.location.coords.lng - currCoords.lng);
+
+                // var dis1 = Math.abs( Math.abs((ev1.location.coords.lat - currCoords.lat) -
+                //                      Math.abs(ev1.location.coords.lng - currCoords.lng)));
+                // var dis2 = Math.abs( Math.abs(ev2.location.coords.lat - currCoords.lat) -
+                //                      Math.abs(ev2.location.coords.lng - currCoords.lng));
+
+                var dis1 = Math.abs((ev1.location.coords.lat - currCoords.lat) +
+                                    (ev1.location.coords.lng - currCoords.lng));
+                var dis2 = Math.abs((ev2.location.coords.lat - currCoords.lat) +
+                                    (ev2.location.coords.lng - currCoords.lng));
+
+                return dis1 - dis2;
             }).slice(0,4);
             state.aroundEventos = sortedEvents;
             return eventos;
