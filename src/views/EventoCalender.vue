@@ -1,9 +1,7 @@
 <template>
-  <div class="cal-container">
     
     <div id="calender" v-if="user">
       <h1 style="color: white">Your Events</h1>
-      <button class="calender-btn" @click="closeCalender">X</button>
       <h3 style="color: white">{{Date.now() | moment('MMMM')}}</h3>
       <calendar-view
         :events="userEventos"
@@ -13,7 +11,6 @@
         style="width: 160% ; backgroundColor: #ffff; border-radius: 10px; cursor:pointer;"
       ></calendar-view>
     </div>
-  </div>
 </template>
 <script>
 import { CalendarView, CalendarViewHeader } from "vue-simple-calendar";
