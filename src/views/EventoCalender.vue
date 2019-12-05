@@ -1,18 +1,15 @@
 <template>
-  <div class="cal-container">
-    
-    <div id="calender" v-if="user">
-      <h1 style="color: white">Your Events</h1>
-      <button class="calender-btn" @click="closeCalender">X</button>
-      <h3 style="color: white">{{Date.now() | moment('MMMM')}}</h3>
-      <calendar-view
-        :events="userEventos"
-        :show-date="showDate"
-        class="theme-default holiday-us-traditional "
-        @click-event="showEvento"
-        style="width: 160% ; backgroundColor: #ffff; border-radius: 10px"
-      ></calendar-view>
-    </div>
+  <div id="calender" v-if="user">
+    <h1 style="color: white">Your Events</h1>
+    <!-- <button class="calender-btn" @click="closeCalender">X</button> -->
+    <h3 style="color: white">{{Date.now() | moment('MMMM')}}</h3>
+    <calendar-view
+      :events="userEventos"
+      :show-date="showDate"
+      class="theme-default holiday-us-traditional"
+      @click-event="showEvento"
+      style="width: 120%; height: 340px; backgroundColor: #ffff; border-radius: 10px"
+    ></calendar-view>
   </div>
 </template>
 <script>
@@ -28,7 +25,7 @@ export default {
     return {
       showDate: new Date(),
       user: {},
-      userEventos: [],
+      userEventos: []
     };
   },
   components: {
@@ -45,18 +42,18 @@ export default {
       var date = new Date(time).toGMTString();
       return date;
     },
-    closeCalender(){
-      this.$router.push(`/user/${this.user._id}`)
-    },
+    closeCalender() {
+      this.$router.push(`/user/${this.user._id}`);
+    }
   },
   async created() {
     this.user = await this.$store.dispatch("getLogedUser");
-    if(!this.user){
+    if (!this.user) {
       this.userEventos = await this.$store.dispatch({
-      type: "loadEvents",
-      isSetEvents: false});      
-    }
-    else{
+        type: "loadEvents",
+        isSetEvents: false
+      });
+    } else {
       this.userEventos = await this.$store.dispatch({
         type: "loadEvents",
         filterBy: { memberId: this.user._id },
@@ -65,7 +62,12 @@ export default {
     }
 
     this.userEventos = this.userEventos.map(evento => {
-      return {id:evento._id, startDate: evento.time.start ,title:evento.title}});          
+      return {
+        id: evento._id,
+        startDate: evento.time.start,
+        title: evento.title
+      };
+    });
   }
 };
 </script>
