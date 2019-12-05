@@ -65,7 +65,7 @@ export default {
     }
 
     this.userEventos = this.userEventos.map(evento => {
-      return {id:evento._id, startDate: new Date() ,title:evento.title}});    
+      return {id:evento._id, startDate: evento.time.start ,title:evento.title}});          
   }
 };
 </script>

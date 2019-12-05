@@ -18,6 +18,7 @@
                 </div>
                 <div class="about">
                     <p v-if="user.about">{{user.about}}</p>
+                    <!-- <pre v-if="user.about">{{user.about}}</pre> -->
                     <p v-if="user.mobile">Mobile: {{user.mobile}}</p>
                     <p v-if="user.email">Email: {{user.email}}</p>
                 </div>
@@ -29,8 +30,8 @@
                 </div>
                 <div v-if="atendedEventos.length" class="flex column align-center">
                     <div class="title-container">
-                        <router-link v-if="logedUser && user._id === logedUser._id" :to="`/user/${user._id}/calender`">claender</router-link>
                         <h3>{{userTitleMsg}} choise</h3>
+                        <router-link v-if="isLogedUser" :to="`/user/${user._id}/calender`">claender</router-link>
                     </div>
                     <eventoList :eventos="atendedEventos"/>
                 </div>
