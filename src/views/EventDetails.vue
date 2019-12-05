@@ -35,7 +35,7 @@
         <div class="evento-categories">
           <ul class="clean-list flex justify-start">
             <li v-for="(type,idx) in evento.categories" :key="idx">
-              <h1 class="pointer categorie">
+              <h1 class=" categorie">
                 <span style="color: #f44336">#</span>
                 {{type}}
               </h1>

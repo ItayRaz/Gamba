@@ -3,7 +3,12 @@
 import httpService from './http.service.js';
 import utilService from './util.service.js';
 
-const BASE_API = '//localhost:3030/api/user';
+// const BASE_API = '//localhost:3030/api/user';
+
+const BASE_API = (process.env.NODE_ENV === 'production')
+? '/api/user'
+: '//localhost:3030/api/user'
+
 
 const USER_SESSION_KEY = 'logged_in_user';
 
