@@ -13,7 +13,6 @@
                     <div class="flex column info">
                         <h1>{{user.username}}</h1>
                         <small>{{isAdminMsg}}</small>
-                        <p @click="showCalender">claender</p>
                         <router-link class="edit-user-link" v-if="isLogedUser" :to="'/signup/signin/'+user._id">Edit Profile</router-link>
                     </div>
                 </div>
@@ -29,7 +28,10 @@
                     <eventoList :eventos="ownedEventos"/>
                 </div>
                 <div v-if="atendedEventos.length" class="flex column align-center">
-                    <div class="title-container"><h3>{{userTitleMsg}} choise</h3></div>
+                    <div class="title-container">
+                        <router-link v-if="logedUser && user._id === logedUser._id" :to="`/user/${user._id}/calender`">claender</router-link>
+                        <h3>{{userTitleMsg}} choise</h3>
+                    </div>
                     <eventoList :eventos="atendedEventos"/>
                 </div>
             </section>
