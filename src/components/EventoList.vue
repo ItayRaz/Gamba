@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import eventoPreview from "../components/event-preview";
+import eventoPreview from "../components/EventoPreview";
 
 export default {
   props: ["eventos","isHome"],

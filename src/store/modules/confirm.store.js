@@ -2,14 +2,22 @@
 
 export default {
     state: {
-        msg: '',
         resolve: null,
         reject: null,
-        isConfirm: false
+        isConfirm: false,
+        msg: '',
+        link: '',
+        type: ''
+        // msg: 'A new event was just created! check it out',
+        // link: '/event',
+        // type: 'Notification'
     },
     getters: {
         alertMsg(state) {
             return state.msg;
+        },
+        alertLink(state) {
+            return state.link;
         },
         confirmResolve(state) {
             return state.resolve;
@@ -19,6 +27,9 @@ export default {
         },
         isConfirm(state) {
             return state.isConfirm;
+        },
+        alertType(state) {
+            return state.type;
         }
     },
     mutations: {
@@ -27,15 +38,25 @@ export default {
             state.resolve = resolve;
             state.reject = reject;
             state.msg = msg;
+            state.type = 'Confirm';
         },
         setAlert(state, {msg}) {
             state.msg = msg;
+            state.type = 'Alert';
         },
         resetAlert(state) {
             state.resolve = null;
             state.reject = null;
-            state.msg = null;
+            state.msg = '';
+            state.link = '';
             state.isConfirm = false;
+            state.type = '';
+        },
+        setNotification(state, {msg, link}) {
+            console.log('setting Notification', msg, link);
+            state.msg = msg,
+            state.link = link
+            state.type = 'Notification';
         }
     },
     actions: {
@@ -45,7 +66,10 @@ export default {
             })
         },
         Alert(context, {msg}) {
-            context.commit({type: 'setAlert', msg})
+            context.commit({type: 'setAlert', msg});
         },
+        Notification(context, {msg, link}) {
+            context.commit({type: 'setNotification', msg, link});
+        }
     }
 }

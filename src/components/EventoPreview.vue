@@ -91,7 +91,7 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch({type:'loadEvents'});
+    this.$store.dispatch({type:'loadEventos'});
   }
 };
 </script>

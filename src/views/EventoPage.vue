@@ -7,14 +7,13 @@
       </router-link> -->
     </section>
     <router-view></router-view>
-    <event-list :eventos="eventos"/>
+    <evento-list :eventos="eventos"/>
   </main>   
 </template>
 
 <script>
 import eventoFilter from "../components/EventoFilter.vue";
-import eventList from "../components/EventList.vue";
-// import eventList from '../components/CalanderEventoList.vue';
+import eventoList from "../components/EventoList.vue";
 
 export default {
   data() {
@@ -38,10 +37,10 @@ export default {
   },
   components: {
     eventoFilter,
-    eventList
+    eventoList
   },
   async created() {
-    // this.eventos = await this.$store.dispatch({type: 'loadEvents'});
+    // this.eventos = await this.$store.dispatch({type: 'loadEventos'});
     document.body.scrollIntoView();
   }
 };

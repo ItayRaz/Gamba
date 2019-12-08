@@ -1,7 +1,7 @@
 'use strict';
 
 
-self.addEventListener('push', ev => {
+self.addEventoListener('push', ev => {
     const data = ev.data.json();
 
     self.registration.showNotification(data.title, {

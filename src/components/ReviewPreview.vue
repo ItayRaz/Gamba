@@ -3,7 +3,7 @@
         <!-- <router-link v-if="review.reviewer._id !== 'guest'" :to="review.reviewer._id"><img :src="review.reviewer.img" alt=""></router-link>
         <img v-else :src="review.reviewer.img"> -->
         <div class="avatar-container flex align-center justify-center">
-            <router-link v-if="review.reviewer._id !== 'guest'" :to="review.reviewer._id"><avatar class="avatar" :username="review.reviewer.name" :src="review.reviewer.img" :size="50" rounded/></router-link>
+            <router-link v-if="review.reviewer._id !== 'guest' && review.reviewer._id !== 'System'" :to="'/user/'+review.reviewer._id"><avatar class="avatar" :username="review.reviewer.name" :src="review.reviewer.img" :size="50" rounded/></router-link>
             <avatar v-else class="avatar" :username="review.reviewer.name" :src="review.reviewer.img" :size="50" rounded></avatar>
         </div>
         <div class="flex column">

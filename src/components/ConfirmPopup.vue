@@ -1,13 +1,19 @@
 <template>
     <section v-if="msgTxt">
-        <div class="screen"></div>
-        <section class="confirm-modal">
-            <p>{{msgTxt}}</p>
-            <div class="buttons-container">
-                <button v-if="isConfirm" @click="resolve">{{confirmBtnMsg}}</button>
-                <button @click="reject">{{closeBtnMsg}}</button>
-            </div>
-        </section>
+        <router-link @click.native="reject" :to="link" v-if="type === 'Notification'" class="notification-popup">
+            <h4>{{msgTxt}}</h4>
+            <button class="close-btn" @click.stop.prevent="reject">X</button>
+        </router-link>
+        <div v-else>
+            <div class="screen"></div>
+            <section class="confirm-modal">
+                <p>{{msgTxt}}</p>
+                <div class="buttons-container">
+                    <button v-if="isConfirm" @click="resolve">{{confirmBtnMsg}}</button>
+                    <button @click="reject">{{closeBtnMsg}}</button>
+                </div>
+            </section>
+        </div>
     </section>
 </template>
 
@@ -35,6 +41,12 @@ export default {
         confirmReject() {
             return this.$store.getters.confirmReject;
         },
+        type() {
+            return this.$store.getters.alertType;
+        },
+        link() {
+            return this.$store.getters.alertLink;
+        }
     },
     methods: {
         resolve() {
@@ -100,17 +112,46 @@ export default {
     margin: 5px;
     outline: unset;
     transition: 0.3s;
-    background-color: rgba(223, 210, 210, 0.3);
+    /* background-color: rgba(223, 210, 210, 0.3); */
 }
 .confirm-modal button:hover {
     cursor: pointer;
     color: rgb(124, 43, 43);
-    border-color: rgb(124, 43, 43);
+    /* border-color: rgb(124, 43, 43); */
 }
 
-@media (max-width: 350px) {
+
+.notification-popup {
+    color: white !important;
+    position: fixed;
+    top: 0;
+    right: 0;
+    /* right: 50%;
+    transform: translate(50%, 0); */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    padding-right: 30px;
+    width: 300px;
+    min-height: 70px;
+    background-color: black;
+    z-index: 30 !important;
+}
+
+.close-btn {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+@media (max-width: 500px) {
     .confirm-modal {
         width: 90vw;
     }
+    .notification-popup {
+        width: 100%;
+    }
 }
+
 </style>

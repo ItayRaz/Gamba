@@ -79,7 +79,7 @@ export default {
   },
   async created() {
     var eventos = await this.$store.dispatch({
-      type: "loadEvents",
+      type: "loadEventos",
       filterBy: {}
     });
     this.markers = this.eventos.map(evento => {
