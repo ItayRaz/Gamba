@@ -2,11 +2,11 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import About from '../views/About.vue'
-import eventEdit from '../views/EventEdit.vue'
+import eventoEdit from '../views/EventoEdit.vue'
 import SignupPage from '../views/SignUp.vue';
-import eventDetails from '../views/EventDetails.vue';
+import eventoDetails from '../views/EventoDetails.vue';
 
-import EventPage from '../views/EventPage.vue';
+import EventoPage from '../views/EventoPage.vue';
 import UserDetails from '../views/UserDetails.vue';
 import joinEvento from '../views/JoinEvento.vue';
 import QuickJoin from '../views/QuickJoin.vue';
@@ -34,19 +34,19 @@ const routes = [
   {
     path: '/event',
     name: 'event-page',
-    component: EventPage,
+    component: EventoPage,
     children: [
       {
         path: 'edit/:id?',
         name: 'event-edit',
-        component: eventEdit
+        component: eventoEdit
       },
     ]
   },
   {
     path: '/event/:id',
     name: 'event-details',
-    component: eventDetails,
+    component: eventoDetails,
     children:[
       {
         path: 'join',

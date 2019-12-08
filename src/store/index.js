@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import eventStore from './modules/event.store'
+import eventoStore from './modules/evento.store'
 import userStore from './modules/user.store'
 import confirmStore from './modules/confirm.store';
 import reviewStore from './modules/review.store';
@@ -16,7 +16,7 @@ export default new Vuex.Store({
   },
   modules: {
     userStore,
-    eventStore,
+    eventoStore,
     confirmStore,
     reviewStore
   }

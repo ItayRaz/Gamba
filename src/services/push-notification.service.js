@@ -2,7 +2,8 @@
 
 import httpService from './http.service.js';
 
-const publicVapidKey = '';
+// const publicVapidKey = '';
+const publicVapidKey = 'PUBLIC_VAPID_KEY';
 
 async function sendNotification() {
     if ('serviceWorker' in navigator) {
@@ -61,7 +62,7 @@ function urlBase64ToUint8Array(base64String) {
 
 // //onload
 // function connect() {
-//     window.addEventListener('load', async () => {
+//     window.addEventoListener('load', async () => {
 //         let sw = await navigator.serviceWorker.register('./sw.js');  //runs server worker
 //     })
 // }
@@ -79,7 +80,7 @@ function urlBase64ToUint8Array(base64String) {
 
 // ////////////SERVER_WORKER////////////
 
-// self.addEventListener('push', () => {
+// self.addEventoListener('push', () => {
 //     self.registration.sendNotification('msg', {}); //obj of options
 // });
 
@@ -126,7 +127,7 @@ function urlBase64ToUint8Array(base64String) {
 // ////////////FRONT////////////
 
 // function connect() {
-//     window.addEventListener('load', async () => {
+//     window.addEventoListener('load', async () => {
 //         let sw = await navigator.serviceWorker.register('./sw.js');  //runs server worker
 //     })
 // }
@@ -165,6 +166,6 @@ function urlBase64ToUint8Array(base64String) {
 // ////////////SERVER_WORKER////////////
 // ////////////SERVER_WORKER////////////
 
-// self.addEventListener('push', () => {
+// self.addEventoListener('push', () => {
 //     self.registration.sendNotification('msg', {}); //obj of options
 // });

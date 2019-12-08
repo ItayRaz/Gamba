@@ -1,10 +1,12 @@
-import eventoService from '../../services/event.service.js';
+import eventoService from '../../services/evento.service.js';
+
+import socketService from '../../services/socket.service.js';
 
 export default {
     state: {
         eventos: [],
         aroundEventos: [],
-        currEvent: {},
+        currEvento: {},
         filterby: {}
     },
     mutations: {
@@ -40,15 +42,15 @@ export default {
             state.aroundEventos = sortedEvents;
             return eventos;
         },
-        addEvent(state, { evento }) {
+        addEvento(state, { evento }) {
             state.eventos.unshift(evento);
         },
         saveEvent(state, { evento }) {
             const idx = state.eventos.findIndex(evento => evento._id === evento._id);
             state.eventos.splice(idx, 1, evento)
         },
-        setCurrEvent(state, { evento }) {          
-            state.currEvent = evento;
+        setCurrEvento(state, { evento }) {          
+            state.currEvento = evento;
         },
         setFilter(state, { filterBy }) {
             state.filterby = filterBy;
@@ -73,27 +75,24 @@ export default {
             }
             return eventosToShow;
         },
-        currEvento(state) {
-            return state.currEvent
-        },
-        popularEvents(state) {
+        popularEventos(state) {
             const sortedEventsByMembers = state.eventos.sort((ev1, ev2) => ev2.members.length - ev1.members.length);
-            // const popularEvents = sortedEventsByMembers.slice(0, sortedEventsByMembers.length/2);
-            const popularEvents = sortedEventsByMembers.slice(0, 4);
-            return popularEvents;
+            // const popularEventos = sortedEventsByMembers.slice(0, sortedEventsByMembers.length/2);
+            const popularEventos = sortedEventsByMembers.slice(0, 4);
+            return popularEventos;
         },
         eventosAround(state, getters) {
             return state.aroundEventos;
         },
-        nightLifeEvents(state) {
+        nightLifeEventos(state) {
             return state.eventos.filter(evento => evento.categories.includes('Night Life'))
         },
-        otherEvents(state) {
-            const otherEvents = state.eventos.slice(state.eventos.length / 2);
-            return otherEvents;
+        otherEventos(state) {
+            const otherEventos = state.eventos.slice(state.eventos.length / 2);
+            return otherEventos;
         },
-        currEvent(state) {
-            return state.currEvent;
+        currEvento(state) {
+            return state.currEvento;
         },
         eventosCategories(state) {
             return state.eventos.reduce((acc, evento) => {
@@ -107,7 +106,7 @@ export default {
         }
     },
     actions: {
-        async loadEvents(context, {filterBy, isSetEvents = true}) {
+        async loadEventos(context, {filterBy, isSetEvents = true}) {
             if (typeof(isSetEvents) === 'undefined') isSetEvents = true;
             // var eventos = await eventoService.query(filterBy);
             var eventos = await eventoService.query();
@@ -133,18 +132,22 @@ export default {
                 })
                 .catch(() => Promise.reject());
         },
-        addEvent(context, { evento }) {
+        addEvento(context, { evento }) {
             return eventoService.save(evento)
-                .then(evento => context.commit({ type: 'addEvent', evento }))
+                .then(evento => {
+                    context.commit({ type: 'addEvento', evento });
+                    socketService.emit('newEvento', evento);
+                    return evento;
+                })
         },
-        editEvent(context, { evento }) {
+        editEvento(context, { evento }) {
             return eventoService.save(evento)
                 .then(evento => context.commit({ type: 'saveEvent', evento }))
         },
-        getEvent(context, { eventoId }) {
+        getEvento(context, { eventoId }) {
             return eventoService.get(eventoId)
                 .then(evento => {
-                    context.commit({ type: 'setCurrEvent', evento })
+                    context.commit({ type: 'setCurrEvento', evento })
                     return evento // for details
                 })
         }

@@ -65,12 +65,12 @@
 
 <script>
 import { gmapApi } from "vue2-google-maps";
-import EventoPreview from "./event-preview.vue";
+// import EventoPreview from "./event-preview.vue";
 
 export default {
   props: ["isShowingDetails", "isDraggable", "eventos","eventoCenter"],
   components: {
-    EventoPreview
+    // EventoPreview
   },
   data() {
     return {
@@ -137,6 +137,10 @@ export default {
     }
   },
   async created() {
+    var eventos = await this.$store.dispatch({
+      type: "loadEventos",
+      filterBy: {}
+    });
     this.markers = this.eventos.map(evento => {
       return {
         position: {

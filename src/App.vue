@@ -14,21 +14,44 @@ import AppHeader from './components/AppHeader.vue';
 import AppFooter from './components/AppFooter.vue';
 import confirmPopup from './components/ConfirmPopup.vue';
 
+import socketService from './services/socket.service.js';
+
 export default {
   components: {
     AppHeader,
     AppFooter,
     confirmPopup,
   },
+  methods: {
+    // addComment() {
+    //   if (!this.newComment) return;
+    //   var user = this.$store.getters.logedInUser;
+    //   var comment = eventoService.getNewComment(user, this.newComment);
+    //   socketService.emit("newComment", { comment, eventoId: this.evento._id });
+
+    //   this.newComment = "";
+    // },
+    connectToSocket() {
+      socketService.emit("joinRoom", 'all-clients');
+
+      socketService.on("EventoAdded", evento => {
+        this.$store.dispatch({ type: "Notification", msg: `${evento.creator.name} just created a new event! check it out!`, link: `/event/${evento._id}` });
+      });
+    },
+    disConnectSocket() {
+      socketService.emit("leaveRoom", 'all-clients');
+    }
+  },
   created() {
     this.$store.dispatch({type:'getCurrCoords'});
-    this.$store.dispatch({type:'loadEvents'});
+    this.$store.dispatch({type:'loadEventos'});
     // this.$store.dispatch('getLogedUser');    
     try {
       this.$store.dispatch('getLogedUser');    
     } catch(err) {
     //  throw err
     };
+    this.connectToSocket();
   },
  
 };

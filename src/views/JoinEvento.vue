@@ -50,9 +50,9 @@ export default {
       delete user.password;
       this.evento.members.unshift(user);
       // this.evento.members.unshift(this.$store.getters.logedInUser);
-      this.$store
-        .dispatch({ type: "editEvent", evento: this.evento })
-        .then(() => this.$router.push(`/event/${this.evento._id}`));
+      this.$store.dispatch({type:'editEvento',evento: this.evento})
+        .then(()=> this.$router.push(`/event/${this.evento._id}`))
+      
     }
   },
   created() {

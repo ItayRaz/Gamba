@@ -7,16 +7,17 @@
       </router-link> -->
     </section>
     <router-view></router-view>
-    <event-list v-if="!isShowingMap" :eventos="eventos"/>
+    <evento-list v-if="!isShowingMap" :eventos="eventos"/>
     <events-around v-else :eventos="eventos"></events-around>
   </main>   
 </template>
 
 <script>
 import eventoFilter from "../components/EventoFilter.vue";
-import eventList from "../components/EventList.vue";
+import eventoList from "../components/EventoList.vue";
 import eventsAround from "./EventsAround.vue"
 // import eventList from '../components/CalanderEventoList.vue';
+// import eventoList from "../components/EventoList.vue";
 
 export default {
   data() {
@@ -47,11 +48,12 @@ export default {
   },
   components: {
     eventoFilter,
-    eventList,
+    eventoList,
     eventsAround
+    // eventoList
   },
   async created() {
-    // this.eventos = await this.$store.dispatch({type: 'loadEvents'});
+    // this.eventos = await this.$store.dispatch({type: 'loadEventos'});
     document.body.scrollIntoView();
   }
 };

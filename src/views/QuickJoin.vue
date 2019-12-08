@@ -23,7 +23,7 @@ export default {
     joinGuest() {
       var evento = this.evento;
       evento.members.unshift(this.guest);
-      this.$store.dispatch({type:'editEvent',evento})
+      this.$store.dispatch({type:'editEvento',evento})
         .then(()=> this.$router.push(`/event/${this.evento._id}`))
 
     }

@@ -3,6 +3,7 @@
         <img v-if="user.coverImg" class="cover-img" :src="user.coverImg" alt=""/>
         <img v-else class="cover-img" src="~@/assets/hero.jpg" alt=""/>
         <!-- <img class="cover-img" :src="user.coverImg || '~@/assets/hero.jpg'" alt=""/> -->
+        <section class="user-details-centainer">
         <section class="flex space-around wrap">
             <section class="profile flex column">
                 <div class="flex align-center wrap">
@@ -53,6 +54,8 @@
                 </div>
             </div> -->
         </section>  
+        </section>
+        <router-view></router-view>
     </main>
     <!-- <loading v-else></loading> -->
 </template>
@@ -95,11 +98,11 @@ export default {
         }
     },
     methods: {
-        async getEventos() {
-            let ownedEventos = await this.$store.dispatch({type: 'loadEvents', filterBy: {creatorId: this.user._id}, isSetEvents: false});
+        async getEventoos() {
+            let ownedEventos = await this.$store.dispatch({type: 'loadEventos', filterBy: {creatorId: this.user._id}, isSetEvents: false});
             this.ownedEventos = ownedEventos
             
-            let atendedEventos = await this.$store.dispatch({type: 'loadEvents', filterBy: {memberId: this.user._id}, isSetEvents: false});
+            let atendedEventos = await this.$store.dispatch({type: 'loadEventos', filterBy: {memberId: this.user._id}, isSetEvents: false});
             this.atendedEventos = atendedEventos
         },
         async getReviews() {
@@ -128,7 +131,7 @@ export default {
         init() {
             this.getUser()
                 .then(() => {
-                    this.getEventos();
+                    this.getEventoos();
                     this.getReviews();
                 })
         },
