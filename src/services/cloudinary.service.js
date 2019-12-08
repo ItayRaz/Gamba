@@ -12,7 +12,6 @@ function uploadImg(ev, imgCount) {
     const imgUrls = [];    
     for (let i = 0; i < imgCount; i++) {
         const formData = new FormData();
-        console.log('ev target',ev.target.files[i]);
         
         formData.append('file', ev.target.files[i])
         formData.append('upload_preset', PRESET_NAME);
@@ -47,7 +46,6 @@ function uploadVideo(ev, videoCount) {
     const videoUrls = [];    
     for (let i = 0; i < videoCount; i++) {
         const formData = new FormData();
-        console.log('ev target',ev.target.files[i]);
         
         formData.append('file', ev.target.files[i])
         formData.append('upload_preset', PRESET_NAME);

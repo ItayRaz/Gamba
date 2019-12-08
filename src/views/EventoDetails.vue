@@ -8,6 +8,7 @@
         </div>
       </div>
       <div class="important-details flex column">
+<<<<<<< HEAD
         <!-- <div class="flex row wrap justify-center  evento-time"> -->
         <!-- <div class="flex row wrap justify-center  evento-time"> -->
         <h1 class="text-center evento-time">{{evento.time.start| moment("LLLL")}}</h1>
@@ -17,6 +18,17 @@
         <!-- <div class="evento-location"> -->
         <h1 class="evento-location">{{evento.location.address_line_1}}</h1>
         <!-- </div> -->
+=======
+        <div class="flex row wrap justify-center evento-time">
+          <h1>{{evento.time.start| moment("LLLL")}}</h1>
+          <!-- <h1>{{evento.time.start| moment("LL")}}</h1>
+          <h1>{{evento.time.start| moment("dddd")}}</h1>
+          <h1>{{evento.time.start| moment("LT")}}</h1> //edit-->
+        </div>
+        <div class="evento-location">
+          <h1>{{evento.location.address_line_1}}</h1>
+        </div>
+>>>>>>> 59f0786b07a729a880dd8ed3aba7c07958f9a91d
         <div class="join-container flex align-center justify-center">
           <button class="leave" v-if="isLoggedInUserAttending" @click="leaveEvento">Leave</button>
           <img class="full-img" v-else-if="seatsLeft === 0" src="@/assets/full.png" />
@@ -29,7 +41,11 @@
           <hr />
           <div v-if="evento.price" class="price flex space-around">
             <h1>Price:</h1>
+<<<<<<< HEAD
             <h1>{{evento.price}}$</h1>
+=======
+            <h1>{{evento.price}}$</h1>//edit
+>>>>>>> 59f0786b07a729a880dd8ed3aba7c07958f9a91d
           </div>
           <!-- <div v-else class="price flex justify-center"> -->
           <h1 v-else class="price text-center">Free</h1>
@@ -55,9 +71,14 @@
             <img :src="img" />
           </div>
         </div>
+<<<<<<< HEAD
 
         <video class="evento-video" v-if="evento.videos" controls>
           <source :src="evento.videos[0]" type="video/mp4" />
+=======
+        <video v-if="evento.videos" width="400" height="400" controls>
+          <source :src="evento.videos[0]" type="video/mp4" />//computed
+>>>>>>> 59f0786b07a729a880dd8ed3aba7c07958f9a91d
           <!-- <source src="movie.ogg" type="video/ogg" />Your browser does not support the video tag. -->
         </video>
 
@@ -66,10 +87,18 @@
           <p>{{evento.desc}}</p>
         </div>
 
+<<<<<<< HEAD
         <!-- <div class="attendies">
           <h2>Participence</h2>
         </div>-->
 
+=======
+        <div class="attendies">
+          //edit
+          <h2>Participence</h2>
+        </div>
+//one name for all. prev avatars- one component.
+>>>>>>> 59f0786b07a729a880dd8ed3aba7c07958f9a91d
         <div class="prev-avatars">
           <h2 class="attendies">Members</h2>
           <div>
@@ -84,7 +113,12 @@
         </div>
 
         <div class="map space">
+<<<<<<< HEAD
           <map-details :eventCoords="evento.location.coords"></map-details>
+=======
+          //component same case for all
+          <MapDetails :eventCoords="evento.location.coords"></MapDetails>
+>>>>>>> 59f0786b07a729a880dd8ed3aba7c07958f9a91d
         </div>
 
         <div v-if="evento.creator._id!=='guest'" class="evento-creator">
@@ -103,8 +137,12 @@
       </section>
     </section>
     <div v-if="isJoin" class="cover-join">
+<<<<<<< HEAD
       <!-- <router-view :evento="evento"></router-view> -->
       <join-evento :evento="evento" @closeJoin="isJoin = false"></join-evento>
+=======
+      <router-view :evento="evento"></router-view>
+>>>>>>> 59f0786b07a729a880dd8ed3aba7c07958f9a91d
     </div>
   </section>
 </template>
@@ -181,7 +219,7 @@ export default {
     joinEvento() {
       if (this.$store.getters.logedInUser) {
         var user = { ...this.$store.getters.logedInUser };
-        delete user.password;
+        delete user.password; //check
         this.evento.members.unshift(user);
         this.$store.dispatch({ type: "editEvento", evento: this.evento });
       } else {
@@ -209,6 +247,7 @@ export default {
       this.newComment = "";
     },
     connectToSocket() {
+      //check room
       socketService.emit("joinRoom", this.evento._id);
 
       socketService.on("addComment", ({ comment, room }) => {
