@@ -16,7 +16,7 @@ import confirmPopup from './components/ConfirmPopup.vue';
 
 import socketService from './services/socket.service.js';
 import notificationService from './services/push-notification.service.js';
-
+ 
 export default {
   components: {
     AppHeader,
@@ -53,8 +53,11 @@ export default {
     //  throw err
     };
     this.connectToSocket();
-
+    // console.log(notificationService,'!!!!');
+    
     notificationService.sendNotification();
+    // notificationService();
+
   },
  
 };

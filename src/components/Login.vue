@@ -28,7 +28,9 @@ export default {
                 .then(user => {
                     if (user) {
                         this.loginInfo = {username: '', password: ''};
-                        this.$router.push('/');
+                        if (!this.$route.path.includes('event')) {
+                            this.$router.push('/');
+                        }
                     }
                 })
         }

@@ -89,8 +89,7 @@
       </section>
     </section>
     <div v-if="isJoin" class="cover-join">
-      <!-- <router-view :evento="evento"></router-view> -->
-      <join-evento :evento="evento" @closeJoin="isJoin = false"></join-evento>
+      <join-evento :evento="evento" @addGuest="addGuest" @closeJoin="isJoin = false"></join-evento>
     </div>
   </section>
 </template>
@@ -109,6 +108,7 @@ import joinEvento from "./JoinEvento.vue";
 import eventoService from "../services/evento.service.js";
 import socketService from "../services/socket.service.js";
 
+
 export default {
   components: {
     MapDetails,
@@ -116,7 +116,7 @@ export default {
     UserGallery,
     Creator,
     CommentList,
-    joinEvento
+    joinEvento,
   },
   data() {
     return {
@@ -174,6 +174,9 @@ export default {
 
       this.newComment = "";
     },
+    addGuest(guest) {
+      this.evento.members.push(guest)
+    },
     connectToSocket() {
       //check room
       socketService.emit("joinRoom", this.evento._id);
@@ -209,7 +212,7 @@ export default {
   },
   destroyed() {
     this.disconnectSocket();
-  }
+  },
 };
 </script>
 

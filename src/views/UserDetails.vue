@@ -24,7 +24,7 @@
                       <p v-if="user.mobile">Mobile: {{user.mobile}}</p>
                       <p v-if="user.email">Email: {{user.email}}</p>
                   </div>
-                  <calender></calender>
+                  <calender :eventos="atendedEventos"></calender>
                   </section>
               </section>
               <section class="user-eventos-container flex column align-center">
