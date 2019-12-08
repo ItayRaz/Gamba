@@ -105,7 +105,7 @@ import Creator from "@/components/Creator";
 
 import CommentList from "../components/ReviewList.vue";
 
-import eventoService from "../services/event.service.js";
+import eventoService from "../services/evento.service.js";
 import socketService from "../services/socket.service.js";
 
 export default {
@@ -165,7 +165,7 @@ export default {
         var user = { ...this.$store.getters.logedInUser };
         delete user.password;
         this.evento.members.unshift(user);
-        this.$store.dispatch({ type: "editEvent", evento: this.evento });
+        this.$store.dispatch({ type: "editEvento", evento: this.evento });
       } else {
         this.$router.push(`${this.evento._id}/join`); // ask!
       }
@@ -176,7 +176,7 @@ export default {
       });
       if (memberIdx === -1) return;
       this.evento.members.splice(memberIdx, 1);
-      this.$store.dispatch({ type: "editEvent", evento: this.evento });
+      this.$store.dispatch({ type: "editEvento", evento: this.evento });
     },
     imgIdx(idx) {
       return `img-${idx}`;
@@ -202,7 +202,7 @@ export default {
         )
           return;
         this.evento.comments.unshift(comment);
-        this.$store.dispatch({ type: "editEvent", evento: this.evento });
+        this.$store.dispatch({ type: "editEvento", evento: this.evento });
       });
     },
     disConnectSocket() {
@@ -213,7 +213,7 @@ export default {
     document.body.scrollIntoView();
 
     const eventoId = this.$route.params.id;
-    this.evento = await this.$store.dispatch({ type: "getEvent", eventoId });
+    this.evento = await this.$store.dispatch({ type: "getEvento", eventoId });
 
     this.connectToSocket();
   },

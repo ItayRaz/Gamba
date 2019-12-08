@@ -6,7 +6,7 @@
                 <p>Event by: </p>
                 <router-link v-if="evento.creator" :to="'/user/'+evento.creator._id">{{evento.creator.name}}</router-link>
             </div>
-            <router-link :to="'/event/'+evento._id"><short-txt :txt="evento.title" :txtLimit="15"/></router-link>
+            <router-link :to="'/event/'+evento._id"><short-txt :txt="evento.title" :txtLimit="20"/></router-link>
         </div>
         <div class="members-avatar-container flex" v-if="evento.members && evento.members.length">
             <router-link :to="'/user/'+evento.members[0]._id"><avatar class="avatar" :username="evento.members[0].name" :src="evento.members[0].img" :size="30" rounded/></router-link>

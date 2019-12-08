@@ -45,7 +45,7 @@ function _getNewEvento() {
     return {
         title: '',
         location: {
-            address_line_1: ''
+            address_line_1: '',
         },
         desc: '',
         imgs: [],

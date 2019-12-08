@@ -46,10 +46,12 @@
         <h3>Event video: <input class="file-input" type="file" ref="videos" multiple @change="uploadVideo"/></h3>
         </div>
         <router-link v-if="this.$route.params.id" to="/event">
-          <el-button type="primary" @click="editEvento" to="/">editEvento</el-button>
+          <!-- <el-button type="primary" @click="editEventoo" to="/">editEvent</el-button> -->
+          <el-button type="primary" @click="saveEvento" to="/">Edit Event</el-button>
         </router-link>
         <router-link v-else to="/event">
-          <el-button type="primary" @click="createEvento" to="/">Create</el-button>
+          <!-- <el-button type="primary" @click="createEvento" to="/">Create</el-button> -->
+          <el-button type="primary" @click="saveEvento" to="/">Create</el-button>
         </router-link>
         <router-link class="cancel-btn" to="/event">
           <el-button>Cancel</el-button>
@@ -76,24 +78,38 @@ export default {
     };
   },
   methods: {
-    createEvento() {
-      if (!this.evento.imgs.length)
+    // createEvento() {
+    //   if (!this.evento.imgs.length)
+    //     this.evento.imgs.push(
+    //       "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
+    //     );
+    //   this.$geocoder.send(this.evento.location, response => {
+    //     this.evento.location.coords = response.results[0].geometry.location;
+    //     this.$store.dispatch({ type: "addEvento", evento: this.evento });
+    //   });
+    // },
+    // editEventoo() {
+    //   if (!this.evento.imgs.length)
+    //     this.evento.imgs.push(
+    //       "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
+    //     );
+    //   this.$geocoder.send(this.evento.location, response => {
+    //     this.evento.location.coords = response.results[0].geometry.location;
+    //     this.$store.dispatch({ type: "editEvento", evento: this.evento });
+    //   });
+    // },
+    saveEvento() {
+      if (!this.evento.imgs.length) {
         this.evento.imgs.push(
           "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
         );
+      }
+      if (!this.evento.location.address_line_1) this.evento.location.address_line_1 = 'Jerusalem';
       this.$geocoder.send(this.evento.location, response => {
         this.evento.location.coords = response.results[0].geometry.location;
-        this.$store.dispatch({ type: "addEvent", evento: this.evento });
-      });
-    },
-    editEvento() {
-      if (!this.evento.imgs.length)
-        this.evento.imgs.push(
-          "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
-        );
-      this.$geocoder.send(this.evento.location, response => {
-        this.evento.location.coords = response.results[0].geometry.location;
-        this.$store.dispatch({ type: "editEvent", evento: this.evento });
+
+        if (!this.evento._id) this.$store.dispatch({ type: "addEvento", evento: this.evento });
+        else this.$store.dispatch({ type: "editEvento", evento: this.evento });
       });
     },
     openLoading() {
@@ -152,8 +168,8 @@ export default {
     document.body.scrollIntoView();
     let eventoId = this.$route.params.id;
     if (!eventoId) eventoId = "";
-    await this.$store.dispatch({ type: "getEvent", eventoId });
-    this.evento = JSON.parse(JSON.stringify(this.$store.getters.currEvent));
+    await this.$store.dispatch({ type: "getEvento", eventoId });
+    this.evento = JSON.parse(JSON.stringify(this.$store.getters.currEvento));
   },
   components: {
     eventCategory

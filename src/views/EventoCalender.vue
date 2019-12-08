@@ -50,12 +50,12 @@ export default {
     this.user = await this.$store.dispatch("getLogedUser");
     if (!this.user) {
       this.userEventos = await this.$store.dispatch({
-        type: "loadEvents",
-        isSetEvents: false
-      });
-    } else {
+      type: "loadEventos",
+      isSetEvents: false});      
+    }
+    else{
       this.userEventos = await this.$store.dispatch({
-        type: "loadEvents",
+        type: "loadEventos",
         filterBy: { memberId: this.user._id },
         isSetEvents: false
       });

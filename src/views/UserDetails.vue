@@ -1,51 +1,47 @@
 <template>
-  <main class="user-details flex column" v-if="user">
-    <img v-if="user.coverImg" class="cover-img" :src="user.coverImg" alt />
-    <img v-else class="cover-img" src="~@/assets/hero.jpg" alt />
-    <!-- <img class="cover-img" :src="user.coverImg || '~@/assets/hero.jpg'" alt=""/> -->
-    <section class="flex space-around wrap">
-      <section class="profile flex column">
-        <div class="flex align-center wrap">
-          <img v-if="user.img" class="avatar" :src="user.img" alt />
-          <img v-else class="avatar" src="~@/assets/user_default.png" alt />
-          <!-- <img class="avatar" :src="user.img || '~@/assets/user_default.png'" alt=""/> -->
-          <!-- <avatar class="avatar" :username="user.username" :src="user.img" :size="200" rounded></avatar>-->
-          <div class="flex column info">
-            <h1>{{user.username}}</h1>
-            <small>{{isAdminMsg}}</small>
-            <router-link
-              class="edit-user-link"
-              v-if="isLogedUser"
-              :to="'/signup/signin/'+user._id"
-            >Edit Profile</router-link>
-          </div>
-        </div>
-        <section>
-          <div class="about">
-            <p v-if="user.about">{{user.about}}</p>
-            <!-- <pre v-if="user.about">{{user.about}}</pre> -->
-            <p v-if="user.mobile">Mobile: {{user.mobile}}</p>
-            <p v-if="user.email">Email: {{user.email}}</p>
-          </div>
-          <calender></calender>
+    <main class="user-details flex column" v-if="user">
+        <img v-if="user.coverImg" class="cover-img" :src="user.coverImg" alt=""/>
+        <img v-else class="cover-img" src="~@/assets/hero.jpg" alt=""/>
+        <!-- <img class="cover-img" :src="user.coverImg || '~@/assets/hero.jpg'" alt=""/> -->
+        <section class="user-details-centainer">
+        <section class="flex space-around wrap">
+            <section class="profile flex column">
+                <div class="flex align-center wrap">
+                    <img v-if="user.img" class="avatar" :src="user.img" alt=""/>
+                    <img v-else class="avatar" src="~@/assets/user_default.png" alt=""/>
+                    <!-- <img class="avatar" :src="user.img || '~@/assets/user_default.png'" alt=""/> -->
+                    <!-- <avatar class="avatar" :username="user.username" :src="user.img" :size="200" rounded></avatar>-->
+                    <div class="flex column info">
+                        <h1>{{user.username}}</h1>
+                        <small>{{isAdminMsg}}</small>
+                        <router-link class="edit-user-link" v-if="isLogedUser" :to="'/signup/signin/'+user._id">Edit Profile</router-link>
+                    </div>
+                </div>
+                <section>
+                <div class="about">
+                    <p v-if="user.about">{{user.about}}</p>
+                    <!-- <pre v-if="user.about">{{user.about}}</pre> -->
+                    <p v-if="user.mobile">Mobile: {{user.mobile}}</p>
+                    <p v-if="user.email">Email: {{user.email}}</p>
+                </div>
+    <calender></calender>
+                </section>
+            </section>
+            <section class="user-eventos-container flex column align-center">
+                <div v-if="ownedEventos.length !== 0" class="flex column align-center">
+                    <div class="title-container"><h3>{{userTitleMsg}} events</h3></div>
+                    <eventoList :eventos="ownedEventos"/>
+                </div>
+                <div v-if="atendedEventos.length" class="flex column align-center">
+                    <div class="title-container">
+                        <h3>{{userTitleMsg}} choise</h3>
+                        <router-link v-if="isLogedUser" :to="`/user/${user._id}/calender`">claender</router-link>
+                    </div>
+                    <eventoList :eventos="atendedEventos"/>
+                </div>
+            </section>
         </section>
       </section>
-      <section class="user-eventos-container flex column align-center">
-        <div v-if="ownedEventos.length !== 0" class="flex column align-center">
-          <div class="title-container">
-            <h3>{{userTitleMsg}} events</h3>
-          </div>
-          <eventoList :eventos="ownedEventos" />
-        </div>
-        <div v-if="atendedEventos.length" class="flex column align-center">
-          <div class="title-container">
-            <h3>{{userTitleMsg}} choise</h3>
-            <!-- <router-link v-if="isLogedUser" :to="`/user/${user._id}/calender`">claender</router-link> -->
-          </div>
-          <eventoList :eventos="atendedEventos" />
-        </div>
-      </section>
-    </section>
     <section class="user-reviews-container flex column width-all">
       <user-review-edit @saveReview="saveReview" :id="''" />
       <review-list :reviews="aboutReviews" />
@@ -58,6 +54,7 @@
                     <review-list :reviews="ownedReviews"/>
                 </div>
       </div>-->
+    </section>
     </section>
   </main>
   <!-- <loading v-else></loading> -->
@@ -103,14 +100,14 @@ export default {
   methods: {
     async getEventos() {
       let ownedEventos = await this.$store.dispatch({
-        type: "loadEvents",
+        type: "loadEventos",
         filterBy: { creatorId: this.user._id },
         isSetEvents: false
       });
       this.ownedEventos = ownedEventos;
 
       let atendedEventos = await this.$store.dispatch({
-        type: "loadEvents",
+        type: "loadEventos",
         filterBy: { memberId: this.user._id },
         isSetEvents: false
       });

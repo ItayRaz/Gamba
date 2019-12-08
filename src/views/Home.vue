@@ -9,17 +9,17 @@
     </section>
     <section class="home-lists flex column">  
       <div class="main-title-container popular-events"><h2>Popular Events</h2></div> 
-      <evento-list class="container" :eventos="popularEvents"/>
+      <evento-list class="container" :eventos="popularEventos"/>
       <div class="main-title-container closeby-events"><h2>Events Nearby</h2></div> 
       <evento-list class="container" :eventos="aroundEventos"/>
       <div class="main-title-container night-events"><h2>Night Life</h2></div> 
-      <evento-list class="container" :eventos="nightLifeEvents"/>
+      <evento-list class="container" :eventos="nightLifeEventos"/>
   </section>
     </section>
 </template>
 
 <script>
-import EventoList from '../components/EventList'
+import EventoList from '../components/EventoList'
 
 export default {
   computed: {
@@ -29,11 +29,11 @@ export default {
     aroundEventos() {
       return this.$store.getters.eventosAround;  
     },
-    popularEvents() {
-      return this.$store.getters.popularEvents;
+    popularEventos() {
+      return this.$store.getters.popularEventos;
     },
-    nightLifeEvents() {
-      return this.$store.getters.nightLifeEvents;
+    nightLifeEventos() {
+      return this.$store.getters.nightLifeEventos;
     }
   },
   // methods: {

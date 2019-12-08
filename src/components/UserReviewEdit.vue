@@ -20,6 +20,7 @@ export default {
             console.log('got review:', this.review);
         },
         save() {
+            if (!this.review.txt) return;
             this.$store.dispatch({type: 'saveReview', review: this.review})
                 .then(review => {
                     this.$emit('saveReview', review);

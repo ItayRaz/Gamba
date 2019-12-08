@@ -13,7 +13,7 @@
 
 <script>
 import MapList from "@/components/MapList";
-import eventoPreview from "@/components/event-preview";
+import eventoPreview from "@/components/EventoPreview";
 
 
 export default {
@@ -37,7 +37,7 @@ export default {
   },
 
   async created(){
-      this.eventos = await this.$store.dispatch({type: 'loadEvents',filterBy:{}}); 
+      this.eventos = await this.$store.dispatch({type: 'loadEventos',filterBy:{}}); 
       var currCoords;
       if(!this.$store.getters.currCoords){
         currCoords = await this.$store.dispatch('getCurrCoords');
