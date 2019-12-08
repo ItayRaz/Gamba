@@ -10,8 +10,6 @@ const BASE_API = (process.env.NODE_ENV === 'production')
 : '//localhost:3030/api/evento'
 
 
-
-
 export default {
     query,
     save,
