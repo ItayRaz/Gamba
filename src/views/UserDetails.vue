@@ -17,12 +17,15 @@
                         <router-link class="edit-user-link" v-if="isLogedUser" :to="'/signup/signin/'+user._id">Edit Profile</router-link>
                     </div>
                 </div>
+                <section>
                 <div class="about">
                     <p v-if="user.about">{{user.about}}</p>
                     <!-- <pre v-if="user.about">{{user.about}}</pre> -->
                     <p v-if="user.mobile">Mobile: {{user.mobile}}</p>
                     <p v-if="user.email">Email: {{user.email}}</p>
                 </div>
+    <calender></calender>
+                </section>
             </section>
             <section class="user-eventos-container flex column align-center">
                 <div v-if="ownedEventos.length !== 0" class="flex column align-center">
@@ -62,6 +65,7 @@ import eventoList from '../components/ColumnEventoList.vue';
 import userReviewEdit from '../components/UserReviewEdit.vue';
 import reviewList from '../components/ReviewList.vue';
 import loading from '../components/Loading.vue';
+import calender from '../views/EventoCalender.vue';
 
 import Avatar from "vue-avatar";
 
@@ -150,7 +154,8 @@ export default {
         userReviewEdit,
         reviewList,
         Avatar,
-        loading
+        loading,
+        calender
     }
 }
 </script>
