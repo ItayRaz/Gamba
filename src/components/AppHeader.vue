@@ -5,7 +5,7 @@
         <!-- <h3 v-if="logedUser">User: {{logedUser.username}}</h3> -->
         <button class="hamburger" @click="toggleNav"><i class="fa fa-bars"></i></button>
         <ul class="main-nav clean-list flex align-center wrap">
-            <li><router-link class="flex align-center justify-center" to="/event">Events</router-link></li>
+            <li><router-link class="flex align-center justify-center" to="/event" >Events</router-link></li>
             <li><router-link class="flex align-center justify-center" to="/event/edit">Add-Event</router-link></li>
             <li><router-link class="flex align-center justify-center" to="/signup/login">{{signupMsg}}</router-link></li>
             <li><router-link class="flex align-center justify-center" to="/about">About</router-link></li>

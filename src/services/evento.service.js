@@ -49,6 +49,7 @@ function _getNewEvento() {
         },
         desc: '',
         imgs: [],
+        videos: [],
         creator: {},
         createdAt: Date.now(),
         price: 0,

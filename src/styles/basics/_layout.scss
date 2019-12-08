@@ -55,7 +55,8 @@
 
 .logo {
     font-family: PermanentMarker;
-    color: $clr7;
+    color: white;
+    transition: 0.5s;
     span {
         color: $clr4;
     }

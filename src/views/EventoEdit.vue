@@ -41,11 +41,13 @@
         <el-input type="textarea" v-model="evento.desc"></el-input>
       </el-form-item>
       <el-form-item class="flex wrap">
-        <h3>Event Images:</h3>
-        <input class="file-input" type="file" ref="files" multiple @change="uploadImg" />
-        <router-link v-if="this.$route.params.id" :to="'/event/'+this.$route.params.id">
-          <!--<el-button type="primary" @click="editEventoo" to="/">editEventoo</el-button>-->
-          <el-button type="primary" @click="saveEvento" to="/">editEventoo</el-button>
+        <div class="flex wrap space-between">
+        <h3>Event Images: <input class="file-input" type="file" ref="images" multiple @change="uploadImg" /></h3>
+        <h3>Event video: <input class="file-input" type="file" ref="videos" multiple @change="uploadVideo"/></h3>
+        </div>
+        <router-link v-if="this.$route.params.id" to="/event">
+          <!-- <el-button type="primary" @click="editEventoo" to="/">editEvent</el-button> -->
+          <el-button type="primary" @click="saveEvento" to="/">Edit Event</el-button>
         </router-link>
         <router-link v-else to="/event">
           <!-- <el-button type="primary" @click="createEvento" to="/">Create</el-button> -->
@@ -128,7 +130,7 @@ export default {
       loading.close();
     },
     uploadImg() {
-      let imgCount = this.$refs.files.files.length;
+      let imgCount = this.$refs.images.files.length;
 
       this.openLoading();
       cloudinaryService.uploadImg(event, imgCount).then(res => {
@@ -138,8 +140,25 @@ export default {
         this.closeLoading();
       });
     },
+    uploadVideo() {
+      let videoCount = this.$refs.videos.files.length;
+
+      this.openLoading();
+      cloudinaryService.uploadVideo(event, videoCount).then(res => {
+        console.log(res);
+
+        this.evento.videos.push(...res);
+        console.log(this.evento);
+        
+        this.closeLoading();
+      });
+    },
     removeImg(idx) {
       this.evento.imgs.splice(idx, 1);
+    },
+    validateForm(){
+      if (!this.evento.title || !this.evento.location.address_line_1) return false
+      return true;
     }
   },
   computed: {

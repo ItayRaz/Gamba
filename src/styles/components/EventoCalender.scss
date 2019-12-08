@@ -24,13 +24,13 @@
     }
 }
 
+#calender {
+    width: 43vw
+}
 
 
-@media(max-width:900px){
-    .cal-container{
+@media(max-width:820px){
         #calender{
-            width:60%;
-        }
-    }
-  
+            width:73vw;
+        }  
 }

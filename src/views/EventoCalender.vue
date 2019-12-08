@@ -8,7 +8,7 @@
         :show-date="showDate"
         class="theme-default holiday-us-traditional "
         @click-event="showEvento"
-        style="width: 160% ; backgroundColor: #ffff; border-radius: 10px; cursor:pointer;"
+        style="width: 100%; height: 400px; backgroundColor: #ffff; border-radius: 10px; cursor:pointer;"
       ></calendar-view>
     </div>
 </template>

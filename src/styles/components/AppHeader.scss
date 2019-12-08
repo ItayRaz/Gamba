@@ -4,12 +4,20 @@
     top: 0;
     // padding: 18px;
     padding: 0 20px;
-    
     transition: 0.5s;
     
     &.filled {
         background-color: white;
         box-shadow: 0px 1px 6px 0px rgba(0,0,0,0.25);
+        a {
+            color: gray;
+            &:hover, .router-link-exact-active {
+                color: $clr4;
+            }
+        }
+        .logo {
+            color: #353433;
+        }
     }
     .screen {
         background-color: rgba(0, 0, 0, 0.1);
