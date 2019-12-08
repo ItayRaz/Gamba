@@ -21,10 +21,13 @@ export default {
   },
   methods: {
     joinGuest() {
-      var evento = this.evento;
+
+      var evento =JSON.parse(JSON.stringify(this.evento)) ;
       evento.members.unshift(this.guest);
       this.$store.dispatch({type:'editEvento',evento})
-        .then(()=> this.$router.push(`/event/${this.evento._id}`))
+        // .then(()=> this.$router.push(`/event/${this.evento._id}`))
+        .then(()=> this.$emit('closeJoin'))
+
 
     }
   }

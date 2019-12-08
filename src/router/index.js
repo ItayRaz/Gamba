@@ -47,45 +47,59 @@ const routes = [
     path: '/event/:id',
     name: 'event-details',
     component: eventoDetails,
-    children:[
-      {
-        path: 'join',
-        component: joinEvento,
-        children:[
+    children: [
+      // {
+        // path: 'join',
+        // component: joinEvento,
+        // children:[
           {
-            path:'signup',
+            path:'join/signup',
             component: LocalSignUp
           },
           {
-            path:'quick',
+            path:'join/quick',
             component: QuickJoin
           }
-        ]
-      }
+        // ]
+      // }
     ]
   },
+  // {
+  //   path: '/event/:id/join',
+  //   component: joinEvento,
+  //   children: [
+  //     {
+  //       path: 'signup',
+  //       component: LocalSignUp
+  //     },
+  //     {
+  //       path: 'quick',
+  //       component: QuickJoin
+  //     }
+  //   ]
+  // },
   {
     path: '/signup',
     name: 'signup-page',
     component: SignupPage,
     children: [
-    {
-      path: 'login',
-      name: 'login',
-      component: LogIn
-    },
-    {
-      path: 'signin/:_id?',
-      name: 'signin',
-      component: SignIn
-    }
-  ]
+      {
+        path: 'login',
+        name: 'login',
+        component: LogIn
+      },
+      {
+        path: 'signin/:_id?',
+        name: 'signin',
+        component: SignIn
+      }
+    ]
   },
   {
     path: '/user/:id',
     name: 'user-details',
     component: UserDetails,
-    children:[
+    children: [
       {
         path: 'calender',
         name: 'calender',

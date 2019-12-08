@@ -13,7 +13,7 @@
         <p class="quick-join" @click="toQuickJoin">Quickly Join</p>
       </section>
       <div class="flex align-center justify-center form-container fit-content">
-        <router-view class="inner-router-view" :evento="evento"></router-view>
+        <router-view @closeJoin="backToEvento" class="inner-router-view" :evento="evento"></router-view>
       </div>
   </section>
 </template>
@@ -35,7 +35,11 @@ export default {
   },
   methods: {
     backToEvento() {
-      this.$router.push(`/event/${this.evento._id}`);
+      this.$emit('closeJoin')
+      if(this.$route.path !== `/event/${this.evento._id}`){
+        this.$router.push(`/event/${this.evento._id}`);
+      }
+
     },
     toSignUp() {
       this.$router.push(`/event/${this.evento._id}/join/signup`);

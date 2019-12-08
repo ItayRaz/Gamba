@@ -2,20 +2,21 @@
   <section v-if="evento._id" class="details-container">
     <section class="event-details">
       <div class="img-container">
-        <img v-if="evento" class="main-img" :src="evento.imgs[0]" />
+        <img class="main-img" :src="evento.imgs[0]" />
         <div class="flex">
           <h1 class="title">{{evento.title}}</h1>
         </div>
       </div>
       <div class="important-details flex column">
-        <div class="flex row wrap justify-center  evento-time">
-          <h1>{{evento.time.start| moment("LL")}}</h1>
-          <h1>{{evento.time.start| moment("dddd")}}</h1>
-          <h1>{{evento.time.start| moment("LT")}}</h1>
-        </div>
-        <div class="evento-location">
-          <h1>{{evento.location.address_line_1}}</h1>
-        </div>
+        <!-- <div class="flex row wrap justify-center  evento-time"> -->
+        <!-- <div class="flex row wrap justify-center  evento-time"> -->
+        <h1 class="text-center evento-time">{{evento.time.start| moment("LLLL")}}</h1>
+        <!-- <h1>{{evento.time.start| moment("dddd")}}</h1>
+        <h1>{{evento.time.start| moment("LT")}}</h1>-->
+        <!-- </div> -->
+        <!-- <div class="evento-location"> -->
+        <h1 class="evento-location">{{evento.location.address_line_1}}</h1>
+        <!-- </div> -->
         <div class="join-container flex align-center justify-center">
           <button class="leave" v-if="isLoggedInUserAttending" @click="leaveEvento">Leave</button>
           <img class="full-img" v-else-if="seatsLeft === 0" src="@/assets/full.png" />
@@ -27,12 +28,12 @@
         <div class="secondry-details">
           <hr />
           <div v-if="evento.price" class="price flex space-around">
-            <h1 v-if="evento.price">Price:</h1>
+            <h1>Price:</h1>
             <h1>{{evento.price}}$</h1>
           </div>
-          <div v-else class="price flex justify-center">
-            <h1>Free</h1>
-          </div>
+          <!-- <div v-else class="price flex justify-center"> -->
+          <h1 v-else class="price text-center">Free</h1>
+          <!-- </div> -->
         </div>
       </div>
 
@@ -41,7 +42,7 @@
           <ul class="clean-list flex justify-start">
             <li v-for="(type,idx) in evento.categories" :key="idx">
               <h1 class="categorie">
-                <span style="color: #f44336">#</span>
+                <span>#</span>
                 {{type}}
               </h1>
             </li>
@@ -49,24 +50,28 @@
         </div>
 
         <div class="evento-gallery">
-          <div v-for="(img,idx) in evento.imgs" :key="idx" :class="imgIdx(idx)">
+          <!-- <div v-for="(img,idx) in evento.imgs" :key="idx" :class="imgIdx(idx)"> -->
+          <div v-for="(img,idx) in evento.imgs" :key="idx" :class="`img-${idx}`">
             <img :src="img" />
           </div>
         </div>
-        <video v-if="evento.videos" width="400" height="400" controls>
+
+        <video class="evento-video" v-if="evento.videos" controls>
           <source :src="evento.videos[0]" type="video/mp4" />
           <!-- <source src="movie.ogg" type="video/ogg" />Your browser does not support the video tag. -->
         </video>
+
         <div class="details-txt">
           <h2>About</h2>
           <p>{{evento.desc}}</p>
         </div>
 
-        <div class="attendies">
+        <!-- <div class="attendies">
           <h2>Participence</h2>
-        </div>
+        </div>-->
 
         <div class="prev-avatars">
+          <h2 class="attendies">Members</h2>
           <div>
             <ul>
               <li
@@ -79,7 +84,7 @@
         </div>
 
         <div class="map space">
-          <MapDetails :eventCoords="evento.location.coords"></MapDetails>
+          <map-details :eventCoords="evento.location.coords"></map-details>
         </div>
 
         <div v-if="evento.creator._id!=='guest'" class="evento-creator">
@@ -94,10 +99,12 @@
           </form>
           <comment-list v-if="evento.comments" :reviews="evento.comments" />
         </div>
+
       </section>
     </section>
     <div v-if="isJoin" class="cover-join">
-    <router-view :evento="evento"></router-view>
+      <!-- <router-view :evento="evento"></router-view> -->
+      <join-evento :evento="evento" @closeJoin="isJoin = false"></join-evento>
     </div>
   </section>
 </template>
@@ -111,6 +118,7 @@ import UserGallery from "@/components/UserGallery";
 import Creator from "@/components/Creator";
 
 import CommentList from "../components/ReviewList.vue";
+import joinEvento from "./JoinEvento.vue"
 
 import eventoService from "../services/evento.service.js";
 import socketService from "../services/socket.service.js";
@@ -121,15 +129,16 @@ export default {
     EventGallery,
     UserGallery,
     Creator,
-    CommentList
+    CommentList,
+    joinEvento
   },
   data() {
     return {
       evento: {},
-      mainImg: 0,
-      showImg: true,
+      // mainImg: 0,
+      // showImg: true,
       newComment: "",
-      isJoin:false
+      isJoin: false
     };
   },
   computed: {
@@ -151,23 +160,24 @@ export default {
       return this.evento.membersLimit - this.evento.members.length;
     },
     membersToShow() {
-      let memberCount = 0;
-      let members = [];
-      this.evento.members.map(member => {
-        if (memberCount === 9) return;
-        memberCount++;
-        members.push({ _id: member._id, img: member.img });
-      });
-      return members;
+      // let memberCount = 0;
+      // let members = [];
+      // this.evento.members.forEach(member => {
+      //   if (memberCount === 9) return;
+      //   memberCount++;
+      //   members.push({ _id: member._id, img: member.img });
+      // });
+      // return members;
+      return this.evento.members.slice(0, 9);
     }
   },
   methods: {
-    setImg(imgIdx) {
-      this.mainImg = imgIdx;
-    },
-    getHeight() {
-      this.windowHieght = window.pageYOffset;
-    },
+    // setImg(imgIdx) {
+    //   this.mainImg = imgIdx;
+    // },
+    // getHeight() {
+    //   this.windowHieght = window.pageYOffset;
+    // },
     joinEvento() {
       if (this.$store.getters.logedInUser) {
         var user = { ...this.$store.getters.logedInUser };
@@ -175,7 +185,8 @@ export default {
         this.evento.members.unshift(user);
         this.$store.dispatch({ type: "editEvento", evento: this.evento });
       } else {
-        this.$router.push(`${this.evento._id}/join`); 
+        this.isJoin = true;
+        // this.$router.push(`${this.evento._id}/join`);
       }
     },
     leaveEvento() {
@@ -186,9 +197,9 @@ export default {
       this.evento.members.splice(memberIdx, 1);
       this.$store.dispatch({ type: "editEvento", evento: this.evento });
     },
-    imgIdx(idx) {
-      return `img-${idx}`;
-    },
+    // imgIdx(idx) {
+    //   return `img-${idx}`;
+    // },
     addComment() {
       if (!this.newComment) return;
       var user = this.$store.getters.logedInUser;
@@ -203,17 +214,12 @@ export default {
       socketService.on("addComment", ({ comment, room }) => {
         if (room !== this.evento._id) return;
         if (!this.evento.comments) this.evento.comments = [];
-        if (
-          this.evento.comments.find(
-            currComment => currComment._id === comment._id
-          )
-        )
-          return;
+        if (this.evento.comments.find(currComment => currComment._id === comment._id)) return;
         this.evento.comments.unshift(comment);
         this.$store.dispatch({ type: "editEvento", evento: this.evento });
       });
     },
-    disConnectSocket() {
+    disconnectSocket() {
       socketService.emit("leaveRoom", this.evento._id);
     }
   },
@@ -221,22 +227,25 @@ export default {
     document.body.scrollIntoView();
 
     const eventoId = this.$route.params.id;
-    this.evento = await this.$store.dispatch({ type: "getEvento", eventoId });
+    this.evento = JSON.parse(
+      JSON.stringify(
+        await this.$store.dispatch({ type: "getEvento", eventoId })
+      )
+    );
+    // this.evento = await this.$store.dispatch({ type: "getEvento", eventoId });
 
     this.connectToSocket();
   },
   destroyed() {
-    this.disConnectSocket();
+    this.disconnectSocket();
   },
-  watch: {
-    $route(to){
-      if(to.path.includes('join')){
-          this.isJoin = true;
-      } else this.isJoin = false; 
-      
-      
-    }
-  }
+  // watch: {
+  //   $route(to) {
+  //     if (to.path.includes("join")) {
+  //       this.isJoin = true;
+  //     } else this.isJoin = false;
+  //   }
+  // }
 };
 </script>
 

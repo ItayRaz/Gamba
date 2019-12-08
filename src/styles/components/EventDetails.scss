@@ -8,13 +8,17 @@
 }
 
 .img-container {
+  // position: relative;
   @include aspect-ratio(100, 40);
 }
 
 .title {
-  position: absolute;
+  // position: relative;
+  // top: 85%;
+  // margin-bottom: 10px;
   bottom: 20px;
-  left: 30px;
+  position: absolute;
+  left: 25px;
   font-size: 50px;
   color: white;
   text-shadow: -2px 0px 5px black;
@@ -40,13 +44,14 @@
 }
 
 .evento-time {
-  text-align: center;
+  // text-align: center;
   font-size: 18px;
   color: #4a3e3e;
-  h1{
-    margin-top: 7px;  
-    margin-left:7px;
-  }
+  line-height: 30px;
+  // h1{
+  //   margin-top: 7px;  
+  //   margin-left:7px;
+  // }
 }
 
 .evento-location {
@@ -75,6 +80,9 @@
   margin: 10px;
   background-color: #e9d6d6;
   border-radius: 50px;
+  span{
+    color: #f44336;
+  }
 }
 
 .details-txt {
@@ -112,6 +120,11 @@
     background-color: #666666ba;
     outline: none;
   }
+}
+
+.evento-video{
+  width:60%;
+  margin-top:15px;
 }
 
 .map {
@@ -199,7 +212,7 @@
 
 .prev-avatars {
   width: 100%;
-  height: 55px;
+  // height: 55px;
   right: -16px;
   top: 50px;
   ul {
@@ -267,6 +280,7 @@
   }
   .img-container {
     @include aspect-ratio(100, 75);
+    
   }
   .important-details {
     position: unset;
@@ -308,6 +322,9 @@
   }
   .evento-reviews {
     width: 100%;
+  }
+  .evento-video{
+    width:100%;
   }
 
 }

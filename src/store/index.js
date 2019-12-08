@@ -8,6 +8,7 @@ import reviewStore from './modules/review.store';
 Vue.use(Vuex)
 
 export default new Vuex.Store({
+  // strict: true,
   state: {
   },
   mutations: {
