@@ -8,10 +8,11 @@
         </div>
       </div>
       <div class="important-details flex column">
-        <div class="flex row wrap justify-center  evento-time">
-          <h1>{{evento.time.start| moment("LL")}}</h1>
+        <div class="flex row wrap justify-center evento-time">
+          <h1>{{evento.time.start| moment("LLLL")}}</h1>
+          <!-- <h1>{{evento.time.start| moment("LL")}}</h1>
           <h1>{{evento.time.start| moment("dddd")}}</h1>
-          <h1>{{evento.time.start| moment("LT")}}</h1>
+          <h1>{{evento.time.start| moment("LT")}}</h1> //edit-->
         </div>
         <div class="evento-location">
           <h1>{{evento.location.address_line_1}}</h1>
@@ -27,8 +28,8 @@
         <div class="secondry-details">
           <hr />
           <div v-if="evento.price" class="price flex space-around">
-            <h1 v-if="evento.price">Price:</h1>
-            <h1>{{evento.price}}$</h1>
+            <h1>Price:</h1>
+            <h1>{{evento.price}}$</h1>//edit
           </div>
           <div v-else class="price flex justify-center">
             <h1>Free</h1>
@@ -54,7 +55,7 @@
           </div>
         </div>
         <video v-if="evento.videos" width="400" height="400" controls>
-          <source :src="evento.videos[0]" type="video/mp4" />
+          <source :src="evento.videos[0]" type="video/mp4" />//computed
           <!-- <source src="movie.ogg" type="video/ogg" />Your browser does not support the video tag. -->
         </video>
         <div class="details-txt">
@@ -63,9 +64,10 @@
         </div>
 
         <div class="attendies">
+          //edit
           <h2>Participence</h2>
         </div>
-
+//one name for all. prev avatars- one component.
         <div class="prev-avatars">
           <div>
             <ul>
@@ -79,6 +81,7 @@
         </div>
 
         <div class="map space">
+          //component same case for all
           <MapDetails :eventCoords="evento.location.coords"></MapDetails>
         </div>
 
@@ -97,7 +100,7 @@
       </section>
     </section>
     <div v-if="isJoin" class="cover-join">
-    <router-view :evento="evento"></router-view>
+      <router-view :evento="evento"></router-view>
     </div>
   </section>
 </template>
@@ -129,7 +132,7 @@ export default {
       mainImg: 0,
       showImg: true,
       newComment: "",
-      isJoin:false
+      isJoin: false
     };
   },
   computed: {
@@ -165,17 +168,17 @@ export default {
     setImg(imgIdx) {
       this.mainImg = imgIdx;
     },
-    getHeight() {
-      this.windowHieght = window.pageYOffset;
-    },
+    // getHeight() {
+    //   this.windowHieght = window.pageYOffset;
+    // },
     joinEvento() {
       if (this.$store.getters.logedInUser) {
         var user = { ...this.$store.getters.logedInUser };
-        delete user.password;
+        delete user.password; //check
         this.evento.members.unshift(user);
         this.$store.dispatch({ type: "editEvento", evento: this.evento });
       } else {
-        this.$router.push(`${this.evento._id}/join`); 
+        this.$router.push(`${this.evento._id}/join`);
       }
     },
     leaveEvento() {
@@ -198,6 +201,7 @@ export default {
       this.newComment = "";
     },
     connectToSocket() {
+      //check room
       socketService.emit("joinRoom", this.evento._id);
 
       socketService.on("addComment", ({ comment, room }) => {
@@ -229,12 +233,10 @@ export default {
     this.disConnectSocket();
   },
   watch: {
-    $route(to){
-      if(to.path.includes('join')){
-          this.isJoin = true;
-      } else this.isJoin = false; 
-      
-      
+    $route(to) {
+      if (to.path.includes("join")) {
+        this.isJoin = true;
+      } else this.isJoin = false; //check
     }
   }
 };

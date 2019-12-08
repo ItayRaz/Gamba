@@ -7,7 +7,7 @@ import reviewStore from './modules/review.store';
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+export default new Vuex.Store({//use strcit
   state: {
   },
   mutations: {
