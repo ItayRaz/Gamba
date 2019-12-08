@@ -8,17 +8,8 @@
         </div>
       </div>
       <div class="important-details flex column">
-<<<<<<< HEAD
-=======
-        <!-- <div class="flex row wrap justify-center  evento-time"> -->
-        <!-- <div class="flex row wrap justify-center  evento-time"> -->
->>>>>>> ef243c892bccb1afb6cd47e52b6d70ebf0fef2ca
         <h1 class="text-center evento-time">{{evento.time.start| moment("LLLL")}}</h1>
         <h1 class="evento-location">{{evento.location.address_line_1}}</h1>
-<<<<<<< HEAD
-=======
-        <!-- </div> -->
->>>>>>> ef243c892bccb1afb6cd47e52b6d70ebf0fef2ca
         <div class="join-container flex align-center justify-center">
           <button class="leave" v-if="isLoggedInUserAttending" @click="leaveEvento">Leave</button>
           <img class="full-img" v-else-if="seatsLeft === 0" src="@/assets/full.png" />
@@ -64,10 +55,6 @@
           <h2>About</h2>
           <p>{{evento.desc}}</p>
         </div>
-
-        <!-- <div class="attendies">
-          <h2>Participence</h2>
-        </div>-->
 
         <div class="prev-avatars">
           <h2 class="attendies">Members</h2>
