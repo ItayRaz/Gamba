@@ -35,7 +35,7 @@
                   <div v-if="atendedEventos.length" class="flex column align-center">
                       <div class="title-container">
                           <h3>{{userTitleMsg}} choise</h3>
-                          <router-link v-if="isLogedUser" :to="`/user/${user._id}/calender`">claender</router-link>
+                          <!-- <router-link v-if="isLogedUser" :to="`/user/${user._id}/calender`">claender</router-link> -->
                       </div>
                       <eventoList :eventos="atendedEventos"/>
                   </div>

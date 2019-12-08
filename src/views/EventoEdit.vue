@@ -2,7 +2,7 @@
   <section class="event-edit">
     <el-form v-if="evento" el-form ref="form" :model="evento" label-width="120px">
       <div class="flex wrap space-around start">
-        <el-form-item label="Event name">
+        <el-form-item label="Event name" required>
           <el-input v-model="evento.title"></el-input>
         </el-form-item>
         <el-form-item label="Event start time">
@@ -33,8 +33,8 @@
         <el-form-item label="Categories">
           <event-category v-model="evento.categories"></event-category>
         </el-form-item>
-        <el-form-item label="Address">
-          <el-input placeholder v-model="evento.location.address_line_1" clearable></el-input>
+        <el-form-item label="Address" required>
+          <el-input placeholder v-model="evento.location.address_line_1" clearable ></el-input>
         </el-form-item>
       </div>
       <el-form-item label="Description">
@@ -49,10 +49,10 @@
           <!-- <el-button type="primary" @click="editEventoo" to="/">editEvent</el-button> -->
           <el-button type="primary" @click="saveEvento" to="/">Edit Event</el-button>
         </router-link>
-        <router-link v-else to="/event">
+        <!-- <router-link v-else to="/event"> -->
           <!-- <el-button type="primary" @click="createEvento" to="/">Create</el-button> -->
-          <el-button type="primary" @click="saveEvento" to="/">Create</el-button>
-        </router-link>
+          <el-button v-else type="primary" @click="saveEvento" to="/">Create</el-button>
+        <!-- </router-link> -->
         <router-link class="cancel-btn" to="/event">
           <el-button>Cancel</el-button>
         </router-link>
@@ -99,6 +99,9 @@ export default {
     //   });
     // },
     saveEvento() {
+      if (!this.validateForm()){
+       return this.$store.dispatch({type:"Alert", msg: "Please fill the required fields"})
+      } 
       if (!this.evento.imgs.length) {
         this.evento.imgs.push(
           "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
@@ -110,6 +113,7 @@ export default {
 
         if (!this.evento._id) this.$store.dispatch({ type: "addEvento", evento: this.evento });
         else this.$store.dispatch({ type: "editEvento", evento: this.evento });
+        this.$router.push('/event');
       });
     },
     openLoading() {
