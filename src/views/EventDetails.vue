@@ -35,7 +35,7 @@
         <div class="evento-categories">
           <ul class="clean-list flex justify-start">
             <li v-for="(type,idx) in evento.categories" :key="idx">
-              <h1 class=" categorie">
+              <h1 class="categorie">
                 <span style="color: #f44336">#</span>
                 {{type}}
               </h1>
@@ -48,7 +48,10 @@
             <img :src="img" />
           </div>
         </div>
-
+        <video v-if="evento.videos" width="400" height="400" controls>
+          <source :src="evento.videos[0]" type="video/mp4" />
+          <!-- <source src="movie.ogg" type="video/ogg" />Your browser does not support the video tag. -->
+        </video>
         <div class="details-txt">
           <h2>About</h2>
           <p>{{evento.desc}}</p>
@@ -86,7 +89,6 @@
           </form>
           <comment-list v-if="evento.comments" :reviews="evento.comments" />
         </div>
-
       </section>
     </section>
     <router-view :evento="evento"></router-view>
@@ -112,7 +114,7 @@ export default {
     EventGallery,
     UserGallery,
     Creator,
-    CommentList,
+    CommentList
   },
   data() {
     return {
@@ -190,10 +192,15 @@ export default {
     connectToSocket() {
       socketService.emit("joinRoom", this.evento._id);
 
-      socketService.on("addComment", ({comment, room}) => {
+      socketService.on("addComment", ({ comment, room }) => {
         if (room !== this.evento._id) return;
         if (!this.evento.comments) this.evento.comments = [];
-        if (this.evento.comments.find(currComment => currComment._id === comment._id)) return;
+        if (
+          this.evento.comments.find(
+            currComment => currComment._id === comment._id
+          )
+        )
+          return;
         this.evento.comments.unshift(comment);
         this.$store.dispatch({ type: "editEvent", evento: this.evento });
       });

@@ -29,10 +29,10 @@ button:hover, select:hover {
 
 a {
     text-decoration: none;
-    color: $clr4;
+    color: white;
 }
 a:hover, .router-link-exact-active {
-    color: gray;
+    color: $clr4;
 }
 
 img {
