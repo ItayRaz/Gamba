@@ -5,6 +5,8 @@ import httpService from './http.service.js';
 // const publicVapidKey = '';
 const publicVapidKey = 'BKHooCZ_NqCiuF7vQUSxiF7OKmJynbW1T4hnbun9jh_n-NgmF-4FGw5dRhrZWQlsiAq6QIM0ipbq38M7FuJK9ec';
 
+export default {sendNotification}
+
 async function sendNotification() {
     if ('serviceWorker' in navigator) {
         const register = await navigator.serviceWorker.register('./service-worker.js', {
