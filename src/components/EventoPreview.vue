@@ -21,7 +21,11 @@
     <div class="prev-avatars">
       <div>
         <ul>
-          <li v-for="member in members" :key="member._id" :style="{ backgroundImage: `url(${member.img})`}" >
+          <li v-for="member in members" :key="member._id" >
+            <!-- <span v-if="member.img" :style="{ backgroundImage: `url(${member.img})`}"></span>
+            <span v-else style="background-image: url(~@/assets/user_default.png)"></span> -->
+            <img v-if="member.img" :src="member.img"/>
+            <img v-else src="~@/assets/user_default.png"/>
           </li>
         </ul>
       </div>

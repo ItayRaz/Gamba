@@ -8,27 +8,8 @@
         </div>
       </div>
       <div class="important-details flex column">
-<<<<<<< HEAD
-        <!-- <div class="flex row wrap justify-center  evento-time"> -->
-        <!-- <div class="flex row wrap justify-center  evento-time"> -->
         <h1 class="text-center evento-time">{{evento.time.start| moment("LLLL")}}</h1>
-        <!-- <h1>{{evento.time.start| moment("dddd")}}</h1>
-        <h1>{{evento.time.start| moment("LT")}}</h1>-->
-        <!-- </div> -->
-        <!-- <div class="evento-location"> -->
         <h1 class="evento-location">{{evento.location.address_line_1}}</h1>
-        <!-- </div> -->
-=======
-        <div class="flex row wrap justify-center evento-time">
-          <h1>{{evento.time.start| moment("LLLL")}}</h1>
-          <!-- <h1>{{evento.time.start| moment("LL")}}</h1>
-          <h1>{{evento.time.start| moment("dddd")}}</h1>
-          <h1>{{evento.time.start| moment("LT")}}</h1> //edit-->
-        </div>
-        <div class="evento-location">
-          <h1>{{evento.location.address_line_1}}</h1>
-        </div>
->>>>>>> 59f0786b07a729a880dd8ed3aba7c07958f9a91d
         <div class="join-container flex align-center justify-center">
           <button class="leave" v-if="isLoggedInUserAttending" @click="leaveEvento">Leave</button>
           <img class="full-img" v-else-if="seatsLeft === 0" src="@/assets/full.png" />
@@ -41,15 +22,9 @@
           <hr />
           <div v-if="evento.price" class="price flex space-around">
             <h1>Price:</h1>
-<<<<<<< HEAD
             <h1>{{evento.price}}$</h1>
-=======
-            <h1>{{evento.price}}$</h1>//edit
->>>>>>> 59f0786b07a729a880dd8ed3aba7c07958f9a91d
           </div>
-          <!-- <div v-else class="price flex justify-center"> -->
           <h1 v-else class="price text-center">Free</h1>
-          <!-- </div> -->
         </div>
       </div>
 
@@ -66,19 +41,13 @@
         </div>
 
         <div class="evento-gallery">
-          <!-- <div v-for="(img,idx) in evento.imgs" :key="idx" :class="imgIdx(idx)"> -->
           <div v-for="(img,idx) in evento.imgs" :key="idx" :class="`img-${idx}`">
             <img :src="img" />
           </div>
         </div>
-<<<<<<< HEAD
 
         <video class="evento-video" v-if="evento.videos" controls>
           <source :src="evento.videos[0]" type="video/mp4" />
-=======
-        <video v-if="evento.videos" width="400" height="400" controls>
-          <source :src="evento.videos[0]" type="video/mp4" />//computed
->>>>>>> 59f0786b07a729a880dd8ed3aba7c07958f9a91d
           <!-- <source src="movie.ogg" type="video/ogg" />Your browser does not support the video tag. -->
         </video>
 
@@ -87,38 +56,20 @@
           <p>{{evento.desc}}</p>
         </div>
 
-<<<<<<< HEAD
-        <!-- <div class="attendies">
-          <h2>Participence</h2>
-        </div>-->
-
-=======
-        <div class="attendies">
-          //edit
-          <h2>Participence</h2>
-        </div>
-//one name for all. prev avatars- one component.
->>>>>>> 59f0786b07a729a880dd8ed3aba7c07958f9a91d
         <div class="prev-avatars">
           <h2 class="attendies">Members</h2>
           <div>
             <ul>
-              <li
-                v-for="member in membersToShow"
-                :key="member._id"
-                :style="{ backgroundImage: `url(${member.img})`}"
-              ></li>
+              <li v-for="member in members" :key="member._id">
+                <img v-if="member.img" :src="member.img" />
+                <img v-else src="~@/assets/user_default.png" />
+              </li>
             </ul>
           </div>
         </div>
 
         <div class="map space">
-<<<<<<< HEAD
           <map-details :eventCoords="evento.location.coords"></map-details>
-=======
-          //component same case for all
-          <MapDetails :eventCoords="evento.location.coords"></MapDetails>
->>>>>>> 59f0786b07a729a880dd8ed3aba7c07958f9a91d
         </div>
 
         <div v-if="evento.creator._id!=='guest'" class="evento-creator">
@@ -133,16 +84,10 @@
           </form>
           <comment-list v-if="evento.comments" :reviews="evento.comments" />
         </div>
-
       </section>
     </section>
     <div v-if="isJoin" class="cover-join">
-<<<<<<< HEAD
-      <!-- <router-view :evento="evento"></router-view> -->
       <join-evento :evento="evento" @closeJoin="isJoin = false"></join-evento>
-=======
-      <router-view :evento="evento"></router-view>
->>>>>>> 59f0786b07a729a880dd8ed3aba7c07958f9a91d
     </div>
   </section>
 </template>
@@ -156,7 +101,7 @@ import UserGallery from "@/components/UserGallery";
 import Creator from "@/components/Creator";
 
 import CommentList from "../components/ReviewList.vue";
-import joinEvento from "./JoinEvento.vue"
+import joinEvento from "./JoinEvento.vue";
 
 import eventoService from "../services/evento.service.js";
 import socketService from "../services/socket.service.js";
@@ -173,8 +118,6 @@ export default {
   data() {
     return {
       evento: {},
-      // mainImg: 0,
-      // showImg: true,
       newComment: "",
       isJoin: false
     };
@@ -198,24 +141,10 @@ export default {
       return this.evento.membersLimit - this.evento.members.length;
     },
     membersToShow() {
-      // let memberCount = 0;
-      // let members = [];
-      // this.evento.members.forEach(member => {
-      //   if (memberCount === 9) return;
-      //   memberCount++;
-      //   members.push({ _id: member._id, img: member.img });
-      // });
-      // return members;
       return this.evento.members.slice(0, 9);
     }
   },
   methods: {
-    // setImg(imgIdx) {
-    //   this.mainImg = imgIdx;
-    // },
-    // getHeight() {
-    //   this.windowHieght = window.pageYOffset;
-    // },
     joinEvento() {
       if (this.$store.getters.logedInUser) {
         var user = { ...this.$store.getters.logedInUser };
@@ -224,7 +153,6 @@ export default {
         this.$store.dispatch({ type: "editEvento", evento: this.evento });
       } else {
         this.isJoin = true;
-        // this.$router.push(`${this.evento._id}/join`);
       }
     },
     leaveEvento() {
@@ -235,9 +163,6 @@ export default {
       this.evento.members.splice(memberIdx, 1);
       this.$store.dispatch({ type: "editEvento", evento: this.evento });
     },
-    // imgIdx(idx) {
-    //   return `img-${idx}`;
-    // },
     addComment() {
       if (!this.newComment) return;
       var user = this.$store.getters.logedInUser;
@@ -253,7 +178,12 @@ export default {
       socketService.on("addComment", ({ comment, room }) => {
         if (room !== this.evento._id) return;
         if (!this.evento.comments) this.evento.comments = [];
-        if (this.evento.comments.find(currComment => currComment._id === comment._id)) return;
+        if (
+          this.evento.comments.find(
+            currComment => currComment._id === comment._id
+          )
+        )
+          return;
         this.evento.comments.unshift(comment);
         this.$store.dispatch({ type: "editEvento", evento: this.evento });
       });
@@ -271,20 +201,12 @@ export default {
         await this.$store.dispatch({ type: "getEvento", eventoId })
       )
     );
-    // this.evento = await this.$store.dispatch({ type: "getEvento", eventoId });
 
     this.connectToSocket();
   },
   destroyed() {
     this.disconnectSocket();
-  },
-  // watch: {
-  //   $route(to) {
-  //     if (to.path.includes("join")) {
-  //       this.isJoin = true;
-  //     } else this.isJoin = false;
-  //   }
-  // }
+  }
 };
 </script>
 
