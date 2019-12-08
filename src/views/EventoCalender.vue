@@ -21,12 +21,24 @@ require("vue-simple-calendar/static/css/holidays-us.css");
 
 export default {
   name: "app",
+  props: ['eventos'],
   data() {
     return {
       showDate: new Date(),
       user: {},
-      userEventos: []
+      // userEventos: []
     };
+  },
+  computed: {
+    userEventos() {
+      return this.eventos.map(evento => {
+        return {
+          id: evento._id,
+          startDate: evento.time.start,
+          title: evento.title
+        };
+    });
+  }
   },
   components: {
     CalendarView
@@ -47,27 +59,27 @@ export default {
     }
   },
   async created() {
-    this.user = await this.$store.dispatch("getLogedUser");
-    if (!this.user) {
-      this.userEventos = await this.$store.dispatch({
-      type: "loadEventos",
-      isSetEvents: false});      
-    }
-    else{
-      this.userEventos = await this.$store.dispatch({
-        type: "loadEventos",
-        filterBy: { memberId: this.user._id },
-        isSetEvents: false
-      });
-    }
+  //   this.user = await this.$store.dispatch("getLogedUser");
+  //   if (!this.user) {
+  //     this.userEventos = await this.$store.dispatch({
+  //     type: "loadEventos",
+  //     isSetEvents: false});      
+  //   }
+  //   else{
+  //     this.userEventos = await this.$store.dispatch({
+  //       type: "loadEventos",
+  //       filterBy: { memberId: this.user._id },
+  //       isSetEvents: false
+  //     });
+  //   }
 
-    this.userEventos = this.userEventos.map(evento => {
-      return {
-        id: evento._id,
-        startDate: evento.time.start,
-        title: evento.title
-      };
-    });
+    // this.userEventos = this.eventos.map(evento => {
+    //   return {
+    //     id: evento._id,
+    //     startDate: evento.time.start,
+    //     title: evento.title
+    //   };
+    // });
   }
 };
 </script>

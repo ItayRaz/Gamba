@@ -13,7 +13,7 @@
         <p class="quick-join" @click="toQuickJoin">Quickly Join</p>
       </section>
       <div class="flex align-center justify-center form-container fit-content">
-        <router-view @closeJoin="backToEvento" class="inner-router-view" :evento="evento"></router-view>
+        <router-view @closeJoin="backToEvento" @addGuest="addGuest" class="inner-router-view" :evento="evento"></router-view>
       </div>
   </section>
 </template>
@@ -46,16 +46,26 @@ export default {
     },
     toQuickJoin() {
       this.$router.push(`/event/${this.evento._id}/join/quick`);
+    },
+    addGuest(guest) {
+      this.$emit('addGuest', guest)
     }
   },
   watch: {
     loggedInUser() {
       var user = { ...this.$store.getters.logedInUser };
       delete user.password;
+      if (this.evento.members.find(member => member._id === user._id)) {
+        this.$emit('closeJoin');
+        return;
+      };
       this.evento.members.unshift(user);
       // this.evento.members.unshift(this.$store.getters.logedInUser);
       this.$store.dispatch({type:'editEvento',evento: this.evento})
-        .then(()=> this.$router.push(`/event/${this.evento._id}`))
+        .then(()=> {
+          this.$emit('closeJoin');
+          this.$router.push(`/event/${this.evento._id}`);
+        });
       
     }
   },
