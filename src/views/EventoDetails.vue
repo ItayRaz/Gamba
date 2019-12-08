@@ -1,12 +1,14 @@
 <template>
   <section v-if="evento._id" class="details-container">
-    <section class="event-details">
+    <section>
+      
       <div class="img-container">
         <img class="main-img" :src="evento.imgs[0]" />
         <div class="flex">
           <h1 class="title">{{evento.title}}</h1>
         </div>
       </div>
+
       <div class="important-details flex column">
         <h1 class="text-center evento-time">{{evento.time.start| moment("LLLL")}}</h1>
         <h1 class="evento-location">{{evento.location.address_line_1}}</h1>
