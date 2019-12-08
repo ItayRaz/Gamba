@@ -1,7 +1,6 @@
 <template>
-  <section class="flex column align-center space-around">
-    <h1>Join Quick</h1>
-    <form @submit.prevent="joinGuest">
+  <section>
+    <form @submit.prevent="joinGuest" class="flex column justify-center">
       <label for>
         <input type="text" v-model="guest.username" placeholder="Enter your name" required />
       </label>

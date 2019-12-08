@@ -8,8 +8,10 @@
         </div>
       </div>
       <div class="important-details flex column">
-        <div class="flex space-between evento-time">
-          <h1>{{evento.time.start| moment("LLLL")}}</h1>
+        <div class="flex row wrap justify-center  evento-time">
+          <h1>{{evento.time.start| moment("LL")}}</h1>
+          <h1>{{evento.time.start| moment("dddd")}}</h1>
+          <h1>{{evento.time.start| moment("LT")}}</h1>
         </div>
         <div class="evento-location">
           <h1>{{evento.location.address_line_1}}</h1>
@@ -27,6 +29,9 @@
           <div v-if="evento.price" class="price flex space-around">
             <h1 v-if="evento.price">Price:</h1>
             <h1>{{evento.price}}$</h1>
+          </div>
+          <div v-else class="price flex justify-center">
+            <h1>Free</h1>
           </div>
         </div>
       </div>
@@ -89,7 +94,9 @@
 
       </section>
     </section>
+    <div v-if="isJoin" class="cover-join">
     <router-view :evento="evento"></router-view>
+    </div>
   </section>
 </template>
 
@@ -119,7 +126,8 @@ export default {
       evento: {},
       mainImg: 0,
       showImg: true,
-      newComment: ""
+      newComment: "",
+      isJoin:false
     };
   },
   computed: {
@@ -165,7 +173,7 @@ export default {
         this.evento.members.unshift(user);
         this.$store.dispatch({ type: "editEvent", evento: this.evento });
       } else {
-        this.$router.push(`${this.evento._id}/join`); // ask!
+        this.$router.push(`${this.evento._id}/join`); 
       }
     },
     leaveEvento() {
@@ -214,11 +222,12 @@ export default {
     this.disConnectSocket();
   },
   watch: {
-    mainImg() {
-      this.showImg = !this.showImg;
-      setTimeout(() => {
-        this.showImg = !this.showImg;
-      }, 1000);
+    $route(to){
+      if(to.path.includes('join')){
+          this.isJoin = true;
+      } else this.isJoin = false; 
+      
+      
     }
   }
 };

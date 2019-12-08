@@ -17,7 +17,6 @@ import LocalSignUp from '../components/LocalSignUp';
 import EventoCalender from '../views/EventoCalender.vue';
 
 
-import EventsAround from '../views/EventsAround.vue';//testing
 
 Vue.use(VueRouter)
 
@@ -44,12 +43,6 @@ const routes = [
       },
     ]
   },
-  {
-    path: '/event/around',
-    name: 'event-around',
-    component: EventsAround 
-  },
-  
   {
     path: '/event/:id',
     name: 'event-details',
