@@ -34,10 +34,11 @@
         <div class="evento-categories">
           <ul class="clean-list flex justify-start">
             <li v-for="(type,idx) in evento.categories" :key="idx">
-              <h1 class="categorie">
+              <router-link :to="'/event?filter=' + type"><h1 class="categorie">
                 <span>#</span>
                 {{type}}
               </h1>
+              </router-link>
             </li>
           </ul>
         </div>
@@ -48,7 +49,7 @@
           </div>
         </div>
 
-        <video class="evento-video" v-if="evento.videos" controls>
+        <video class="evento-video" v-if="evento.videos && evento.video.length" controls>
           <source :src="evento.videos[0]" type="video/mp4" />
           <!-- <source src="movie.ogg" type="video/ogg" />Your browser does not support the video tag. -->
         </video>
@@ -62,8 +63,8 @@
           <h2 class="attendies">Members</h2>
           <div>
             <ul>
-              <li v-for="member in members" :key="member._id">
-                <img v-if="member.img" :src="member.img" />
+               <li v-for="member in members" :key="member._id">
+                <router-link v-if="member.img" :to="'/user/'+member._id"><img :src="member.img" /></router-link>
                 <img v-else src="~@/assets/user_default.png" />
               </li>
             </ul>
