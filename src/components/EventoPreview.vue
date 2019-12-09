@@ -9,14 +9,15 @@
       <img v-if="seatsLeft === 0" class="full-img" src="@/assets/full.png">
     </div>
     <div class="prev-details flex space-between">
-      <div v-if="evento.membersLimit && seatsLeft < 10 && seatsLeft> 0" class="seats-left few-left">{{seatsLeft}} Seats Left!</div>
+      <div v-if="evento.membersLimit && seatsLeft === 1" class="seats-left few-left">{{seatsLeft}} Seat Left!</div>
+      <div v-else-if="evento.membersLimit && seatsLeft < 10 && seatsLeft> 0" class="seats-left few-left">{{seatsLeft}} Seats Left!</div>
       <div class="info flex column space-between">
         <h3><short-text :txt="evento.title" :txtLimit="19"/></h3>
-        <h5>{{evento.time.start | moment("DD.MM.YY")}}</h5>
+        <h4>{{evento.time.start | moment("DD.MM.YY")}}</h4>
         <h4><short-text :txt="evento.location.address_line_1" :txtLimit="18"/></h4>
-        <div>Price: {{evento.price}}$</div>
+        <h4>Price: {{evento.price}}$</h4>
         <router-link :to="'/event/'+evento._id">Read More</router-link>
-        <div class="member-count">{{evento.members.length}} <i class="fa fa-user"></i></div>
+        <div class="member-count">{{evento.members.length}} / {{evento.membersLimit}} <i class="fa fa-user"></i></div>
       </div>
     <div class="prev-avatars">
       <div>

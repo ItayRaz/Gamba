@@ -1,12 +1,14 @@
 <template>
   <section v-if="evento._id" class="details-container">
-    <section class="event-details">
+    <section>
+      
       <div class="img-container">
         <img class="main-img" :src="evento.imgs[0]" />
         <div class="flex">
           <h1 class="title">{{evento.title}}</h1>
         </div>
       </div>
+
       <div class="important-details flex column">
         <h1 class="text-center evento-time">{{evento.time.start| moment("LLLL")}}</h1>
         <h1 class="evento-location">{{evento.location.address_line_1}}</h1>
@@ -87,8 +89,7 @@
       </section>
     </section>
     <div v-if="isJoin" class="cover-join">
-      <!-- <router-view :evento="evento"></router-view> -->
-      <join-evento :evento="evento" @closeJoin="isJoin = false"></join-evento>
+      <join-evento :evento="evento" @addGuest="addGuest" @closeJoin="isJoin = false"></join-evento>
     </div>
   </section>
 </template>
@@ -107,6 +108,7 @@ import joinEvento from "./JoinEvento.vue";
 import eventoService from "../services/evento.service.js";
 import socketService from "../services/socket.service.js";
 
+
 export default {
   components: {
     MapDetails,
@@ -114,7 +116,7 @@ export default {
     UserGallery,
     Creator,
     CommentList,
-    joinEvento
+    joinEvento,
   },
   data() {
     return {
@@ -172,6 +174,9 @@ export default {
 
       this.newComment = "";
     },
+    addGuest(guest) {
+      this.evento.members.push(guest)
+    },
     connectToSocket() {
       //check room
       socketService.emit("joinRoom", this.evento._id);
@@ -207,7 +212,7 @@ export default {
   },
   destroyed() {
     this.disconnectSocket();
-  }
+  },
 };
 </script>
 

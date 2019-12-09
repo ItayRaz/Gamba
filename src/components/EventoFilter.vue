@@ -2,7 +2,7 @@
   <form @submit.prevent="filter" class="evento-filter flex align-center space-around wrap">
     <section class="search-by">
       <i class="fa fa-search"></i>
-      <input type="search" @input="filter" v-model="filterBy.searchStr" placeholder="Search Event" />
+      <input type="text" @input="filter" v-model="filterBy.searchStr" placeholder="Search Event" />
     </section>
     <el-select class="elselect" v-model="filterBy.category" placeholder="Select" @change="filter">
       <el-option label="All" value="All"></el-option>

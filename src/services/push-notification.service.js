@@ -5,7 +5,7 @@ import httpService from './http.service.js';
 // const publicVapidKey = '';
 const publicVapidKey = 'BKHooCZ_NqCiuF7vQUSxiF7OKmJynbW1T4hnbun9jh_n-NgmF-4FGw5dRhrZWQlsiAq6QIM0ipbq38M7FuJK9ec';
 
-export default {sendNotification}
+export default {sendNotification} 
 
 async function sendNotification() {
     if ('serviceWorker' in navigator) {
@@ -14,10 +14,15 @@ async function sendNotification() {
             scope: '/'
         }); 
 
+        // const subscription = await register.pushManager.subscribe({
+        //     userVisibleOnly: true,
+        //     applicationServerKey: urlBase64ToUint8Array(publicVapidKey),
+        // });
         const subscription = await register.pushManager.subscribe({
             userVisibleOnly: true,
             applicationServerKey: urlBase64ToUint8Array(publicVapidKey),
         });
+
 
         await httpService.post('/subscribe', JSON.stringify(subscription))
 

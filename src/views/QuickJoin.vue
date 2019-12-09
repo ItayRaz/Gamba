@@ -21,12 +21,14 @@ export default {
   },
   methods: {
     joinGuest() {
-
       var evento =JSON.parse(JSON.stringify(this.evento)) ;
       evento.members.unshift(this.guest);
       this.$store.dispatch({type:'editEvento',evento})
         // .then(()=> this.$router.push(`/event/${this.evento._id}`))
-        .then(()=> this.$emit('closeJoin'))
+        .then(()=> {
+          this.$emit('addGuest', this.guest)
+          this.$emit('closeJoin')
+          })
 
 
     }
