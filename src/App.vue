@@ -55,7 +55,7 @@ export default {
     this.connectToSocket();
     // console.log(notificationService,'!!!!');
     
-    notificationService.sendNotification();
+    // notificationService.sendNotification();
     // notificationService();
 
   },
