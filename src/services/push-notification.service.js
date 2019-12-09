@@ -9,6 +9,7 @@ export default {sendNotification}
 
 async function sendNotification() {
     if ('serviceWorker' in navigator) {
+        console.log('sending notification?')
         const register = await navigator.serviceWorker.register('./service-worker.js', {
             scope: '/'
         }); 
