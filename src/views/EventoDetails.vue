@@ -49,7 +49,7 @@
           </div>
         </div>
 
-        <video class="evento-video" v-if="evento.videos && evento.video.length" controls>
+        <video class="evento-video" v-if="evento.videos && evento.videos.length" controls>
           <source :src="evento.videos[0]" type="video/mp4" />
           <!-- <source src="movie.ogg" type="video/ogg" />Your browser does not support the video tag. -->
         </video>
