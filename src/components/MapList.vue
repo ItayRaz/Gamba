@@ -122,6 +122,7 @@ export default {
       this.window_open = true;
     },
     openWindow(coords) {
+      this.getEventByCoords(coords);
       this.infowindow = { ...coords };
       this.window_open = true;
     },
