@@ -2,8 +2,12 @@
 
 import httpService from './http.service.js';
 
-// const publicVapidKey = '';
+const BASE_API = (process.env.NODE_ENV === 'production')
+        ? '/subscribe'
+        : '//localhost:3030/subscribe'
+
 const publicVapidKey = 'BKHooCZ_NqCiuF7vQUSxiF7OKmJynbW1T4hnbun9jh_n-NgmF-4FGw5dRhrZWQlsiAq6QIM0ipbq38M7FuJK9ec';
+
 
 export default {sendNotification} 
 
@@ -14,17 +18,13 @@ async function sendNotification() {
             scope: '/'
         }); 
 
-        // const subscription = await register.pushManager.subscribe({
-        //     userVisibleOnly: true,
-        //     applicationServerKey: urlBase64ToUint8Array(publicVapidKey),
-        // });
         const subscription = await register.pushManager.subscribe({
             userVisibleOnly: true,
             applicationServerKey: urlBase64ToUint8Array(publicVapidKey),
         });
 
 
-        await httpService.post('/subscribe', JSON.stringify(subscription))
+        await httpService.post(BASE_API, JSON.stringify(subscription))
 
     } else {
         console.log('web push is not suported');
