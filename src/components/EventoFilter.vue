@@ -6,7 +6,7 @@
     </section>
     <el-select class="elselect" v-model="filterBy.category" placeholder="Select" @change="filter">
       <el-option label="All" value="All"></el-option>
-      <el-option v-for="category in categories" :key="category" :label="category" :value="category"></el-option>
+      <el-option class="option" v-for="category in categories" :key="category" :label="category" :value="category"></el-option>
     </el-select>
     <p v-if="!isShowingMap" class="map-btn" @click="toggleMap">Show Map</p>
     <p v-else class="map-btn" @click="toggleMap">Hide Map</p>
@@ -20,7 +20,7 @@
 <script>
 
 export default {
-  props: ["categories"],
+  props: ["categories", 'category'],
   data() {
     return {
       filterBy: {
@@ -39,6 +39,14 @@ export default {
       this.isShowingMap = !this.isShowingMap
       this.$emit('toggleMap', this.isShowingMap)
       
+    }
+  },
+  created() {
+     {
+      if (this.category){ 
+        this.filterBy.category = this.category;
+        this.filter();
+      }
     }
   }
 };

@@ -1,7 +1,7 @@
 <template>
   <main v-if="eventos" class="evento-page container flex column align-center">
     <section class="flex actions justify-center">
-      <evento-filter :categories="eventosCategories" @setFilter="setFilter" @toggleMap="showMap"/>
+      <evento-filter :categories="eventosCategories" :category="category" @setFilter="setFilter" @toggleMap="showMap"/>
       <!-- <router-link to="/event/edit">
         <button class="add-btn">Add Event <i class="fa fa-plus"></i></button>
       </router-link> -->
@@ -24,7 +24,8 @@ export default {
     return {
       // eventos: [],
       filterBy: {},
-      isShowingMap:false
+      isShowingMap:false,
+      category: null
     };
 
   },
@@ -55,6 +56,11 @@ export default {
   async created() {
     // this.eventos = await this.$store.dispatch({type: 'loadEventos'});
     document.body.scrollIntoView();
+    let filterBy = {category: this.$route.query.filter}
+    if (filterBy.category) {
+      // this.$store.commit({ type: "setFilter", filterBy: { ...filterBy } })
+      this.category = filterBy.category;
+      };
   }
 };
 </script>
