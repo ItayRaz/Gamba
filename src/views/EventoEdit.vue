@@ -169,6 +169,13 @@ export default {
     google: gmapApi
   },
   async created() {
+    var logedUser = this.$store.getters.logedInUser;
+    if (!logedUser) {
+      this.$router.push('/event');
+      this.$store.dispatch({type: 'Alert', msg: 'Not logged in.'})
+    }
+
+
     document.body.scrollIntoView();
     let eventoId = this.$route.params.id;
     if (!eventoId) eventoId = "";
