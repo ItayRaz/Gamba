@@ -37,6 +37,7 @@ export default {
 
       socketService.on("EventoAdded", evento => {
         this.$store.dispatch({ type: "Notification", msg: `${evento.creator.name} just created a new event! check it out!`, link: `/event/${evento._id}` });
+        // notificationService.sendNotification('Gamba', `${evento.creator.name} just created a new event! check it out!`);  
       });
     },
     disConnectSocket() {
@@ -53,11 +54,8 @@ export default {
     //  throw err
     };
     this.connectToSocket();
-    // console.log(notificationService,'!!!!');
     
-    // notificationService.sendNotification();
-    // notificationService();
-
+    notificationService.sendNotification('Welcome Gamba!!!');
   },
  
 };

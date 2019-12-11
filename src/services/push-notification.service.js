@@ -11,10 +11,10 @@ const publicVapidKey = 'BKHooCZ_NqCiuF7vQUSxiF7OKmJynbW1T4hnbun9jh_n-NgmF-4FGw5d
 
 export default {sendNotification} 
 
-async function sendNotification() {
+async function sendNotification(title = 'hey', txt = 'Gamba') {
     if ('serviceWorker' in navigator) {
         console.log('sending notification?')
-        const register = await navigator.serviceWorker.register('./service-worker.js', {
+        const register = await navigator.serviceWorker.register('/worker.js', {
             scope: '/'
         }); 
 
@@ -23,8 +23,10 @@ async function sendNotification() {
             applicationServerKey: urlBase64ToUint8Array(publicVapidKey),
         });
 
+        var msg = {title, txt};
 
-        await httpService.post(BASE_API, JSON.stringify(subscription))
+        // await httpService.post(BASE_API, JSON.stringify(subscription))
+        await httpService.post(BASE_API, {subscription, msg})
 
     } else {
         console.log('web push is not suported');
